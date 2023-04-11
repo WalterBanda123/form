@@ -1,0 +1,186 @@
+<!-- <div class="container">
+  <h4 mat-dialog-title>Add a company*</h4>
+  <form #formData="ngForm" (ngSubmit)="addCompanyHandler(formData)">
+    <div class="input-container">
+      <input
+        type="text"
+        ngModel
+        name="companyName"
+        #companyName="ngModel"
+        placeholder="Company Name"
+        name="companyName"
+        required
+      />
+    </div>
+
+    <div class="input-container">
+      <input
+        type="text"
+        placeholder="Social Media Link"
+        #socialMediaLink="ngModel"
+        ngModel
+        name="socialMediaLink"
+        id="socialMediaLink     "
+      />
+    </div>
+
+    <div class="input-container">
+      <input
+        type="tel"
+        #companyPhone="ngModel"
+        placeholder="Phone"
+        ngModel
+        name="companyPhone"
+        id="companyPhone"
+      />
+    </div>
+
+    <div class="input-container">
+      <input
+        type="text"
+        #companyWebsite="ngModel"
+        placeholder="Website"
+        ngModel
+        name="companyWebsite"
+        id="companyWebsite"
+      />
+    </div>
+
+    <div class="input-container">
+      <input
+        type="email"
+        placeholder="Contact Email"
+        #contactEmail="ngModel"
+        ngModel
+        name="contactEmail"
+        id="contactEmail"
+        required="true "
+      />
+    </div>
+
+    <div class="input-container">
+      <input
+        type="text"
+        placeholder="Other Contact"
+        #otherContact="ngModel"
+        ngModel
+        id="otherContact"
+        name="otherContact"
+      />
+    </div>
+    <div class="buttons">
+      <button type="button" mat-dialog-close="false" id="cancel">Cancel</button>
+      <button
+        type="submit"
+        mat-dialog-close="true"
+        [disabled]="formData.invalid && formData.untouched ? true : false"
+        id="save"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</div> -->
+<div class="container">
+  <h3 mat-dialog-title>Add Company</h3>
+
+  <form
+    method="post"
+    #formData="ngForm"
+    (ngSubmit)="addCompanyHandler(formData)"
+  >
+    <mat-form-field class="form-field">
+      <mat-label>Company Name</mat-label>
+      <input
+        type="text"
+        matInput
+        ngModel
+        name="companyName"
+        #companyName="ngModel"
+        placeholder="Company Name"
+        name="companyName"
+        required
+      />
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <mat-label>Social Media Link</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Social Media Link"
+        #socialMediaLink="ngModel"
+        ngModel
+        name="socialMediaLink"
+        id="socialMediaLink"
+      />
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <mat-label>Phone</mat-label>
+      <input
+        type="text"
+        matInput
+        #companyPhone="ngModel"
+        placeholder="Phone"
+        ngModel
+        name="companyPhone"
+        id="companyPhone"
+      />
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <mat-label>Website</mat-label>
+      <input
+        type="text"
+        matInput
+        #companyWebsite="ngModel"
+        placeholder="Website"
+        ngModel
+        name="companyWebsite"
+        id="companyWebsite"
+      />
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <mat-label>Contact Email</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Contact Email"
+        #contactEmail="ngModel"
+        ngModel
+        name="contactEmail"
+        id="contactEmail"
+        required="true "
+      />
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <mat-label>other Contact</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Other Contact"
+        #otherContact="ngModel"
+        ngModel
+        id="otherContact"
+        name="otherContact"
+      />
+    </mat-form-field>
+    <div class="buttons">
+      <span class="cancel">
+        <button type="button" mat-raised-button mat-dialog-close="false">
+          Cancel
+        </button>
+      </span>
+      <span class="save">
+        <button
+          type="submit"
+          mat-raised-button
+          type="submit"
+          mat-dialog-close="true"
+          [disabled]="formData.invalid && formData.untouched ? true : false"
+          id="save"
+        >
+          Save
+        </button>
+      </span>
+    </div>
+  </form>
+</div>

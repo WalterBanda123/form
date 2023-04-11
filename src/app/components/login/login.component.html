@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="content">
+    <div class="header">
+      <img src="./../../../assets/dynaton-logo.png" alt="logo" width="150" />
+    </div>
+    <div class="content-container">
+      <form #loginForm="ngForm" (ngSubmit)="signInHandler(loginForm)">
+        <div class="input-container">
+          <p>Login with your email and password</p>
+        </div>
+        <div class="input-container">
+          <mat-form-field>
+            <input
+              matInput
+              type="email"
+              placeholder="Email"
+              name="email"
+              ngModel
+              #email="ngModel"
+              required
+            />
+          </mat-form-field>
+        </div>
+        <div class="input-container">
+          <mat-form-field>
+            <input
+              matInput
+              type="password"
+              placeholder="Password"
+              name="password"
+              ngModel
+              #password="ngModel"
+              required
+            />
+          </mat-form-field>
+        </div>
+        <div class="input-container">
+          <button type="submit" mat-stroked-button>Sign in</button>
+        </div>
+        <div class="input-container">
+         <span> Don't have an account? <a routerLink="/signup">Sign Up</a></span>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

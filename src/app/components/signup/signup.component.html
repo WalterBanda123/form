@@ -1,0 +1,75 @@
+<div class="container">
+  <div class="content">
+    <div class="header">
+      <img src="./../../../assets/dynaton-logo.png" alt="logo" width="150" />
+    </div>
+    <div class="content-container">
+      <form #signupForm="ngForm" (ngSubmit)="signUpUser(signupForm)">
+        <div class="input-container">
+          <p>Register with your name, email & password</p>
+        </div>
+        <div class="input-container">
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="Full name"
+              name="fullName"
+              ngModel
+              #fullName="ngModel"
+              required
+            />
+          </mat-form-field>
+        </div>
+
+        <div class="input-container">
+          <mat-form-field>
+            <input
+              matInput
+              type="email"
+              placeholder="Email"
+              name="email"
+              ngModel
+              #email="ngModel"
+              required
+            />
+          </mat-form-field>
+        </div>
+        <div class="input-container">
+          <mat-form-field>
+            <input
+              matInput
+              type="password"
+              placeholder="Password"
+              name="password"
+              ngModel
+              #password="ngModel"
+              required
+            />
+          </mat-form-field>
+        </div>
+        <div class="input-container">
+          <mat-form-field>
+            <input
+              matInput
+              type="password"
+              placeholder="Confirm password"
+              name="confirmPassword"
+              ngModel
+              #confirmPassword="ngModel"
+              required
+            />
+          </mat-form-field>
+        </div>
+        <div class="input-container">
+          <button type="submit" mat-stroked-button>Sign up</button>
+        </div>
+        <div class="input-container">
+          <span class="bottom-div">
+            Already have an account? <a routerLink="/login">Sign in</a></span
+          >
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

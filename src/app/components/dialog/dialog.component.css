@@ -1,0 +1,33 @@
+
+.container {
+  width: 800px;
+  height: 700px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin-left: 5%;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+.buttons span button {
+  width: 200px;
+  height: 40px;
+}
+
+.cancel button {
+  background-color: black;
+  color: white;
+}
+.save button {
+  background-color: #ce0212;
+  color: white;
+}

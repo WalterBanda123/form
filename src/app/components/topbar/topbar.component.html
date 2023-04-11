@@ -1,0 +1,30 @@
+<div class="container">
+  <span>
+    <img
+      src="./../../../assets/dynaton-logo.png"
+      alt="dynaton-logo"
+      height="50"
+    />
+  </span>
+  <span>
+    <button
+      class="account-button"
+      type="button"
+      mat-button
+      [matMenuTriggerFor]="menu"
+    >
+      <mat-menu #menu>
+        <button mat-menu-item>
+          <span>Edit profile</span>
+        </button>
+        <button mat-menu-item (click)="signOutHandler()">
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+      <i class="material-icons">account_circle</i>
+      <p *ngIf="user">{{ user.fullName }}</p>
+
+      <!-- <mat-icon>account_circle</mat-icon> -->
+    </button>
+  </span>
+</div>
