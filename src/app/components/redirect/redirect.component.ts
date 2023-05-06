@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-redirect',
@@ -6,7 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./redirect.component.css'],
 })
 export class RedirectComponent implements OnInit {
-  constructor() {}
+  constructor(private authService: AuthService) {
+    this.authService.getUsers().subscribe((users: any) => {
+      const usersList = users.allUsers;
+      this.newlyCreatedUser = usersList[users.allUsers.length - 1];
+    });
+  }
 
-  ngOnInit(): void {}
+  newlyCreatedUser: any;
+
+  ngOnInit(): void {
+
+  }
 }

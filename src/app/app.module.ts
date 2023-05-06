@@ -23,12 +23,13 @@ import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { RedirectComponent } from './components/redirect/redirect.component';
 import {MatCardModule} from "@angular/material/card";
-import {MatProgressSpinnerModule} from "@angular/material/progress-spinner"
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatSelect, MatSelectModule} from "@angular/material/select"
+
 
 @NgModule({
   declarations: [
     AppComponent,
-
     DashboardComponent,
     DialogComponent,
     EditComponent,
@@ -53,7 +54,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner"
     MatIconModule,
     MatMenuModule,
     MatCardModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent],

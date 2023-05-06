@@ -19,6 +19,9 @@
               #fullName="ngModel"
               required
             />
+            <mat-error *ngIf="fullName.invalid && fullName.touched"
+              >Full name is required</mat-error
+            >
           </mat-form-field>
         </div>
 
@@ -33,6 +36,9 @@
               #email="ngModel"
               required
             />
+            <mat-error *ngIf="email.invalid && email.touched"
+              >Email is required</mat-error
+            >
           </mat-form-field>
         </div>
         <div class="input-container">
@@ -46,6 +52,9 @@
               #password="ngModel"
               required
             />
+            <mat-error *ngIf="password.invalid && password.touched"
+              >Password is required</mat-error
+            >
           </mat-form-field>
         </div>
         <div class="input-container">
@@ -59,10 +68,19 @@
               #confirmPassword="ngModel"
               required
             />
+            <mat-error *ngIf="passwordsDoNotMatch === 'Passwords do not match'"
+              >Passwords do not match</mat-error
+            >
           </mat-form-field>
         </div>
         <div class="input-container">
-          <button type="submit" mat-stroked-button>Sign up</button>
+          <button
+            type="submit"
+            mat-stroked-button
+            [disabled]="signupForm.invalid ? true : false"
+          >
+            Sign up
+          </button>
         </div>
         <div class="input-container">
           <span class="bottom-div">

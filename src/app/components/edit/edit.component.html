@@ -62,6 +62,22 @@
         [(ngModel)]="selectedCompany.otherContact"
       />
     </mat-form-field>
+    <mat-form-field class="form-field">
+      <mat-label>Status</mat-label>
+      <mat-select
+        [(ngModel)]="selectedCompany.status"
+        [value]="selectedCompany.status"
+        name="status"
+      >
+        <mat-option value="Not reached">Not reached</mat-option>
+        <mat-option value="Reached">Reached</mat-option>
+        <mat-option value="Rejected">Rejected</mat-option>
+        <mat-option value="Free credits onboarding"
+          >Free credits onboarding</mat-option
+        >
+        <mat-option value="Onboarding">Onboarding</mat-option>
+      </mat-select>
+    </mat-form-field>
     <div class="buttons">
       <span class="cancel">
         <button type="button" mat-raised-button mat-dialog-close="false">
@@ -69,12 +85,7 @@
         </button>
       </span>
       <span class="save">
-        <button
-          type="submit"
-          mat-raised-button
-          mat-dialog-close="true"
-
-        >
+        <button type="submit" mat-raised-button mat-dialog-close="true">
           Save
         </button>
       </span>

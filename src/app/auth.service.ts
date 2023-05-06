@@ -64,7 +64,14 @@ export class AuthService {
   }
 
   getUser(userId: string): Observable<any> {
-    return this.http.get<any>(this.serverUrl + `users/${userId}`)
-    .pipe(catchError(this.errorHandler));
+    return this.http
+      .get<any>(this.serverUrl + `users/${userId}`)
+      .pipe(catchError(this.errorHandler));
+  }
+
+  getUsers(): Observable<any> {
+    return this.http
+      .get<any>(this.serverUrl + `users`)
+      .pipe(catchError(this.errorHandler));
   }
 }

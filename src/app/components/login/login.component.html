@@ -19,6 +19,9 @@
               #email="ngModel"
               required
             />
+            <mat-error *ngIf="email.touched && email.invalid">
+              Please enter a valid email address
+            </mat-error>
           </mat-form-field>
         </div>
         <div class="input-container">
@@ -32,13 +35,21 @@
               #password="ngModel"
               required
             />
+            <mat-error *ngIf="password.touched && password.invalid">
+              Please enter a valid password
+            </mat-error>
           </mat-form-field>
         </div>
         <div class="input-container">
+          <span class="error" *ngIf="loginForm.invalid && loginForm.submitted === true"
+            >Please enter a valid email and password</span
+          >
           <button type="submit" mat-stroked-button>Sign in</button>
         </div>
         <div class="input-container">
-         <span> Don't have an account? <a routerLink="/signup">Sign Up</a></span>
+          <span>
+            Don't have an account? <a routerLink="/signup">Sign Up</a></span
+          >
         </div>
       </form>
     </div>

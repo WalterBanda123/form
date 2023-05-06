@@ -1,3 +1,14 @@
+.error {
+  width: 70%;
+  color: #ce0212;
+  margin-top: 0px;
+  margin-bottom: 4px;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
 .container {
   width: 100%;
   height: 100%;
@@ -9,9 +20,8 @@
 }
 .content {
   width: 600px;
-  height: 450px;
+  height: 500px;
   background-color: white;
-  box-shadow: inset;
 }
 .header {
   width: 100%;
@@ -34,7 +44,7 @@
 }
 .input-container button {
   width: 50%;
-  background-color: #ce0212;
+  background-color: black;
   color: white;
   height: 50px;
 }
@@ -50,4 +60,5 @@
 
 mat-form-field {
   width: 70%;
+  margin-bottom: 0px;
 }

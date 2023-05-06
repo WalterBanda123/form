@@ -14,10 +14,10 @@ export class EditComponent implements OnInit {
     private companyService: CompanyService
   ) {}
 
+  selectedStatus?: string;
   editCompanyHandler(updates: NgForm): void {
     const values = updates.value;
 
-    
     const updatedValuesArr = [
       { propertyName: 'companyName', value: values.companyName },
       { propertyName: 'socialMediaLink', value: values.socialMediaLink },
@@ -25,7 +25,10 @@ export class EditComponent implements OnInit {
       { propertyName: 'companyWebsite', value: values.companyWebsite },
       { propertyName: 'contactEmail', value: values.contactEmail },
       { propertyName: 'otherContact', value: values.otherContact },
+      { propertyName: 'status', value: values.status },
     ];
+
+    console.log(values.status);
 
     this.companyService
       .updateCompany(this.data._id, updatedValuesArr)
@@ -37,5 +40,8 @@ export class EditComponent implements OnInit {
   selectedCompany: any;
   ngOnInit(): void {
     this.selectedCompany = this.data;
+    if (this.data.status) {
+      this.selectedStatus = this.data.status;
+    }
   }
 }
