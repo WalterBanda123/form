@@ -6,9 +6,8 @@
       height="50"
     />
   </span>
-
   <span class="profile-icon">
-    <p *ngIf="user">{{ user.fullName }}</p>
+    <p *ngIf="user">{{ user.fullName | uppercase }}</p>
 
     <button
       class="account-button"
@@ -17,12 +16,8 @@
       [matMenuTriggerFor]="menu"
     >
       <mat-menu #menu>
-        <button mat-menu-item>
-          <span>Edit profile</span>
-        </button>
-        <button mat-menu-item (click)="signOutHandler()">
-          <span>Logout</span>
-        </button>
+        <button mat-menu-item>Edit profile</button>
+        <button mat-menu-item (click)="signOutHandler()">Logout</button>
       </mat-menu>
       <i class="material-icons">account_circle</i>
     </button>

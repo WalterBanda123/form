@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 import { CompanyService } from 'src/app/company.service';
 import { EditComponent } from '../edit/edit.component';
+import { CallModalComponent } from '../call-modal/call-modal.component';
+import { MeetingModalComponent } from '../meeting-modal/meeting-modal.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,8 +26,7 @@ export class DashboardComponent implements OnInit {
   companiesOnFreeCreditsOnboarding: any[] = [];
   companieOnboarding: any[] = [];
   totalNumberOfCompanies: any;
-  selectedMenuItem:string = 'all';
-
+  selectedMenuItem: string = 'all';
 
   displayedColumns: string[] = [
     'companyName',
@@ -34,8 +35,9 @@ export class DashboardComponent implements OnInit {
     'companyWebsite',
     'contactEmail',
     'status',
-    'edit',
-    'delete',
+    'view',
+    'call',
+    'meeting',
   ];
 
   menuItem: string[] = [
@@ -59,11 +61,24 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  selectionChangeHandler(event: any): void {
+    this.selectedMenuItem = event.source.value;
+    console.log(event.source.value);
+    this.selectedMenuItem = event.source.value;
+  }
+
   //-------FILTERING BASED ON COMPANIES REACHED----
-  filterCompaniesReached(item:any): void {
+  filterAll(): void {
+    this.companyService.getCompanies().subscribe((companies: any) => {
+      this.dataSource = companies.companies.reverse();
+      this.changeDection.detectChanges();
+    });
+  }
+
+  //-------FILTERING BASED ON COMPANIES REACHED----
+  filterCompaniesReached(): void {
     this.dataSource = this.companiesReached;
     this.changeDection.detectChanges();
-    this.selectedMenuItem = item
   }
 
   //-------FILTERING BASED ON COMPANIES NOT REACHED----
@@ -136,9 +151,16 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  onMenuOpened(): void {
-    setTimeout(() => {
-      console.log(this.selectedMenuItem);
+  scheduleMeeting(company: any):void {
+    const dialogRef = this.dialog.open(MeetingModalComponent, {data:company});
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(result);
+    });
+  }
+  addCallNotes(company: any): void {
+    const dialogRef = this.dialog.open(CallModalComponent, { data: company });
+    dialogRef.afterClosed().subscribe((results) => {
+      console.log(results);
     });
   }
 

@@ -82,7 +82,7 @@
       Search
       <input
         matInput
-        placeholder="Search for Everything, Company Name, Company Email, Website, "
+        placeholder="Search for Everything, Company Name, Company Email, Website, Contact. "
         type="search"
         [(ngModel)]="searchedValue"
         (input)="searchHandler()"
@@ -96,34 +96,51 @@
         </button>
       </span>
       <span>
-        <button mat-raised-button class="filter" [matMenuTriggerFor]="status" (menuOpened)="onMenuOpened()">
-          <mat-menu #menu #status [class.mat-elevation-z8]="true" >
-            <button
-              mat-menu-item
-              (click)="filterCompaniesReached('all')"
-              id="all"
-              [ngStyle]="{color: selectedMenuItem === 'all'? 'blue' : 'black'}"
-            >
-              All
-            </button>
-            <button mat-menu-item (click)="filterCompaniesNotReached()">
-              Not reached
-            </button>
-            <button mat-menu-item (click)="filterCompaniesReached('reached')" id="'reached">
-              Reached
-            </button>
-            <button mat-menu-item (click)="filterCompaniesThatRejected()">
-              Rejected
-            </button>
-            <button mat-menu-item (click)="filterCompaniesOnFreeCredit()">
-              Free credits onboarding
-            </button>
-            <button mat-menu-item (click)="filterCompaniesOnboarding()">
-              Onboarding
-            </button>
-          </mat-menu>
-          Filter <i class="material-icons">filter_list</i>
+        <button mat-raised-button class="filter" [matMenuTriggerFor]="status">
+          Filter
+          <!-- <i class="material-icons">filter_list</i> -->
         </button>
+        <mat-menu #mainMenu>
+          <mat-select
+            (opened)="(true)"
+            [value]="allOption.value"
+            disabled="true"
+            hidden="true"
+          >
+            <mat-menu #status [class.mat-elevation-z8]="true">
+              <mat-option value="All" (click)="filterAll()" #allOption>
+                All
+              </mat-option>
+              <mat-option
+                value="Not reached"
+                (click)="filterCompaniesNotReached()"
+              >
+                Not reached
+              </mat-option>
+              <mat-option value="Reached" (click)="filterCompaniesReached()">
+                Reached
+              </mat-option>
+              <mat-option
+                value="Rejected"
+                (click)="filterCompaniesThatRejected()"
+              >
+                Rejected
+              </mat-option>
+              <mat-option
+                value="Free credits onboarding"
+                (click)="filterCompaniesOnFreeCredit()"
+              >
+                Free credits onboarding
+              </mat-option>
+              <mat-option
+                value="Onboarding"
+                (click)="filterCompaniesOnboarding()"
+              >
+                <p>Onboarding</p>
+              </mat-option>
+            </mat-menu>
+          </mat-select>
+        </mat-menu>
       </span>
     </div>
   </span>
@@ -132,9 +149,13 @@
 <hr />
 
 <!-- <app-table></app-table> -->
+
 <div class="container">
-  <table mat-table [dataSource]="dataSource!">
-    <ng-container matColumnDef="companyName">
+  <table mat-table [dataSource]="dataSource!" class="mat-elevation-z8">
+    <div *ngIf="dataSource.length === 0">
+      <h3>No information to show</h3>
+    </div>
+    <ng-container matColumnDef="companyName" *ngIf="dataSource.length > 0">
       <th mat-header-cell *matHeaderCellDef>Company Name</th>
       <td mat-cell *matCellDef="let company">{{ company.companyName }}</td>
     </ng-container>
@@ -164,8 +185,9 @@
       <th mat-header-cell *matHeaderCellDef>Status</th>
       <td mat-cell *matCellDef="let company">{{ company.status }}</td>
     </ng-container>
-    <ng-container matColumnDef="edit">
-      <th mat-header-cell *matHeaderCellDef></th>
+
+    <ng-container matColumnDef="view">
+      <th mat-header-cell *matHeaderCellDef>View</th>
       <td mat-cell *matCellDef="let company">
         <button
           type="button"
@@ -173,23 +195,37 @@
           mat-icon-button
           (click)="editCompanyDetails(company)"
         >
-          <mat-icon>edit</mat-icon>
+          <mat-icon>visibility</mat-icon>
         </button>
       </td>
     </ng-container>
-    <ng-container matColumnDef="delete">
-      <th mat-header-cell *matHeaderCellDef></th>
+    <ng-container matColumnDef="call">
+      <th mat-header-cell *matHeaderCellDef>Call</th>
       <td mat-cell *matCellDef="let company">
         <button
-          (click)="deleteCompanyRecord(company._id)"
           type="button"
-          class="button-delete"
+          class="button-edit"
           mat-icon-button
+          (click)="addCallNotes(company)"
         >
-          <mat-icon class="mat-delete-icon">delete</mat-icon>
+          <mat-icon>call</mat-icon>
         </button>
       </td>
     </ng-container>
+    <ng-container matColumnDef="meeting">
+      <th mat-header-cell *matHeaderCellDef>Meeting</th>
+      <td mat-cell *matCellDef="let company">
+        <button
+          type="button"
+          class="button-edit"
+          mat-icon-button
+          (click)="scheduleMeeting(company)"
+        >
+          <mat-icon>today</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>

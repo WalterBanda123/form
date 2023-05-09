@@ -1,13 +1,15 @@
 .container {
   width: 800px;
-  height: 700px;
+  height: 500px;
 }
-
 .form-field {
   display: flex;
   flex-direction: column;
   width: 90%;
   margin-left: 5%;
+}
+.heading{
+  padding-left: 25px;
 }
 
 .buttons {
@@ -30,3 +32,4 @@
   background-color: #ce0212;
   color: white;
 }
+

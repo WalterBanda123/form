@@ -1,21 +1,31 @@
 .container {
   width: 800px;
-  height: 700px;
+  height: 650px;
 }
 
-.form-field {
+.demo-inline-calendar-card {
+  width: 300px;
+  /* margin-bottom: 20px; */
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.content span{
+  flex: 2;
   display: flex;
   flex-direction: column;
-  width: 90%;
-  margin-left: 5%;
+  padding: 10px;
 }
-
 .buttons {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  /* margin-top: 50px; */
+  margin-top: 20px;
 }
 .buttons span button {
   width: 200px;
@@ -29,4 +39,9 @@
 .save button {
   background-color: #ce0212;
   color: white;
+}
+
+button.example-custom-date-class {
+  background: #ce0212;
+  border-radius: 100%;
 }

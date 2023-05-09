@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="heading">
+    <h3 mat-dialog-title>Call to {{ selectedCompany.companyName }}</h3>
+  </div>
+  <form #callForm="ngForm" (ngSubmit)="editCallDetails(callForm)">
+    <mat-form-field class="form-field">
+      <mat-label>What was the response?</mat-label>
+      <mat-select
+        name="status"
+        [value]="selectedCompany.status"
+        [(ngModel)]="selectedCompany.status"
+      >
+        <mat-option value="Not reached">Not reached</mat-option>
+        <mat-option value="Not reached">Awareness</mat-option>
+        <mat-option value="Reached">Reached</mat-option>
+        <mat-option value="Rejected">Rejected</mat-option>
+        <mat-option value="Free credits onboarding"
+          >Free credits onboarding</mat-option
+        >
+        <mat-option value="Onboarding">Onboarding</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <mat-label>Notes</mat-label>
+      <textarea
+        matInput
+        rows="6"
+        [value]="selectedCompany.notes"
+        name="notes"
+        [(ngModel)]="selectedCompany.notes"
+      ></textarea>
+    </mat-form-field>
+  </form>
+  <div class="buttons">
+    <span class="cancel">
+      <button type="button" mat-raised-button mat-dialog-close="false">
+        Cancel
+      </button>
+    </span>
+    <span class="save">
+      <button type="submit" mat-raised-button mat-dialog-close="true">
+        Save
+      </button>
+    </span>
+  </div>
+</div>

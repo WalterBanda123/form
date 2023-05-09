@@ -30,6 +30,13 @@ span img{
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
+}
+
+.profile-icon p{
+
+  justify-self: center;
+  margin-top: 7px;
 }
 
 .container span {
@@ -38,12 +45,6 @@ span img{
   display: flex;
   flex-direction: row;
   align-items: center;
-}
-button {
-  border: none;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
 }
 
 button p {
