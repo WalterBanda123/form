@@ -9,9 +9,7 @@ import { AuthService } from 'src/app/auth.service';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
-  constructor(private authService: AuthService, private router: Router) {
-
-  }
+  constructor(private authService: AuthService, private router: Router) {}
 
   passwordsDoNotMatch: string = '';
 
@@ -33,9 +31,14 @@ export class SignupComponent implements OnInit {
       console.log('new user created', newUser);
       this.authService.userSignUp(newUser).subscribe((response) => {
         if (response.user) {
-          this.router.navigate(['/redirect'], { state: response.user });
+          localStorage.setItem(
+            'recentlyCreatedUserName',
+            JSON.stringify(response.user.fullName)
+          );
+          setTimeout(() => {
+            this.router.navigate(['/redirect'], { state: response.user });
+          }, 2000);
         }
-        console.log(response);
       });
     } else {
       if (

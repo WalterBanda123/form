@@ -51,6 +51,11 @@ export class CompanyService {
       .delete<Company>(this.serverUrl + `companies/${companyId}`)
       .pipe(catchError(this.errorHandler));
   }
+  getCompany(companyId: string): Observable<Company> {
+    return this.http
+      .get<Company>(this.serverUrl + `companies/${companyId}`)
+      .pipe(catchError(this.errorHandler));
+  }
 
   updateCompany(
     companyId: string,

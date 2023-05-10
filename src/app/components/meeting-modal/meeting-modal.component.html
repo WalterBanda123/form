@@ -1,0 +1,82 @@
+<div class="container">
+  <h3 mat-dialog-title>Schedule meeting</h3>
+  <form #scheduleForm="ngForm" (ngSubmit)="editMeetingSchedule(scheduleForm)">
+    <div class="content" mat-dialog-content>
+      <span>
+        <mat-card class="demo-inline-calendar-card">
+          <mat-calendar
+            [(selected)]="selectedCompany.meetingDate"
+            [(ngModel)]="selectedCompany.meetingDate"
+            name="meetingDate"
+            [dateClass]="dateClass"
+            ngClass="example-custom-date-class"
+          ></mat-calendar>
+        </mat-card>
+        <mat-form-field class="demo-inline-calendar-card">
+          <input
+            matInput
+            name="meetingTime"
+            [(ngModel)]="selectedCompany.meetingTime"
+            [ngxMatTimepicker]="pickerB"
+            placeholder="Select time"
+            readonly
+          /><mat-icon matSuffix (click)="pickerB.open()">
+            watch_later
+          </mat-icon>
+        </mat-form-field>
+        <ngx-mat-timepicker color="accent" #pickerB></ngx-mat-timepicker>
+      </span>
+      <span>
+        <div>
+          <h2>Selected Date</h2>
+          <p>
+            {{
+              selectedCompany.meetingDate
+                ? (selectedCompany.meetingDate | date)
+                : "No selected date"
+            }}
+          </p>
+          <h2>Selected Time</h2>
+          <p>
+            {{
+              selectedCompany.meetingTime
+                ? selectedCompany.meetingTime
+                : "No selected time"
+            }}
+          </p>
+          <div>
+            <h2>Scheduled meeting</h2>
+
+            <p
+              *ngIf="selectedCompany.meetingDate && selectedCompany.meetingTime"
+            >
+              There is a meeting with
+              {{ selectedCompany.companyName }}, which is scheduled for
+              {{ selectedCompany.meetingDate | date }} at
+              {{ selectedCompany.meetingTime }}
+            </p>
+            <p
+              *ngIf="
+                !selectedCompany.meetingDate && !selectedCompany.meetingTime
+              "
+            >
+              No meeting scheduled
+            </p>
+          </div>
+        </div>
+      </span>
+    </div>
+    <div class="buttons">
+      <span class="cancel">
+        <button type="button" mat-raised-button mat-dialog-close="false">
+          Cancel
+        </button>
+      </span>
+      <span class="save">
+        <button type="submit" mat-raised-button mat-dialog-close="true">
+          Save
+        </button>
+      </span>
+    </div>
+  </form>
+</div>

@@ -2,9 +2,17 @@ import {
   HttpHeaders,
   HttpErrorResponse,
   HttpClient,
+  HttpResponse,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject, catchError, throwError } from 'rxjs';
+import {
+  Observable,
+  BehaviorSubject,
+  catchError,
+  throwError,
+  switchMap,
+  of,
+} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -34,9 +42,10 @@ export class AuthService {
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
-      console.error(
-        `Backend returned code ${error.status}, ` + `body was: ${error.error}`
-      );
+      console
+        .error
+        // `Backend returned code ${error.status}, ` + `body was: ${error.error}`
+        ();
     }
     // return an observable with a user-facing error message
     return throwError('Something bad happened; please try again later.');
@@ -60,7 +69,7 @@ export class AuthService {
   }): Observable<any> {
     return this.http
       .post<any>(this.serverUrl + `users/login`, credentials)
-      .pipe(catchError(this.errorHandler));
+      // .pipe(catchError(this.errorHandler));
   }
 
   getUser(userId: string): Observable<any> {

@@ -1,4 +1,7 @@
 <div class="container">
+  <div class="error-section" *ngIf="authError !== ''">
+    <h2>{{ authError }}</h2>
+  </div>
   <div class="content">
     <div class="header">
       <img src="./../../../assets/dynaton-logo.png" alt="logo" width="150" />
@@ -41,7 +44,9 @@
           </mat-form-field>
         </div>
         <div class="input-container">
-          <span class="error" *ngIf="loginForm.invalid && loginForm.submitted === true"
+          <span
+            class="error"
+            *ngIf="loginForm.invalid && loginForm.submitted === true"
             >Please enter a valid email and password</span
           >
           <button type="submit" mat-stroked-button>Sign in</button>

@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/auth.service';
 export class LoginComponent implements OnInit {
   constructor(private router: Router, private authService: AuthService) {}
 
+  authError: string = '';
   signInHandler(credentials: NgForm): void {
     if (credentials.valid) {
       const inputs = credentials.value;
@@ -19,18 +20,24 @@ export class LoginComponent implements OnInit {
         password: inputs.password,
       };
 
-      this.authService.userSignIn(userCredentials).subscribe((data) => {
-        if (data.token) {
-          // this.authService.getLoggedUser(data.token);
-          localStorage.setItem('authenticatedUser', JSON.stringify(data));
-          this.router.navigate(['/dashboard']);
+      this.authService.userSignIn(userCredentials).subscribe(
+        (data: any) => {
+          if (data.token) {
+            localStorage.setItem('authenticatedUser', JSON.stringify(data));
+            this.router.navigate(['/dashboard']);
+          }
+          const user = JSON.parse(localStorage.getItem('authenticatedUser')!);
+          if (user) {
+            this.authService.getLoggedUser(user);
+          }
+        },
+        (error: any) => {
+          if (error.status === 401 && error.statusText === 'Unauthorized') {
+            this.authError =
+              'Authentication failed. Wrong user email or password';
+          }
         }
-      });
-
-      const user = JSON.parse(localStorage.getItem('authenticatedUser')!);
-      if (user) {
-        this.authService.getLoggedUser(user);
-      }
+      );
     }
   }
 
