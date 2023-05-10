@@ -1,94 +1,117 @@
-<div class="container">
-  <!-- <h3 mat-dialog-title>Edit {{ selectedCompany.companyName }} Details</h3> -->
-  <form #editForm="ngForm" (ngSubmit)="editCompanyHandler(editForm)">
-    <h3 mat-dialog-title>Edit {{ selectedCompany.companyName }} Details</h3>
-    <mat-form-field class="form-field">
-      <mat-label>Company Name</mat-label>
-      <input
-        type="text"
-        matInput
-        [value]="selectedCompany.companyName"
-        name="companyName"
-        [(ngModel)]="selectedCompany.companyName"
-      />
-    </mat-form-field>
-    <mat-form-field class="form-field">
-      <mat-label>Social Media Link</mat-label>
-      <input
-        type="text"
-        matInput
-        [value]="selectedCompany.socialMediaLink"
-        name="socialMediaLink"
-        [(ngModel)]="selectedCompany.socialMediaLink"
-      />
-    </mat-form-field>
-    <mat-form-field class="form-field">
-      <mat-label>Phone</mat-label>
-      <input
-        type="text"
-        matInput
-        [value]="selectedCompany.companyPhone"
-        name="companyPhone"
-        [(ngModel)]="selectedCompany.companyPhone"
-      />
-    </mat-form-field>
-    <mat-form-field class="form-field">
-      <mat-label>Website</mat-label>
-      <input
-        type="text"
-        matInput
-        [value]="selectedCompany.companyWebsite"
-        name="companyWebsite"
-        [(ngModel)]="selectedCompany.companyWebsite"
-      />
-    </mat-form-field>
-    <mat-form-field class="form-field">
-      <mat-label>Contact Email</mat-label>
-      <input
-        type="text"
-        matInput
-        [value]="selectedCompany.contactEmail"
-        name="contactEmail"
-        [(ngModel)]="selectedCompany.contactEmail"
-      />
-    </mat-form-field>
-    <mat-form-field class="form-field">
-      <mat-label>other Contact</mat-label>
-      <input
-        type="text"
-        matInput
-        [value]="selectedCompany.otherContact"
-        name="otherContact"
-        [(ngModel)]="selectedCompany.otherContact"
-      />
-    </mat-form-field>
-    <mat-form-field class="form-field">
-      <mat-label>Status</mat-label>
-      <mat-select
-        [(ngModel)]="selectedCompany.status"
-        [value]="selectedCompany.status"
-        name="status"
-      >
-        <mat-option value="Not reached">Not reached</mat-option>
-        <mat-option value="Reached">Reached</mat-option>
-        <mat-option value="Rejected">Rejected</mat-option>
-        <mat-option value="Free credits onboarding"
-          >Free credits onboarding</mat-option
-        >
-        <mat-option value="Onboarding">Onboarding</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <div class="buttons">
-      <span class="cancel">
-        <button type="button" mat-raised-button mat-dialog-close="false">
-          Cancel
-        </button>
-      </span>
-      <span class="save">
-        <button type="submit" mat-raised-button mat-dialog-close="true">
-          Save
-        </button>
-      </span>
+<div class="top">
+  <app-topbar></app-topbar>
+</div>
+
+<div class="main-container">
+  <mat-card class="mat-card">
+    <span class="header-text"
+      ><h2 mat-card-title>
+        {{ selectedCompany.companyName }} Information
+      </h2></span
+    >
+
+    <div class="container">
+      <!-- <h3 mat-dialog-title>Edit {{ selectedCompany.companyName }} Details</h3> -->
+      <form #editForm="ngForm" (ngSubmit)="editCompanyHandler(editForm)">
+        <mat-form-field class="form-field">
+          <mat-label>Company Name</mat-label>
+          <input
+            type="text"
+            matInput
+            [value]="selectedCompany.companyName"
+            name="companyName"
+            [(ngModel)]="selectedCompany.companyName"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Social Media Link</mat-label>
+          <input
+            type="text"
+            matInput
+            [value]="selectedCompany.socialMediaLink"
+            name="socialMediaLink"
+            [(ngModel)]="selectedCompany.socialMediaLink"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Phone</mat-label>
+          <input
+            type="text"
+            matInput
+            [value]="selectedCompany.companyPhone"
+            name="companyPhone"
+            [(ngModel)]="selectedCompany.companyPhone"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Website</mat-label>
+          <input
+            type="text"
+            matInput
+            [value]="selectedCompany.companyWebsite"
+            name="companyWebsite"
+            [(ngModel)]="selectedCompany.companyWebsite"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Contact Email</mat-label>
+          <input
+            type="text"
+            matInput
+            [value]="selectedCompany.contactEmail"
+            name="contactEmail"
+            [(ngModel)]="selectedCompany.contactEmail"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>other Contact</mat-label>
+          <input
+            type="text"
+            matInput
+            [value]="selectedCompany.otherContact"
+            name="otherContact"
+            [(ngModel)]="selectedCompany.otherContact"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Status</mat-label>
+          <mat-select
+            [(ngModel)]="selectedCompany.status"
+            [value]="selectedCompany.status"
+            name="status"
+          >
+            <mat-option value="Not reached">Not reached</mat-option>
+            <mat-option value="Reached">Reached</mat-option>
+            <mat-option value="Rejected">Rejected</mat-option>
+            <mat-option value="Free credits onboarding"
+              >Free credits onboarding</mat-option
+            >
+            <mat-option value="Onboarding">Onboarding</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Notes</mat-label>
+          <textarea
+            matInput
+            rows="6"
+            [value]="selectedCompany.notes"
+            name="notes"
+            [(ngModel)]="selectedCompany.notes"
+          ></textarea>
+        </mat-form-field>
+        <div class="buttons">
+          <span class="cancel">
+            <button type="button" (click)="goBack()" mat-raised-button>
+              Close
+            </button>
+          </span>
+          <span class="save">
+            <button type="submit"  mat-raised-button>
+              Save changes
+            </button>
+          </span>
+        </div>
+      </form>
     </div>
-  </form>
+  </mat-card>
 </div>

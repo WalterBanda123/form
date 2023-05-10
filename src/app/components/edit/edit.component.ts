@@ -1,6 +1,8 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
 import { CompanyService } from 'src/app/company.service';
 
 @Component({
@@ -10,10 +12,13 @@ import { CompanyService } from 'src/app/company.service';
 })
 export class EditComponent implements OnInit {
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private companyService: CompanyService
+    private activeRoute: ActivatedRoute,
+    private companyService: CompanyService,
+    private location: Location,
+    private snackbar: MatSnackBar
   ) {}
 
+  data: any;
   selectedStatus?: string;
   editCompanyHandler(updates: NgForm): void {
     const values = updates.value;
@@ -26,22 +31,32 @@ export class EditComponent implements OnInit {
       { propertyName: 'contactEmail', value: values.contactEmail },
       { propertyName: 'otherContact', value: values.otherContact },
       { propertyName: 'status', value: values.status },
+      { propertyName: 'notes', value: values.notes },
     ];
 
     console.log(values.status);
 
     this.companyService
-      .updateCompany(this.data._id, updatedValuesArr)
+      .updateCompany(this.selectedCompany._id, updatedValuesArr)
       .subscribe((response) => {
-        console.log(response);
+        this.snackbar.open(response.message, 'undo', {
+          duration: 4000,
+        });
       });
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
   selectedCompany: any;
   ngOnInit(): void {
-    this.selectedCompany = this.data;
-    if (this.data.status) {
-      this.selectedStatus = this.data.status;
-    }
+    const id = this.activeRoute.snapshot.paramMap.get('id')!;
+    this.companyService.getCompany(id).subscribe((data: any) => {
+      this.selectedCompany = data.company;
+      if (this.data.company.status) {
+        this.selectedStatus = this.data.company.status;
+      }
+    });
   }
 }

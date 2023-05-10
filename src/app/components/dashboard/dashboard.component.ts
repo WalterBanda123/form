@@ -5,6 +5,7 @@ import { CompanyService } from 'src/app/company.service';
 import { EditComponent } from '../edit/edit.component';
 import { CallModalComponent } from '../call-modal/call-modal.component';
 import { MeetingModalComponent } from '../meeting-modal/meeting-modal.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,7 +16,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private companyService: CompanyService,
-    private changeDection: ChangeDetectorRef
+    private changeDection: ChangeDetectorRef,
+    private router: Router
   ) {}
 
   searchedValue?: string = '';
@@ -54,11 +56,16 @@ export class DashboardComponent implements OnInit {
       if (result === 'true') {
         this.companyService.getCompanies().subscribe((data: any) => {
           this.dataSource = data.companies.reverse();
+          this.changeDection.detectChanges();
           // console.log(`the result is :${result} and the data is ${data.companies} `);
         });
       }
       console.log(result);
     });
+  }
+
+  selectionChange(event: any): void {
+    this.selectedMenuItem = event.source.value;
   }
 
   selectionChangeHandler(event: any): void {
@@ -130,6 +137,32 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  recurviveSearchHandler(currentArr: any[]): void {
+    if (this.searchedValue !== '') {
+      const filteredList = currentArr.filter(
+        (company: any) =>
+          company.companyName
+            .trim()
+            .toLowerCase()
+            .includes(this.searchedValue?.trim().toLowerCase()) ||
+          company.companyPhone
+            .trim()
+            .toLowerCase()
+            .includes(this.searchedValue?.trim().toLowerCase()) ||
+          company.contactEmail
+            .trim()
+            .toLowerCase()
+            .includes(this.searchedValue?.trim().toLowerCase())
+      );
+      if (filteredList.length > 0) {
+        this.dataSource = filteredList.reverse();
+      }
+    }
+    if (this.searchedValue === '') {
+      this.dataSource = currentArr.reverse();
+    }
+  }
+
   deleteCompanyRecord(companyId: string): void {
     this.companyService.deleteCompany(companyId).subscribe((result) => {
       console.log(result);
@@ -141,18 +174,22 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  editCompanyDetails(company: any): void {
-    const dialogRef = this.dialog.open(EditComponent, {
-      data: company,
-    });
+  editCompanyDetails(companyId: string): void {
+    // const dialogRef = this.dialog.open(EditComponent, {
+    //   data: company,
+    // });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(result);
-    });
+    // dialogRef.afterClosed().subscribe((result) => {
+    //   console.log(result);
+    // });
+
+    this.router.navigate([`/edit-details/${companyId}`]);
   }
 
-  scheduleMeeting(company: any):void {
-    const dialogRef = this.dialog.open(MeetingModalComponent, {data:company});
+  scheduleMeeting(company: any): void {
+    const dialogRef = this.dialog.open(MeetingModalComponent, {
+      data: company,
+    });
     dialogRef.afterClosed().subscribe((result) => {
       console.log(result);
     });
