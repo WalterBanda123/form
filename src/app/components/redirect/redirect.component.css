@@ -5,17 +5,19 @@
   width: 100%;
   align-items: flex-start;
   justify-content: center;
+  height: 400px;
 }
 
 mat-card {
   width: 500px;
-  height: 200px;
+  padding: 10px;
 }
 
 .title {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
+  padding: 20px;
 }
 
 .title h2 {

@@ -7,16 +7,12 @@ import { AuthService } from 'src/app/auth.service';
   styleUrls: ['./redirect.component.css'],
 })
 export class RedirectComponent implements OnInit {
-  constructor(private authService: AuthService) {
-    this.authService.getUsers().subscribe((users: any) => {
-      const usersList = users.allUsers;
-      this.newlyCreatedUser = usersList[users.allUsers.length - 1];
-    });
-  }
+  constructor(private authService: AuthService) {}
 
-  newlyCreatedUser: any;
-
+  recentlyAddedUser: any;
   ngOnInit(): void {
-
+    this.recentlyAddedUser = JSON.parse(
+      localStorage.getItem('recentlyCreatedUserName')!
+    );
   }
 }

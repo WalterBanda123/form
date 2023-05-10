@@ -53,13 +53,12 @@ export class DashboardComponent implements OnInit {
   startAddingCompany() {
     const dialogRef = this.dialog.open(DialogComponent);
     dialogRef.afterClosed().subscribe((result) => {
-      if (result === 'true') {
+
         this.companyService.getCompanies().subscribe((data: any) => {
           this.dataSource = data.companies.reverse();
           this.changeDection.detectChanges();
           // console.log(`the result is :${result} and the data is ${data.companies} `);
         });
-      }
       console.log(result);
     });
   }

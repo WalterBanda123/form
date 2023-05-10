@@ -20,6 +20,7 @@ export class EditComponent implements OnInit {
 
   data: any;
   selectedStatus?: string;
+  selectedCompanyDate: any;
   editCompanyHandler(updates: NgForm): void {
     const values = updates.value;
 
@@ -32,6 +33,11 @@ export class EditComponent implements OnInit {
       { propertyName: 'otherContact', value: values.otherContact },
       { propertyName: 'status', value: values.status },
       { propertyName: 'notes', value: values.notes },
+      {
+        propertyName: 'meetingDate',
+        value: new Date(values.meetingDate).toDateString(),
+      },
+      { propertyName: 'meetingTime', value: values.meetingTime },
     ];
 
     console.log(values.status);
@@ -53,10 +59,11 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
     const id = this.activeRoute.snapshot.paramMap.get('id')!;
     this.companyService.getCompany(id).subscribe((data: any) => {
+      this.selectedCompanyDate = new Date(
+        data.company.meetingDate
+      ).toLocaleDateString('en-US');
+
       this.selectedCompany = data.company;
-      if (this.data.company.status) {
-        this.selectedStatus = this.data.company.status;
-      }
     });
   }
 }

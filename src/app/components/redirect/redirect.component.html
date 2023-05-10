@@ -1,19 +1,17 @@
 <div class="container">
   <mat-card>
     <div class="title">
+      <h1>Welcome {{ recentlyAddedUser |uppercase }}</h1>
       <h2>You successfully registered</h2>
     </div>
     <div class="content">
       <p>
-        You can now <a routerLink="/login"> sign in</a> using the following
-        email
-      </p>
-      <p *ngIf="newlyCreatedUser">
-        Email: <span>{{ newlyCreatedUser.email }} </span>
+        You can now <a routerLink="/login"> sign in</a> using
+        email.
       </p>
     </div>
     <div class="navigate-to-login">
-      <button mat-raised-button routerLink="/login">visit login page</button>
+      <button mat-raised-button routerLink="/login">Visit Sign in page</button>
     </div>
   </mat-card>
 </div>
