@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/auth.service';
 
 @Component({
@@ -9,7 +10,11 @@ import { AuthService } from 'src/app/auth.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private spinner: NgxSpinnerService
+  ) {}
 
   authError: string = '';
   signInHandler(credentials: NgForm): void {
@@ -23,8 +28,14 @@ export class LoginComponent implements OnInit {
       this.authService.userSignIn(userCredentials).subscribe(
         (data: any) => {
           if (data.token) {
-            localStorage.setItem('authenticatedUser', JSON.stringify(data));
-            this.router.navigate(['/dashboard']);
+            this.spinner.show();
+            setTimeout(() => {
+              this.spinner.hide();
+            }, 2000);
+            setTimeout(() => {
+              localStorage.setItem('authenticatedUser', JSON.stringify(data));
+              this.router.navigate(['/dashboard']);
+            }, 2000);
           }
           const user = JSON.parse(localStorage.getItem('authenticatedUser')!);
           if (user) {

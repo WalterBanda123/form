@@ -6,6 +6,7 @@ import { EditComponent } from '../edit/edit.component';
 import { CallModalComponent } from '../call-modal/call-modal.component';
 import { MeetingModalComponent } from '../meeting-modal/meeting-modal.component';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,7 +18,8 @@ export class DashboardComponent implements OnInit {
     private dialog: MatDialog,
     private companyService: CompanyService,
     private changeDection: ChangeDetectorRef,
-    private router: Router
+    private router: Router,
+    private spinner: NgxSpinnerService
   ) {}
 
   searchedValue?: string = '';
@@ -53,12 +55,11 @@ export class DashboardComponent implements OnInit {
   startAddingCompany() {
     const dialogRef = this.dialog.open(DialogComponent);
     dialogRef.afterClosed().subscribe((result) => {
-
-        this.companyService.getCompanies().subscribe((data: any) => {
-          this.dataSource = data.companies.reverse();
-          this.changeDection.detectChanges();
-          // console.log(`the result is :${result} and the data is ${data.companies} `);
-        });
+      this.companyService.getCompanies().subscribe((data: any) => {
+        this.dataSource = data.companies.reverse();
+        this.changeDection.detectChanges();
+        // console.log(`the result is :${result} and the data is ${data.companies} `);
+      });
       console.log(result);
     });
   }
@@ -182,7 +183,14 @@ export class DashboardComponent implements OnInit {
     //   console.log(result);
     // });
 
-    this.router.navigate([`/edit-details/${companyId}`]);
+    this.spinner.show();
+
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 1000);
+    setTimeout(() => {
+      this.router.navigate([`/edit-details/${companyId}`]);
+    }, 1000);
   }
 
   scheduleMeeting(company: any): void {
@@ -236,5 +244,11 @@ export class DashboardComponent implements OnInit {
         }
       });
     });
+
+    this.spinner.show();
+
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 500);
   }
 }
