@@ -1,9 +1,10 @@
-import { NgModule, forwardRef } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
@@ -12,7 +13,7 @@ import { DialogComponent } from './components/dialog/dialog.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -67,10 +68,10 @@ import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
     MatDatepickerModule,
     MatNativeDateModule,
     NgxMatTimepickerModule,
+    NgxSpinnerModule,
   ],
-  providers: [
-   
-  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -6,13 +6,13 @@ import {
 } from '@angular/common/http';
 import { Observable, catchError, tap, throwError } from 'rxjs';
 import { Company } from './company';
+import { environment } from 'src/environment.prod';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CompanyService {
   constructor(private http: HttpClient) {}
-  serverUrl = 'http://localhost:3000/';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -36,24 +36,24 @@ export class CompanyService {
 
   getCompanies(): Observable<Company[]> {
     return this.http
-      .get<Company[]>(this.serverUrl + `companies`)
+      .get<Company[]>(`${environment.serverUrl}` + `companies`)
       .pipe(catchError(this.errorHandler));
   }
 
   createCompany(newCompany: any): Observable<any> {
     return this.http
-      .post<any>(this.serverUrl + `companies`, newCompany)
+      .post<any>(`${environment.serverUrl}` + `companies`, newCompany)
       .pipe(catchError(this.errorHandler));
   }
 
   deleteCompany(companyId: string): Observable<Company> {
     return this.http
-      .delete<Company>(this.serverUrl + `companies/${companyId}`)
+      .delete<Company>(`${environment.serverUrl}` + `companies/${companyId}`)
       .pipe(catchError(this.errorHandler));
   }
   getCompany(companyId: string): Observable<Company> {
     return this.http
-      .get<Company>(this.serverUrl + `companies/${companyId}`)
+      .get<Company>(`${environment.serverUrl}` + `companies/${companyId}`)
       .pipe(catchError(this.errorHandler));
   }
 
@@ -62,7 +62,7 @@ export class CompanyService {
     updates: { propertyName: string; value: string }[]
   ): Observable<any> {
     return this.http.patch<any>(
-      this.serverUrl + `companies/${companyId}`,
+      `${environment.serverUrl}` + `companies/${companyId}`,
       updates
     );
   }
