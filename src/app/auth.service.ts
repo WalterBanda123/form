@@ -13,6 +13,7 @@ import {
   switchMap,
   of,
 } from 'rxjs';
+import { environment } from 'src/environment.prod';
 
 @Injectable({
   providedIn: 'root',
@@ -30,7 +31,7 @@ export class AuthService {
   }
 
   constructor(private http: HttpClient) {}
-  serverUrl = 'http://localhost:3000/';
+
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -59,7 +60,7 @@ export class AuthService {
     password: string;
   }): Observable<any> {
     return this.http
-      .post<any>(this.serverUrl + `users/signup`, newUser)
+      .post<any>(`${environment.serverUrl}` + `users/signup`, newUser)
       .pipe(catchError(this.errorHandler));
   }
 
@@ -67,20 +68,22 @@ export class AuthService {
     email: string;
     password: string;
   }): Observable<any> {
-    return this.http
-      .post<any>(this.serverUrl + `users/login`, credentials)
+    return this.http.post<any>(
+      `${environment.serverUrl}` + `users/login`,
+      credentials
+    );
       // .pipe(catchError(this.errorHandler));
   }
 
   getUser(userId: string): Observable<any> {
     return this.http
-      .get<any>(this.serverUrl + `users/${userId}`)
+      .get<any>(`${environment.serverUrl}` + `users/${userId}`)
       .pipe(catchError(this.errorHandler));
   }
 
   getUsers(): Observable<any> {
     return this.http
-      .get<any>(this.serverUrl + `users`)
+      .get<any>(`${environment.serverUrl}` + `users`)
       .pipe(catchError(this.errorHandler));
   }
 }
