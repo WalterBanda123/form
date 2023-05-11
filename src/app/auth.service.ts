@@ -2,7 +2,6 @@ import {
   HttpHeaders,
   HttpErrorResponse,
   HttpClient,
-  HttpResponse,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
@@ -10,8 +9,6 @@ import {
   BehaviorSubject,
   catchError,
   throwError,
-  switchMap,
-  of,
 } from 'rxjs';
 import { environment } from 'src/environment.prod';
 
