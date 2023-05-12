@@ -51,7 +51,7 @@ export class AuthService {
     password: string;
   }): Observable<any> {
     return this.http
-      .post<any>(`${environment.serverUrl}` + `users/signup`, newUser)
+      .post<any>(`${environment.serverUrl}/` + `users/signup`, newUser)
       .pipe(catchError(this.errorHandler));
   }
 
@@ -60,7 +60,7 @@ export class AuthService {
     password: string;
   }): Observable<any> {
     return this.http.post<any>(
-      `${environment.serverUrl}` + `users/login`,
+      `${environment.serverUrl}/` + `users/login`,
       credentials
     );
     // .pipe(catchError(this.errorHandler));
@@ -68,13 +68,13 @@ export class AuthService {
 
   getUser(userId: string): Observable<any> {
     return this.http
-      .get<any>(`${environment.serverUrl}` + `users/${userId}`)
+      .get<any>(`${environment.serverUrl}/` + `users/${userId}`)
       .pipe(catchError(this.errorHandler));
   }
 
   getUsers(): Observable<any> {
     return this.http
-      .get<any>(`${environment.serverUrl}` + `users`)
+      .get<any>(`${environment.serverUrl}/` + `users`)
       .pipe(catchError(this.errorHandler));
   }
 }

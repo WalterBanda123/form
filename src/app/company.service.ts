@@ -36,24 +36,24 @@ export class CompanyService {
 
   getCompanies(): Observable<Company[]> {
     return this.http
-      .get<Company[]>(`${environment.serverUrl}` + `companies`)
+      .get<Company[]>(`${environment.serverUrl}/` + `companies`)
       .pipe(catchError(this.errorHandler));
   }
 
   createCompany(newCompany: any): Observable<any> {
     return this.http
-      .post<any>(`${environment.serverUrl}` + `companies`, newCompany)
+      .post<any>(`${environment.serverUrl}/` + `companies`, newCompany)
       .pipe(catchError(this.errorHandler));
   }
 
   deleteCompany(companyId: string): Observable<Company> {
     return this.http
-      .delete<Company>(`${environment.serverUrl}` + `companies/${companyId}`)
+      .delete<Company>(`${environment.serverUrl}/` + `companies/${companyId}`)
       .pipe(catchError(this.errorHandler));
   }
   getCompany(companyId: string): Observable<Company> {
     return this.http
-      .get<Company>(`${environment.serverUrl}` + `companies/${companyId}`)
+      .get<Company>(`${environment.serverUrl}/` + `companies/${companyId}`)
       .pipe(catchError(this.errorHandler));
   }
 
@@ -62,7 +62,7 @@ export class CompanyService {
     updates: { propertyName: string; value: string }[]
   ): Observable<any> {
     return this.http.patch<any>(
-      `${environment.serverUrl}` + `companies/${companyId}`,
+      `${environment.serverUrl}/` + `companies/${companyId}`,
       updates
     );
   }
