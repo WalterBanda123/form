@@ -2,18 +2,10 @@ import {
   HttpHeaders,
   HttpErrorResponse,
   HttpClient,
-  HttpResponse,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {
-  Observable,
-  BehaviorSubject,
-  catchError,
-  throwError,
-  switchMap,
-  of,
-} from 'rxjs';
-import { environment } from 'src/environment.prod';
+import { Observable, BehaviorSubject, catchError, throwError } from 'rxjs';
+import { environment } from 'src/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -31,7 +23,6 @@ export class AuthService {
   }
 
   constructor(private http: HttpClient) {}
-
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -72,7 +63,7 @@ export class AuthService {
       `${environment.serverUrl}` + `users/login`,
       credentials
     );
-      // .pipe(catchError(this.errorHandler));
+    // .pipe(catchError(this.errorHandler));
   }
 
   getUser(userId: string): Observable<any> {

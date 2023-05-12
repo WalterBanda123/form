@@ -6,7 +6,7 @@ import {
 } from '@angular/common/http';
 import { Observable, catchError, tap, throwError } from 'rxjs';
 import { Company } from './company';
-import { environment } from 'src/environment.prod';
+import { environment } from 'src/environment'
 
 @Injectable({
   providedIn: 'root',
