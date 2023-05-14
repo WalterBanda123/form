@@ -40,22 +40,29 @@ export class CompanyService {
 
   getCompanies(): Observable<Company[]> {
     return this.http
+
       .get<Company[]>(`${environment.serverUrl}` + `/companies`, {
         withCredentials: true,
       })
+
       .pipe(catchError(this.errorHandler));
   }
 
   createCompany(newCompany: any): Observable<any> {
     return this.http
+
       .post<any>(`${environment.serverUrl}` + `/companies`, newCompany, {
         withCredentials: true,
       })
+
+     
+
       .pipe(catchError(this.errorHandler));
   }
 
   deleteCompany(companyId: string): Observable<Company> {
     return this.http
+
       .delete<Company>(`${environment.serverUrl}` + `/companies/${companyId}`, {
         withCredentials: true,
       })
@@ -63,6 +70,7 @@ export class CompanyService {
   }
   getCompany(companyId: string): Observable<Company> {
     return this.http
+
       .get<Company>(`${environment.serverUrl}` + `/companies/${companyId}`, {
         withCredentials: true,
       })
@@ -74,9 +82,11 @@ export class CompanyService {
     updates: { propertyName: string; value: string }[]
   ): Observable<any> {
     return this.http.patch<any>(
+
       `${environment.serverUrl}` + `/companies/${companyId}`,
       updates,
       { withCredentials: true }
-    );
+      updates
+    ).;
   }
 }

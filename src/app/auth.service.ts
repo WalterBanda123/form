@@ -57,6 +57,7 @@ export class AuthService {
     password: string;
   }): Observable<any> {
     return this.http
+
       .post<any>(`${environment.serverUrl}` + `/users/signup`, newUser, {
         withCredentials: true,
       })
@@ -68,15 +69,16 @@ export class AuthService {
     password: string;
   }): Observable<any> {
     return this.http.post<any>(
+
       `${environment.serverUrl}` + `/users/login`,
       credentials,
       { withCredentials: true }
-    );
-    // .pipe(catchError(this.errorHandler));
+    ).pipe(catchError(this.errorHandler));
   }
 
   getUser(userId: string): Observable<any> {
     return this.http
+
       .get<any>(`${environment.serverUrl}` + `/users/${userId}`, {
         withCredentials: true,
       })
@@ -85,6 +87,7 @@ export class AuthService {
 
   getUsers(): Observable<any> {
     return this.http
+
       .get<any>(`${environment.serverUrl}` + `/users`)
       .pipe(catchError(this.errorHandler));
   }
