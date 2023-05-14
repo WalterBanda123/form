@@ -6,7 +6,7 @@ import {
 } from '@angular/common/http';
 import { Observable, catchError, tap, throwError } from 'rxjs';
 import { Company } from './company';
-import { environment } from 'src/environment'
+import { environment } from 'src/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -14,9 +14,13 @@ import { environment } from 'src/environment'
 export class CompanyService {
   constructor(private http: HttpClient) {}
 
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-  };
+  headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    // Authorization: 'my-auth-token',
+    'Access-Control-Allow-Origin': '*',
+    // 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE,OPTIONS',
+    // 'Access-Control-Allow-Headers': 'X-Requested-With,content-type',
+  });
   private errorHandler(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
@@ -36,24 +40,40 @@ export class CompanyService {
 
   getCompanies(): Observable<Company[]> {
     return this.http
-      .get<Company[]>(`${environment.serverUrl}/` + `companies`)
+
+      .get<Company[]>(`${environment.serverUrl}` + `/companies`, {
+        withCredentials: true,
+      })
+
       .pipe(catchError(this.errorHandler));
   }
 
   createCompany(newCompany: any): Observable<any> {
     return this.http
-      .post<any>(`${environment.serverUrl}/` + `companies`, newCompany)
+
+      .post<any>(`${environment.serverUrl}` + `/companies`, newCompany, {
+        withCredentials: true,
+      })
+
+     
+
       .pipe(catchError(this.errorHandler));
   }
 
   deleteCompany(companyId: string): Observable<Company> {
     return this.http
-      .delete<Company>(`${environment.serverUrl}/` + `companies/${companyId}`)
+
+      .delete<Company>(`${environment.serverUrl}` + `/companies/${companyId}`, {
+        withCredentials: true,
+      })
       .pipe(catchError(this.errorHandler));
   }
   getCompany(companyId: string): Observable<Company> {
     return this.http
-      .get<Company>(`${environment.serverUrl}/` + `companies/${companyId}`)
+
+      .get<Company>(`${environment.serverUrl}` + `/companies/${companyId}`, {
+        withCredentials: true,
+      })
       .pipe(catchError(this.errorHandler));
   }
 
@@ -62,8 +82,11 @@ export class CompanyService {
     updates: { propertyName: string; value: string }[]
   ): Observable<any> {
     return this.http.patch<any>(
-      `${environment.serverUrl}/` + `companies/${companyId}`,
+
+      `${environment.serverUrl}` + `/companies/${companyId}`,
+      updates,
+      { withCredentials: true }
       updates
-    );
+    ).;
   }
 }

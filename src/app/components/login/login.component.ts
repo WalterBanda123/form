@@ -43,10 +43,17 @@ export class LoginComponent implements OnInit {
           }
         },
         (error: any) => {
-          if (error.status === 401 && error.statusText === 'Unauthorized') {
+           this.spinner.show();
+           setTimeout(() => {
+             this.spinner.hide();
+           }, 2000);
+          setTimeout(() => {
             this.authError =
               'Authentication failed. Wrong user email or password';
-          }
+          }, 2000);
+          // if (error.status === 401 && error.statusText === 'Unauthorized') {}
+
+          console.log(error.json());
         }
       );
     }
