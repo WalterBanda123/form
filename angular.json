@@ -14,6 +14,8 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/form",
+
+
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -62,10 +64,12 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "form:build:production"
+              "browserTarget": "form:build:production",
+              "proxyConfig": "src/proxy.conf.mjs"
             },
             "development": {
-              "browserTarget": "form:build:development"
+              "browserTarget": "form:build:development",
+              "proxyConfig": "src/proxy.conf.mjs"
             }
           },
           "defaultConfiguration": "development"
