@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/auth.service';
 
 @Component({
@@ -9,7 +10,11 @@ import { AuthService } from 'src/app/auth.service';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private spinner: NgxSpinnerService
+  ) {}
 
   passwordsDoNotMatch: string = '';
 
@@ -35,6 +40,10 @@ export class SignupComponent implements OnInit {
             'recentlyCreatedUserName',
             JSON.stringify(response.user.fullName)
           );
+          this.spinner.show();
+          setTimeout(() => {
+            this.spinner.hide();
+          }, 2000);
           setTimeout(() => {
             this.router.navigate(['/redirect'], { state: response.user });
           }, 2000);

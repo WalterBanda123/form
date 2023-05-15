@@ -14,13 +14,7 @@ import { environment } from 'src/environment';
 export class CompanyService {
   constructor(private http: HttpClient) {}
 
-  headers = new HttpHeaders({
-    'Content-Type': 'application/json',
-    // Authorization: 'my-auth-token',
-    'Access-Control-Allow-Origin': '*',
-    // 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE,OPTIONS',
-    // 'Access-Control-Allow-Headers': 'X-Requested-With,content-type',
-  });
+
   private errorHandler(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
@@ -40,11 +34,9 @@ export class CompanyService {
 
   getCompanies(): Observable<Company[]> {
     return this.http
-
       .get<Company[]>(`${environment.serverUrl}` + `/companies`, {
         withCredentials: true,
       })
-
       .pipe(catchError(this.errorHandler));
   }
 
@@ -55,14 +47,11 @@ export class CompanyService {
         withCredentials: true,
       })
 
-     
-
       .pipe(catchError(this.errorHandler));
   }
 
   deleteCompany(companyId: string): Observable<Company> {
     return this.http
-
       .delete<Company>(`${environment.serverUrl}` + `/companies/${companyId}`, {
         withCredentials: true,
       })
@@ -82,11 +71,9 @@ export class CompanyService {
     updates: { propertyName: string; value: string }[]
   ): Observable<any> {
     return this.http.patch<any>(
-
       `${environment.serverUrl}` + `/companies/${companyId}`,
       updates,
       { withCredentials: true }
-      updates
-    ).;
+    );
   }
 }

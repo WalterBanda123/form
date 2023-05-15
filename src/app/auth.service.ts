@@ -24,6 +24,8 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
+  // Creates a new HttpHeaders object from the httpOptions constant
+  // httpOptions = {};
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
     // Authorization: 'my-auth-token',
@@ -32,6 +34,11 @@ export class AuthService {
     'Access-Control-Allow-Headers':
       'Origin, X-Requested-With, Content-Type, Accept, Authorization',
   });
+
+  // headers = new HttpHeaders({
+  //   'Content-Type': 'application/json',
+  //   'Access-Control-Allow-Origin': '*',
+  // })
 
   private errorHandler(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
@@ -58,9 +65,7 @@ export class AuthService {
   }): Observable<any> {
     return this.http
 
-      .post<any>(`${environment.serverUrl}` + `/users/signup`, newUser, {
-        withCredentials: true,
-      })
+      .post<any>(`${environment.serverUrl}` + `/users/signup`, newUser)
       .pipe(catchError(this.errorHandler));
   }
 
@@ -68,12 +73,11 @@ export class AuthService {
     email: string;
     password: string;
   }): Observable<any> {
-    return this.http.post<any>(
-
-      `${environment.serverUrl}` + `/users/login`,
-      credentials,
-      { withCredentials: true }
-    ).pipe(catchError(this.errorHandler));
+    return this.http
+      .post<any>(`${environment.serverUrl}` + `/users/login`, credentials, {
+       withCredentials:true
+      })
+      .pipe(catchError(this.errorHandler));
   }
 
   getUser(userId: string): Observable<any> {
@@ -81,6 +85,7 @@ export class AuthService {
 
       .get<any>(`${environment.serverUrl}` + `/users/${userId}`, {
         withCredentials: true,
+        responseType: 'json',
       })
       .pipe(catchError(this.errorHandler));
   }
