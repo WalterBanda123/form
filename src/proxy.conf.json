@@ -1,9 +1,10 @@
 {
-  "/users": {
+  "/users/*": {
     "target": "http://localhost:3000",
     "secure": false
   },
-  "/companies": {
+  "/companies/*": {
+
     "target": "http://localhost:3000",
     "secure": false
   }

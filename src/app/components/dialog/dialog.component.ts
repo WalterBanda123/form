@@ -26,6 +26,7 @@ export class DialogComponent implements OnInit {
         companyWebsite: values.companyWebsite,
         contactEmail: values.contactEmail,
         otherContact: values.otherContact,
+        companySize:values.companySize
       };
 
       this.companyService.createCompany(newCompany).subscribe((res) => {

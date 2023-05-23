@@ -34,35 +34,27 @@ export class CompanyService {
 
   getCompanies(): Observable<Company[]> {
     return this.http
-      .get<Company[]>(`${environment.serverUrl}` + `/companies`, {
-        withCredentials: true,
-      })
+      .get<Company[]>(`${environment.serverUrl}` + `/companies`)
       .pipe(catchError(this.errorHandler));
   }
 
   createCompany(newCompany: any): Observable<any> {
     return this.http
 
-      .post<any>(`${environment.serverUrl}` + `/companies`, newCompany, {
-        withCredentials: true,
-      })
+      .post<any>(`${environment.serverUrl}` + `/companies`, newCompany)
 
       .pipe(catchError(this.errorHandler));
   }
 
   deleteCompany(companyId: string): Observable<Company> {
     return this.http
-      .delete<Company>(`${environment.serverUrl}` + `/companies/${companyId}`, {
-        withCredentials: true,
-      })
+      .delete<Company>(`${environment.serverUrl}` + `/companies/${companyId}`)
       .pipe(catchError(this.errorHandler));
   }
   getCompany(companyId: string): Observable<Company> {
     return this.http
 
-      .get<Company>(`${environment.serverUrl}` + `/companies/${companyId}`, {
-        withCredentials: true,
-      })
+      .get<Company>(`${environment.serverUrl}` + `/companies/${companyId}`)
       .pipe(catchError(this.errorHandler));
   }
 
@@ -73,7 +65,6 @@ export class CompanyService {
     return this.http.patch<any>(
       `${environment.serverUrl}` + `/companies/${companyId}`,
       updates,
-      { withCredentials: true }
     );
   }
 }

@@ -38,6 +38,7 @@ export class EditComponent implements OnInit {
         value: new Date(values.meetingDate).toDateString(),
       },
       { propertyName: 'meetingTime', value: values.meetingTime },
+      { propertyName: 'companySize', value: values.companySize },
     ];
 
     console.log(values.status);
@@ -62,7 +63,6 @@ export class EditComponent implements OnInit {
       this.selectedCompanyDate = new Date(
         data.company.meetingDate
       ).toLocaleDateString('en-US');
-
       this.selectedCompany = data.company;
     });
   }

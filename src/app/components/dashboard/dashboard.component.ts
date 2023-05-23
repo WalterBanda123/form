@@ -31,13 +31,16 @@ export class DashboardComponent implements OnInit {
   companieOnboarding: any[] = [];
   totalNumberOfCompanies: any;
   selectedMenuItem: string = 'all';
+  microCompanies?: any[];
+  midSizeCompanies?: any[];
+  entepriseCompanies?: any[];
 
   displayedColumns: string[] = [
     'companyName',
     'socialMediaLink',
     'companyPhone',
     'companyWebsite',
-    'contactEmail',
+    'companySize',
     'status',
     'view',
     'call',
@@ -109,6 +112,32 @@ export class DashboardComponent implements OnInit {
     this.changeDection.detectChanges();
   }
 
+  //---FILTERING MICRO COMPANIES----
+  filterMicroCompanies(): void {
+    this.dataSource = this.microCompanies;
+    this.changeDection.detectChanges();
+  }
+
+  //-- MID SIZE COMPANIES ----
+  filterMidSizeCompanies(): void {
+    this.dataSource = this.midSizeCompanies;
+    this.changeDection.detectChanges();
+  }
+
+  //---FILTER ALL COMPANIES ----
+  filterByAllSize(): void {
+    this.companyService.getCompanies().subscribe((companies: any) => {
+      this.dataSource = companies.companies.reverse();
+      this.changeDection.detectChanges();
+    });
+  }
+
+  //----FILTER ENTEPRICE COMPANIES ----
+  filterEntepriseCompanies(): void {
+    this.dataSource = this.entepriseCompanies;
+    this.changeDection.detectChanges();
+  }
+
   searchHandler(): void {
     this.companyService.getCompanies().subscribe((result: any) => {
       if (this.searchedValue !== '') {
@@ -144,22 +173,24 @@ export class DashboardComponent implements OnInit {
           company.companyName
             .trim()
             .toLowerCase()
-            .includes(this.searchedValue?.trim().toLowerCase()) ||
+            .includes(this.searchedValue?.toLowerCase().trim()) ||
           company.companyPhone
             .trim()
             .toLowerCase()
-            .includes(this.searchedValue?.trim().toLowerCase()) ||
+            .includes(this.searchedValue?.toLowerCase().trim()) ||
           company.contactEmail
             .trim()
             .toLowerCase()
-            .includes(this.searchedValue?.trim().toLowerCase())
+            .includes(this.searchedValue?.toLowerCase().trim())
       );
       if (filteredList.length > 0) {
         this.dataSource = filteredList.reverse();
+        this.changeDection.detectChanges();
       }
     }
     if (this.searchedValue === '') {
       this.dataSource = currentArr.reverse();
+      this.changeDection.detectChanges();
     }
   }
 
@@ -175,14 +206,7 @@ export class DashboardComponent implements OnInit {
   }
 
   editCompanyDetails(companyId: string): void {
-    // const dialogRef = this.dialog.open(EditComponent, {
-    //   data: company,
-    // });
-
-    // dialogRef.afterClosed().subscribe((result) => {
-    //   console.log(result);
-    // });
-
+  
     this.spinner.show();
 
     setTimeout(() => {
@@ -243,6 +267,31 @@ export class DashboardComponent implements OnInit {
           console.log('Not a valid status');
         }
       });
+    });
+
+    this.companyService.getCompanies().subscribe((data: any) => {
+      const microCompaniesHere = data.companies.filter(
+        (company: any) =>
+          company.companySize.toLocaleLowerCase().trim() ===
+          'Micro size'.toLocaleLowerCase().trim()
+      );
+      this.microCompanies = microCompaniesHere;
+
+      const midSizeCompaniesHere = data.companies.filter(
+        (company: any) =>
+          company.companySize.toLocaleLowerCase().trim() ===
+          'Mid size'.toLocaleLowerCase().trim()
+      );
+
+      this.midSizeCompanies = midSizeCompaniesHere;
+
+      const entepriseCompaniesHere = data.companies.filter(
+        (company: any) =>
+          company.companySize.toLocaleLowerCase().trim() ===
+          'Enteprise'.toLocaleLowerCase().trim()
+      );
+
+      this.entepriseCompanies = entepriseCompaniesHere;
     });
 
     this.spinner.show();
