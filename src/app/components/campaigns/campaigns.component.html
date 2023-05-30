@@ -1,0 +1,136 @@
+<div class="container">
+  <section>
+    <h2>Campaigns</h2>
+    <div>
+      <button
+        mat-raised-button
+        class="add-button"
+        (click)="startAddingCampaign()"
+      >
+        Add Campaign
+      </button>
+    </div>
+  </section>
+  <table id="campaign-table" class="mat-elevation-z1">
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+        <th colspan="3" class="combined-col">Acquisition</th>
+        <th class="combined-col">Activation</th>
+        <th class="combined-col">Close</th>
+        <th class="combined-col">Referral</th>
+        <th class="combined-col"></th>
+      </tr>
+      <tr>
+        <th>Product</th>
+        <th>Campaign</th>
+        <th class="with-extra-text">
+          Awareness: <br />
+          <span>number of impressions</span>
+        </th>
+        <th class="with-extra-text">
+          Interest: <br />
+          <span>Number of conversions</span>
+        </th>
+        <th class="with-extra-text">
+          Engagement: <br />
+          <span>number of Credits uploads</span>
+        </th>
+        <th class="with-extra-text">
+          Trial: <br />
+          <span>number of credits cards</span>
+        </th>
+        <th class="with-extra-text">
+          Purchase: <br />
+          <span>new credit purchases</span>
+        </th>
+        <th class="with-extra-text">
+          Referral: <br />
+          <span>number of referrals</span>
+        </th>
+        <th class="with-extra-text">
+          Actions: <br />
+          <span>Edit/Delete</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let campaign of campaignsList">
+        <td>Lite & standard</td>
+        <td>{{ campaign.campaign_name }}</td>
+        <td>
+          {{
+            campaign.awareness.impressions > 0
+              ? "Impressions: " + campaign.awareness.impressions
+              : ""
+          }}
+          <br />
+          {{
+            campaign.awareness.clicks > 0
+              ? "Clicks:" + campaign.awareness.clicks
+              : ""
+          }}<br />
+          <br />
+        </td>
+        <td>
+          {{
+            campaign.interest.demo > 0 ? "demo: " + campaign.interest.demo : ""
+          }}
+          <br />
+          {{
+            campaign.interest.signups > 0
+              ? "Signups:" + campaign.interest.signups
+              : ""
+          }}
+        </td>
+        <td>
+          {{
+            campaign.engagement.media_uploads
+              ? "Media uploads:" + campaign.engagement.media_uploads
+              : ""
+          }}
+          <br />
+          {{
+            campaign.engagement.logins
+              ? "Logins:" + campaign.engagement.logins
+              : ""
+          }}
+        </td>
+        <td>
+          {{
+            campaign.activation.add_credit_card > 0
+              ? "Add credits card:" + campaign.activation.add_credit_card
+              : ""
+          }}
+        </td>
+        <td>
+          {{
+            campaign.activation.total_credits_purchased > 0
+              ? "Total credits purchased: " +
+                campaign.activation.total_credits_purchased
+              : ""
+          }}
+        </td>
+        <td></td>
+        <td>
+          <button type="button" class="button-edit" mat-raised-button>
+            edit
+          </button>
+          <!-- <button type="button" class="button-edit" mat-icon-button>
+            <mat-icon>delete_outline</mat-icon>
+          </button> -->
+          <button type="button" class="button-edit" mat-raised-button>
+            delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <mat-paginator
+    *ngIf="isAddingCampaign === false"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>

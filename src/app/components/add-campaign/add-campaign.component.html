@@ -1,0 +1,504 @@
+<!-- <div class="container">
+  <h2 mat-dialog-title class="heading">Add new campaign</h2>
+  <div class="content">
+    <ng-container *ngTemplateOutlet="currentPageTemplate"></ng-container>
+  </div>
+</div>
+
+<ng-template #page1>
+  <div class="input-section">
+    <label for="campaign_name">Campaign Name</label>
+    <input type="text" name="campaign_name" id="campaign_name" />
+  </div>
+  <div class="input-section">
+    <label for="product"> Product</label>
+    <input type="text" name="product" id="product" />
+  </div>
+  <div class="input-section">
+    <label for="cost"> Cost</label>
+    <input type="text" name="cost" id="cost" />
+  </div>
+  <div mat-dial class="input-section">
+    <label for="duration"> Duration</label>
+    <input type="text" name="duration" id="duration" />
+  </div>
+<h2>Awareness</h2>
+  <div id="activation">
+    <span>
+      <label for="impressions">impressions</label>
+      <input type="text" />
+    </span>
+    <span>
+      <label for="reach"> Reach</label>
+      <input type="text" />
+    </span>
+    <span>
+      <label for="clicks">Clicks</label>
+      <input type="text" />
+    </span>
+    <span>
+      <label for="phone_calls">Phone calls</label>
+      <input type="text" />
+    </span>
+    <span>
+      <label for="meetings">Meetings</label>
+      <input type="text" />
+    </span>
+  </div>
+  <div class="actions">
+    <mat-dialog-actions>
+      <button mat-button (click)="closeDialog()">Close</button>
+      <button
+        mat-button
+        (click)="nextPage()"
+        [disabled]="currentPage === getTotalPages() - 1"
+      >
+        Next
+      </button>
+    </mat-dialog-actions>
+  </div>
+</ng-template>
+
+<ng-template #page2>
+  <div class="input-section">
+    <label for="notes">Notes</label>
+    <textarea rows="4" type="text"></textarea>
+  </div>
+  <h2>Activation</h2>
+  <div id="activation">
+    <span>
+      <label for="add_credit_card">Add credit cards</label>
+      <input type="text" />
+    </span>
+    <span>
+      <label for="paid_pilot">Paid pilot</label>
+      <input type="text" />
+    </span>
+    <span>
+      <label for="total_credits_purchased">Total credits purchased</label>
+      <input type="text" />
+    </span>
+    <span>
+      <label for="cash_purchase">Cash purchase</label>
+      <input type="text" />
+    </span>
+    <span>
+      <label for="visa_purchase">Visa purchase</label>
+      <input type="text" />
+    </span>
+    <span>
+      <label for="cash_purchase_amount">Cash purchase amount</label>
+      <input type="text" />
+    </span>
+    <span>
+      <label for="visa_purchase_amount">Visa purchase amount</label>
+      <input type="text" />
+    </span>
+  </div>
+
+  <h2>Interest</h2>
+  <div id="activation">
+    <span>
+      <label for="demo">Demo</label>
+      <input type="text" />
+    </span>
+    <span>
+      <label for="signups"> Signups</label>
+      <input type="text" />
+    </span>
+  </div>
+  <h2 class="input-heading">Engagements</h2>
+  <div id="activation">
+    <span>
+      <label for="demo">Media uploads</label>
+      <input type="text" />
+    </span>
+    <span>
+      <label for="signups">Stakeholder buy in</label>
+      <input type="text" />
+    </span>
+    <span>
+      <label for="signups">logins</label>
+      <input type="text" />
+    </span>
+  </div>
+  <div class="actions">
+    <mat-dialog-actions>
+      <button mat-button (click)="closeDialog()" [disabled]="currentPage === 0">
+        Close
+      </button>
+      <button
+        mat-button
+        (click)="previousPage()"
+        [disabled]="currentPage === 0"
+      >
+        Previous
+      </button>
+      <button
+        mat-button
+        (click)="nextPage()"
+        [disabled]="currentPage === getTotalPages() - 1"
+      >
+        Save
+      </button>
+    </mat-dialog-actions>
+  </div>
+</ng-template> -->
+
+<div class="container">
+  <div class="container">
+    <h2 mat-dialog-title class="heading">Add new campaign</h2>
+    <div class="content">
+      <ng-container *ngTemplateOutlet="currentPageTemplate"></ng-container>
+    </div>
+  </div>
+  <form method="post" #formData="ngForm">
+    <ng-template #page1>
+      <mat-form-field class="form-field">
+        <mat-label>Campaign Name</mat-label>
+        <input
+          type="text"
+          matInput
+          ngModel
+          name="companyName"
+          #campaignName="ngModel"
+          placeholder="Campaign Name"
+          name="campaignName"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Product</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder="Product"
+          #product="ngModel"
+          ngModel
+          name="product"
+          id="product"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Cost</mat-label>
+        <input
+          type="text"
+          matInput
+          #cost="ngModel"
+          placeholder="cost"
+          ngModel
+          name="cost"
+          id="cost"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Duration</mat-label>
+        <input
+          type="text"
+          matInput
+          #duration="ngModel"
+          placeholder="duration"
+          ngModel
+          name="duration"
+          id="duration"
+        />
+      </mat-form-field>
+
+      <div id="activation">
+        <mat-form-field class="">
+          <mat-label>Impressions</mat-label>
+          <input
+            type="text"
+            matInput
+            #impressions="ngModel"
+            placeholder="Impressions"
+            ngModel
+            name="impressions"
+            id="impressions"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Reach</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Reach"
+            #contactEmail="ngModel"
+            ngModel
+            name="reach"
+            id="reach"
+            required="true "
+          />
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Clicks</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Other Contact"
+            #clicks="ngModel"
+            ngModel
+            id="clicks"
+            name="clicks"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Phone calls</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Other Contact"
+            #otherContact="ngModel"
+            ngModel
+            id="phone_calls"
+            name="phone_calls"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Meetings</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Other Contact"
+            #meetings="ngModel"
+            ngModel
+            id="meetings"
+            name="meetings"
+          />
+        </mat-form-field>
+      </div>
+      <div class="actions">
+        <mat-dialog-actions>
+          <button mat-button (click)="closeDialog()">Close</button>
+          <button
+            mat-button
+            (click)="nextPage()"
+            [disabled]="currentPage === getTotalPages() - 1"
+          >
+            Next
+          </button>
+        </mat-dialog-actions>
+      </div>
+    </ng-template>
+    <ng-template #page2>
+      <mat-form-field class="form-field">
+        <mat-label>Notes</mat-label>
+        <input
+          type="text"
+          matInput
+          ngModel
+          name="notes"
+          #campaignName="ngModel"
+          placeholder="Notes"
+          name="notes"
+          required
+        />
+      </mat-form-field>
+
+      <div id="activation">
+        <mat-form-field class="form-field">
+          <mat-label>Add credit cards</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Add credit cards"
+            #product="ngModel"
+            ngModel
+            name="add_credit_cards"
+            id="add_credit_cards"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Paid pilot</mat-label>
+          <input
+            type="text"
+            matInput
+            #paid_pilot="ngModel"
+            placeholder="Paid pilot"
+            ngModel
+            name="paid_pilot"
+            id="paid_pilot"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Total credits purchased</mat-label>
+          <input
+            type="text"
+            matInput
+            #duration="ngModel"
+            placeholder="Total credits purchased"
+            ngModel
+            name="total_credits_purchased"
+            id="total_credits_purchased"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Cash purchase</mat-label>
+          <input
+            type="text"
+            matInput
+            #cash_purchase="ngModel"
+            placeholder="Cash purchases"
+            ngModel
+            name="cash_purchase"
+            id="cash_purchase"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Visa purchase</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder=" Visa purhases"
+            #contactEmail="ngModel"
+            ngModel
+            name="visa_purchase"
+            id="visa_purchase"
+            required="true "
+          />
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Cash purchase amount</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Other Contact"
+            #otherContact="ngModel"
+            ngModel
+            id="otherContact"
+            name="otherContact"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Visa purchase amount</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Other Contact"
+            #otherContact="ngModel"
+            ngModel
+            id="otherContact"
+            name="otherContact"
+          />
+        </mat-form-field>
+      </div>
+      <div id="activation">
+        <mat-form-field class="form-field">
+          <mat-label>Demo</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Demo"
+            #demo="ngModel"
+            ngModel
+            id="demo"
+            name="demo"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Signups</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Signups"
+            #signups="ngModel"
+            ngModel
+            id="signups"
+            name="signups"
+          />
+        </mat-form-field>
+      </div>
+      <div id="activation">
+        <mat-form-field class="form-field">
+          <mat-label>Media uploads</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Media uploads"
+            #media_uploads="ngModel"
+            ngModel
+            id="media_uploads"
+            name="media_uploads"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Stakeholder buy in </mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="stakeholder_buy_in"
+            #signups="ngModel"
+            ngModel
+            id="stakeholder_buy_in"
+            name="stakeholder_buy_in"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Logins</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Logins"
+            #logins="ngModel"
+            ngModel
+            id="Logins"
+            name="logins"
+          />
+        </mat-form-field>
+      </div>
+      <div class="actions">
+        <mat-dialog-actions>
+          <button
+            mat-button
+            (click)="closeDialog()"
+            [disabled]="currentPage === 0"
+          >
+            Close
+          </button>
+          <button
+            mat-button
+            (click)="previousPage()"
+            [disabled]="currentPage === 0"
+          >
+            Previous
+          </button>
+          <button
+            mat-button
+            (click)="nextPage()"
+            [disabled]="currentPage === getTotalPages() - 1"
+          >
+            Save
+          </button>
+        </mat-dialog-actions>
+      </div>
+    </ng-template>
+    <!-- <ng-template>
+      <div class="actions">
+        <mat-dialog-actions>
+          <button
+            mat-button
+            (click)="closeDialog()"
+            [disabled]="currentPage === 0"
+          >
+            Close
+          </button>
+          <button
+            mat-button
+            (click)="previousPage()"
+            [disabled]="currentPage === 0"
+          >
+            Previous
+          </button>
+          <button
+            mat-button
+            (click)="nextPage()"
+            [disabled]="currentPage === getTotalPages() - 1"
+          >
+            Save
+          </button>
+        </mat-dialog-actions>
+      </div>
+    </ng-template> -->
+    <!--  -->
+  </form>
+</div>

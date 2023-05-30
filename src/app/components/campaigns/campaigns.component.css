@@ -1,0 +1,142 @@
+.container {
+  margin-top: 70px;
+  height: 100%;
+}
+
+#campaign-table {
+  width: 100%;
+  background-color: white;
+}
+
+#table-body tr td {
+  justify-content: center;
+  display: table-cell;
+  justify-content: center;
+}
+
+th,
+td {
+  text-align: start;
+  padding: 5px;
+  height: 30px;
+  border: 1px solid #e0e0e0;
+  word-wrap: break-word; /* Wrap overflowing text onto the next line */
+  /* max-width: 100px; */
+}
+
+td:nth-child(1),
+td:nth-child(2) {
+  width: 120px;
+  height: 20px;
+}
+td span{
+width: 120px;
+height: 30px;
+}
+tr {
+  border-bottom: 1px solid black;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th:nth-child(n + 3) {
+  height: 20px; /* Adjust the height value as needed */
+}
+tr {
+  border-bottom: 1px solid black;
+}
+
+th.with-extra-text span {
+  font-weight: lighter; /* Lighter font-weight for text inside the span */
+}
+.combined-col {
+  text-align: center;
+  font-weight: bold;
+  background-color: #f0f0f0;
+  border-width: 2px; /* Update the border width as desired */
+}
+
+.breadcrumb {
+  background-color: #f5f5f5;
+  padding: 8px;
+  margin-bottom: 16px;
+}
+
+.breadcrumb-item {
+  display: inline-block;
+  margin-right: 4px;
+}
+
+.breadcrumb-item a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.breadcrumb-item.active {
+  color: #333;
+}
+
+#breadcrumb {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#options {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+}
+ol.breadcrumb {
+  display: flex;
+  flex-direction: row;
+  width: 200px;
+}
+
+* {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: small;
+}
+.section {
+  background-color: #f5f5f5;
+}
+
+/* td.impressions span {
+  font-size: 12px;
+  font-weight: 600;
+} */
+
+section {
+  display: flex;
+  flex-direction: row;
+}
+
+section div {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+section div {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+section div input {
+  margin-right: 15px;
+  height: 40px;
+  width: 250px;
+  padding-left: 20px;
+  border: 0px;
+  background-color: white;
+  color: #333;
+  border-radius: 4px;
+}
+
+input::placeholder {
+  font-style: italic;
+}

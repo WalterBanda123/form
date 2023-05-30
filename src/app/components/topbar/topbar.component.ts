@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 
@@ -9,6 +9,13 @@ import { AuthService } from 'src/app/auth.service';
 })
 export class TopbarComponent implements OnInit {
   constructor(private router: Router, private authService: AuthService) {}
+
+  @Input() currentPage: any;
+  @Output() pageChanged = new EventEmitter<string>();
+
+  navigateTo(page: string): void {
+    this.pageChanged.emit(page);
+  }
 
   user: any;
   signOutHandler(): void {

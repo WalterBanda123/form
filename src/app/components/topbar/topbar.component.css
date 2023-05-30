@@ -1,11 +1,22 @@
+ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin-right: 10px; /* Optional: Add spacing between list items */
+  width: 100px;
+  font-size: 17px;
+  font-weight: 700;
+}
 .container {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-
   background: #ffff;
-  height: 70px;
+  height: 60px;
   z-index: 999;
   margin: 0 auto;
   border-bottom: 2px solid #dadada;
@@ -15,10 +26,9 @@
   left: 0;
   right: 0;
   bottom: 200px;
-
 }
 
-span img{
+span img {
   margin-left: 20px;
 }
 
@@ -34,18 +44,18 @@ span img{
   justify-content: center;
 }
 
-.profile-icon p{
-
+.profile-icon p {
   justify-self: center;
   margin-top: 7px;
 }
 
-.container span {
+.container .span-container {
   width: 200px;
   height: 50px;
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
 }
 
 button p {
@@ -55,4 +65,59 @@ button p {
 .account-button {
   width: fit-content;
   /* height: fit-content; */
+}
+
+.side-nav {
+  /* width: 15%; */
+  /* padding: 20px auto; */
+  background-color: white;
+  /* height: 100%; */
+  /* position: fixed; */
+  /* left: 0; */
+  /* margin-top:20px ; */
+  /* border-right: 2px solid #dadada; */
+  /* padding: 10px; */
+  display: flex;
+  flex-direction: row;
+}
+
+.side-nav span {
+  /* padding: 16px; */
+  text-decoration: none;
+  /* display: block; */
+  color: black;
+  /* margin: 10px auto; */
+}
+
+.siden-av a:hover {
+  background-color: #ddd;
+}
+
+.side-nav span {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100px;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.side-nav span i {
+  color: black;
+}
+
+.side-nav span.selected {
+  /* border-left: 3px solid #ce0212; */
+  color: #ce0212;
+}
+
+.side-nav span.selected button {
+  color: #ce0212;
+}
+
+.side-nav span.selected .material-icons {
+  color: #ce0212;
 }

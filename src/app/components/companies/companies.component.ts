@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component,Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 import { CompanyService } from 'src/app/company.service';
@@ -9,11 +9,12 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'],
+  selector: 'app-companies',
+  templateUrl: './companies.component.html',
+  styleUrls: ['./companies.component.css'],
+  
 })
-export class DashboardComponent implements OnInit {
+export class CompaniesComponent implements OnInit{
   constructor(
     private dialog: MatDialog,
     private companyService: CompanyService,
@@ -230,7 +231,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  currentPage: any = 'campaigns';
+  currentPage: any;
   navigateTo(page: string): void {
     this.currentPage = page;
   }

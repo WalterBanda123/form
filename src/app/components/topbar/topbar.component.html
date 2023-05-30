@@ -1,12 +1,52 @@
 <nav class="container">
-  <span>
+  <span class="span-container">
     <img
       src="./../../../assets/dynaton-logo.png"
       alt="dynaton-logo"
       height="50"
     />
   </span>
-  <span class="profile-icon">
+  <span class="span-container">
+    <div class="side-nav">
+      <span
+        (click)="navigateTo('home')"
+        [ngClass]="{ selected: currentPage === 'home' }"
+      >
+        <!-- <i class="material-icons">home</i> -->
+        Home
+      </span>
+      <span
+        (click)="navigateTo('domain')"
+        [ngClass]="{ selected: currentPage === 'domain' }"
+      >
+        <button mat-flat-button>Companies</button>
+        <!-- <i class="material-icons">domain</i> -->
+      </span>
+      <span
+        (click)="navigateTo('campaigns')"
+        [ngClass]="{ selected: currentPage === 'campaigns' }"
+      >
+        <!-- <i class="material-icons">campaign</i> -->
+        Campaigns
+      </span>
+      <span
+        (click)="navigateTo('people')"
+        [ngClass]="{ selected: currentPage === 'people' }"
+      >
+        <!-- <i class="material-icons">people</i> -->
+        Buyers
+      </span>
+    </div>
+    <!-- <nav> -->
+    <!-- <ul>
+      <li [ngClass]="{ active: currentPage === 'home' }">Home</li>
+      <li [ngClass]="{ active: currentPage === 'domain' }">Companies</li>
+      <li [ngClass]="{ active: currentPage === 'campaigns' }">Campaigns</li>
+      <li [ngClass]="{ active: currentPage === 'people' }">Buyers</li>
+      </ul> -->
+    <!-- </nav> -->
+  </span>
+  <span class="profile-icon span-container">
     <p *ngIf="user">{{ user.fullName | uppercase }}</p>
 
     <button

@@ -31,6 +31,12 @@ import { MeetingModalComponent } from './components/meeting-modal/meeting-modal.
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatExpansionModule} from "@angular/material/expansion"
+import { CompaniesComponent } from './components/companies/companies.component';
+import { CampaignsComponent } from './components/campaigns/campaigns.component';
+import { AddCampaignComponent } from './components/add-campaign/add-campaign.component';
+
 
 
 
@@ -46,6 +52,9 @@ import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
     RedirectComponent,
     CallModalComponent,
     MeetingModalComponent,
+    CompaniesComponent,
+    CampaignsComponent,
+    AddCampaignComponent,
   ],
   entryComponents: [DialogComponent],
   imports: [
@@ -69,6 +78,8 @@ import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
     MatNativeDateModule,
     NgxMatTimepickerModule,
     NgxSpinnerModule,
+    MatPaginatorModule,
+    MatExpansionModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
