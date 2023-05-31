@@ -1,5 +1,7 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { CampaignService } from 'src/app/campaign.service';
 
 @Component({
   selector: 'app-add-campaign',
@@ -11,8 +13,12 @@ export class AddCampaignComponent {
   @ViewChild('page2') page2Template!: TemplateRef<any>;
 
   currentPage: number = 0;
+  arrForDetails: any = [];
 
-  constructor(private dialogRef: MatDialogRef<AddCampaignComponent>) {}
+  constructor(
+    private dialogRef: MatDialogRef<AddCampaignComponent>,
+    private campaignService: CampaignService
+  ) {}
 
   ngOnInit() {}
 
@@ -37,9 +43,9 @@ export class AddCampaignComponent {
 
   previousPage() {
     // Implement your logic to handle the previous page navigation
-     if (this.currentPage > 0) {
-       this.currentPage--;
-     }
+    if (this.currentPage > 0) {
+      this.currentPage--;
+    }
   }
 
   closeDialog() {
@@ -50,4 +56,26 @@ export class AddCampaignComponent {
     // Replace this with your own logic to determine the total number of pages
     return 2; // Example: 2 pages
   }
+
+  getFirstPageCredentials(initialPageDetails: NgForm): void {
+ 
+
+    this.arrForDetails.push(initialPageDetails.value);
+    console.log(initialPageDetails.value);
+  }
+
+  getSecondPageCredentials(secondPageDetails: NgForm): void {
+
+    this.arrForDetails.push(secondPageDetails.value);
+    console.log(this.arrForDetails);
+    const entity = { ...this.arrForDetails[0], ...this.arrForDetails[1] };
+
+    this.campaignService.createCampaign(entity).subscribe((response) => {
+      console.log(response.message);
+      console.log(response.campaign);
+    });
+    console.log(entity);
+  }
+
+  // saveCampaign(newCampaign: NgForm): void {}
 }

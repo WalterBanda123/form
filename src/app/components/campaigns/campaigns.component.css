@@ -140,3 +140,13 @@ section div input {
 input::placeholder {
   font-style: italic;
 }
+
+#campaign-table .button-delete{
+  margin-left: 5px;
+  background-color:red;
+  color: #e0e0e0;
+}
+#campaign-table .button-edit{
+  margin-left: 5px;
+  
+}

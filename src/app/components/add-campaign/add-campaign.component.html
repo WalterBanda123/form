@@ -1,150 +1,3 @@
-<!-- <div class="container">
-  <h2 mat-dialog-title class="heading">Add new campaign</h2>
-  <div class="content">
-    <ng-container *ngTemplateOutlet="currentPageTemplate"></ng-container>
-  </div>
-</div>
-
-<ng-template #page1>
-  <div class="input-section">
-    <label for="campaign_name">Campaign Name</label>
-    <input type="text" name="campaign_name" id="campaign_name" />
-  </div>
-  <div class="input-section">
-    <label for="product"> Product</label>
-    <input type="text" name="product" id="product" />
-  </div>
-  <div class="input-section">
-    <label for="cost"> Cost</label>
-    <input type="text" name="cost" id="cost" />
-  </div>
-  <div mat-dial class="input-section">
-    <label for="duration"> Duration</label>
-    <input type="text" name="duration" id="duration" />
-  </div>
-<h2>Awareness</h2>
-  <div id="activation">
-    <span>
-      <label for="impressions">impressions</label>
-      <input type="text" />
-    </span>
-    <span>
-      <label for="reach"> Reach</label>
-      <input type="text" />
-    </span>
-    <span>
-      <label for="clicks">Clicks</label>
-      <input type="text" />
-    </span>
-    <span>
-      <label for="phone_calls">Phone calls</label>
-      <input type="text" />
-    </span>
-    <span>
-      <label for="meetings">Meetings</label>
-      <input type="text" />
-    </span>
-  </div>
-  <div class="actions">
-    <mat-dialog-actions>
-      <button mat-button (click)="closeDialog()">Close</button>
-      <button
-        mat-button
-        (click)="nextPage()"
-        [disabled]="currentPage === getTotalPages() - 1"
-      >
-        Next
-      </button>
-    </mat-dialog-actions>
-  </div>
-</ng-template>
-
-<ng-template #page2>
-  <div class="input-section">
-    <label for="notes">Notes</label>
-    <textarea rows="4" type="text"></textarea>
-  </div>
-  <h2>Activation</h2>
-  <div id="activation">
-    <span>
-      <label for="add_credit_card">Add credit cards</label>
-      <input type="text" />
-    </span>
-    <span>
-      <label for="paid_pilot">Paid pilot</label>
-      <input type="text" />
-    </span>
-    <span>
-      <label for="total_credits_purchased">Total credits purchased</label>
-      <input type="text" />
-    </span>
-    <span>
-      <label for="cash_purchase">Cash purchase</label>
-      <input type="text" />
-    </span>
-    <span>
-      <label for="visa_purchase">Visa purchase</label>
-      <input type="text" />
-    </span>
-    <span>
-      <label for="cash_purchase_amount">Cash purchase amount</label>
-      <input type="text" />
-    </span>
-    <span>
-      <label for="visa_purchase_amount">Visa purchase amount</label>
-      <input type="text" />
-    </span>
-  </div>
-
-  <h2>Interest</h2>
-  <div id="activation">
-    <span>
-      <label for="demo">Demo</label>
-      <input type="text" />
-    </span>
-    <span>
-      <label for="signups"> Signups</label>
-      <input type="text" />
-    </span>
-  </div>
-  <h2 class="input-heading">Engagements</h2>
-  <div id="activation">
-    <span>
-      <label for="demo">Media uploads</label>
-      <input type="text" />
-    </span>
-    <span>
-      <label for="signups">Stakeholder buy in</label>
-      <input type="text" />
-    </span>
-    <span>
-      <label for="signups">logins</label>
-      <input type="text" />
-    </span>
-  </div>
-  <div class="actions">
-    <mat-dialog-actions>
-      <button mat-button (click)="closeDialog()" [disabled]="currentPage === 0">
-        Close
-      </button>
-      <button
-        mat-button
-        (click)="previousPage()"
-        [disabled]="currentPage === 0"
-      >
-        Previous
-      </button>
-      <button
-        mat-button
-        (click)="nextPage()"
-        [disabled]="currentPage === getTotalPages() - 1"
-      >
-        Save
-      </button>
-    </mat-dialog-actions>
-  </div>
-</ng-template> -->
-
 <div class="container">
   <div class="container">
     <h2 mat-dialog-title class="heading">Add new campaign</h2>
@@ -152,7 +5,7 @@
       <ng-container *ngTemplateOutlet="currentPageTemplate"></ng-container>
     </div>
   </div>
-  <form method="post" #formData="ngForm">
+  <form method="post" #formData="ngForm" >
     <ng-template #page1>
       <mat-form-field class="form-field">
         <mat-label>Campaign Name</mat-label>
@@ -182,7 +35,7 @@
       <mat-form-field class="form-field">
         <mat-label>Cost</mat-label>
         <input
-          type="text"
+          type="number"
           matInput
           #cost="ngModel"
           placeholder="cost"
@@ -208,7 +61,7 @@
         <mat-form-field class="">
           <mat-label>Impressions</mat-label>
           <input
-            type="text"
+            type="number"
             matInput
             #impressions="ngModel"
             placeholder="Impressions"
@@ -220,10 +73,10 @@
         <mat-form-field class="form-field">
           <mat-label>Reach</mat-label>
           <input
-            type="text"
+            type="number"
             matInput
             placeholder="Reach"
-            #contactEmail="ngModel"
+            #reach="ngModel"
             ngModel
             name="reach"
             id="reach"
@@ -233,9 +86,9 @@
         <mat-form-field class="form-field">
           <mat-label>Clicks</mat-label>
           <input
-            type="text"
+            type="number"
             matInput
-            placeholder="Other Contact"
+            placeholder="Clicks"
             #clicks="ngModel"
             ngModel
             id="clicks"
@@ -245,10 +98,10 @@
         <mat-form-field class="form-field">
           <mat-label>Phone calls</mat-label>
           <input
-            type="text"
+            type="number"
             matInput
-            placeholder="Other Contact"
-            #otherContact="ngModel"
+            placeholder="Phone calls"
+            #phone_calls="ngModel"
             ngModel
             id="phone_calls"
             name="phone_calls"
@@ -257,9 +110,9 @@
         <mat-form-field class="form-field">
           <mat-label>Meetings</mat-label>
           <input
-            type="text"
+            type="number"
             matInput
-            placeholder="Other Contact"
+            placeholder="Meetings"
             #meetings="ngModel"
             ngModel
             id="meetings"
@@ -274,12 +127,14 @@
             mat-button
             (click)="nextPage()"
             [disabled]="currentPage === getTotalPages() - 1"
+            (click)="getFirstPageCredentials(formData)"
           >
             Next
           </button>
         </mat-dialog-actions>
       </div>
     </ng-template>
+
     <ng-template #page2>
       <mat-form-field class="form-field">
         <mat-label>Notes</mat-label>
@@ -288,7 +143,7 @@
           matInput
           ngModel
           name="notes"
-          #campaignName="ngModel"
+          #notes="ngModel"
           placeholder="Notes"
           name="notes"
           required
@@ -299,10 +154,10 @@
         <mat-form-field class="form-field">
           <mat-label>Add credit cards</mat-label>
           <input
-            type="text"
+            type="number"
             matInput
             placeholder="Add credit cards"
-            #product="ngModel"
+            #add_credit_cards="ngModel"
             ngModel
             name="add_credit_cards"
             id="add_credit_cards"
@@ -311,7 +166,7 @@
         <mat-form-field class="form-field">
           <mat-label>Paid pilot</mat-label>
           <input
-            type="text"
+            type="number"
             matInput
             #paid_pilot="ngModel"
             placeholder="Paid pilot"
@@ -323,9 +178,9 @@
         <mat-form-field class="form-field">
           <mat-label>Total credits purchased</mat-label>
           <input
-            type="text"
+            type="number"
             matInput
-            #duration="ngModel"
+            #total_credits_purchased="ngModel"
             placeholder="Total credits purchased"
             ngModel
             name="total_credits_purchased"
@@ -335,7 +190,7 @@
         <mat-form-field class="form-field">
           <mat-label>Cash purchase</mat-label>
           <input
-            type="text"
+            type="number"
             matInput
             #cash_purchase="ngModel"
             placeholder="Cash purchases"
@@ -347,10 +202,10 @@
         <mat-form-field class="form-field">
           <mat-label>Visa purchase</mat-label>
           <input
-            type="text"
+            type="number"
             matInput
             placeholder=" Visa purhases"
-            #contactEmail="ngModel"
+            #visa_purchase="ngModel"
             ngModel
             name="visa_purchase"
             id="visa_purchase"
@@ -360,25 +215,25 @@
         <mat-form-field class="form-field">
           <mat-label>Cash purchase amount</mat-label>
           <input
-            type="text"
+            type="number"
             matInput
-            placeholder="Other Contact"
-            #otherContact="ngModel"
+            placeholder="Cash purchase amount"
+            #cash_purchase_amount="ngModel"
             ngModel
-            id="otherContact"
-            name="otherContact"
+            id="cash_purchase_amount"
+            name="cash_purchase_amount"
           />
         </mat-form-field>
         <mat-form-field class="form-field">
           <mat-label>Visa purchase amount</mat-label>
           <input
-            type="text"
+            type="number"
             matInput
-            placeholder="Other Contact"
-            #otherContact="ngModel"
+            placeholder="Visa purchase amount"
+            #visa_purchase_amount="ngModel"
             ngModel
-            id="otherContact"
-            name="otherContact"
+            id="visa_purchase_amount"
+            name="visa_purchase_amount"
           />
         </mat-form-field>
       </div>
@@ -386,7 +241,7 @@
         <mat-form-field class="form-field">
           <mat-label>Demo</mat-label>
           <input
-            type="text"
+            type="number"
             matInput
             placeholder="Demo"
             #demo="ngModel"
@@ -398,7 +253,7 @@
         <mat-form-field class="form-field">
           <mat-label>Signups</mat-label>
           <input
-            type="text"
+            type="number"
             matInput
             placeholder="Signups"
             #signups="ngModel"
@@ -412,7 +267,7 @@
         <mat-form-field class="form-field">
           <mat-label>Media uploads</mat-label>
           <input
-            type="text"
+            type="number"
             matInput
             placeholder="Media uploads"
             #media_uploads="ngModel"
@@ -424,7 +279,7 @@
         <mat-form-field class="form-field">
           <mat-label>Stakeholder buy in </mat-label>
           <input
-            type="text"
+            type="number"
             matInput
             placeholder="stakeholder_buy_in"
             #signups="ngModel"
@@ -436,7 +291,7 @@
         <mat-form-field class="form-field">
           <mat-label>Logins</mat-label>
           <input
-            type="text"
+            type="number"
             matInput
             placeholder="Logins"
             #logins="ngModel"
@@ -463,42 +318,16 @@
             Previous
           </button>
           <button
+            type="submit"
             mat-button
-            (click)="nextPage()"
-            [disabled]="currentPage === getTotalPages() - 1"
+            (click)="closeDialog()"
+            (click)="getSecondPageCredentials(formData)"
+            [disabled]="currentPage === 0"
           >
             Save
           </button>
         </mat-dialog-actions>
       </div>
     </ng-template>
-    <!-- <ng-template>
-      <div class="actions">
-        <mat-dialog-actions>
-          <button
-            mat-button
-            (click)="closeDialog()"
-            [disabled]="currentPage === 0"
-          >
-            Close
-          </button>
-          <button
-            mat-button
-            (click)="previousPage()"
-            [disabled]="currentPage === 0"
-          >
-            Previous
-          </button>
-          <button
-            mat-button
-            (click)="nextPage()"
-            [disabled]="currentPage === getTotalPages() - 1"
-          >
-            Save
-          </button>
-        </mat-dialog-actions>
-      </div>
-    </ng-template> -->
-    <!--  -->
   </form>
 </div>

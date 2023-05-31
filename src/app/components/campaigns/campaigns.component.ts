@@ -6,11 +6,13 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { AddCampaignComponent } from '../add-campaign/add-campaign.component';
 import { CampaignService } from 'src/app/campaign.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-campaigns',
   templateUrl: './campaigns.component.html',
   styleUrls: ['./campaigns.component.css'],
+
 })
 export class CampaignsComponent implements OnInit {
   constructor(
@@ -18,7 +20,8 @@ export class CampaignsComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private dialog: MatDialog,
     private campaignService: CampaignService,
-    private router:Router
+    private router: Router,
+    private snackbar: MatSnackBar
   ) {}
 
   isAddingCampaign: boolean = false;
@@ -35,6 +38,29 @@ export class CampaignsComponent implements OnInit {
     const dialogRef = this.dialog.open(AddCampaignComponent);
 
     // this.router.navigateByUrl('add-campaign');
+  }
+  editCampaignDetails(campaignID: string): void {
+    this.spinner.show();
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 1000);
+    setTimeout(() => {
+      this.router.navigate([`/edit-campaign/${campaignID}`]);
+    }, 1000);
+  }
+
+  deleteCampaignHandler(id: any): void {
+    this.spinner.show();
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 1000);
+    setTimeout(() => {
+      this.campaignService.deleteCampaign(id).subscribe((response) => {
+        this.snackbar.open(response.message, 'undo', {
+          duration: 4000,
+        });
+      });
+    }, 1000);
   }
 
   goBackHandler(): void {
@@ -57,9 +83,15 @@ export class CampaignsComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
   ngOnInit(): void {
-    this.campaignService.getCampaigns().subscribe((campaigns: any) => {
-      this.campaignsList = campaigns.campaigns;
-      console.log(campaigns);
-    });
+    this.spinner.show();
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 1000);
+    setTimeout(() => {
+      this.campaignService.getCampaigns().subscribe((campaigns: any) => {
+        this.campaignsList = campaigns.campaigns;
+        console.log(campaigns);
+      });
+    }, 1000);
   }
 }

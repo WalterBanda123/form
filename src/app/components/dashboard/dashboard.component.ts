@@ -5,7 +5,7 @@ import { CompanyService } from 'src/app/company.service';
 import { EditComponent } from '../edit/edit.component';
 import { CallModalComponent } from '../call-modal/call-modal.component';
 import { MeetingModalComponent } from '../meeting-modal/meeting-modal.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
@@ -19,7 +19,8 @@ export class DashboardComponent implements OnInit {
     private companyService: CompanyService,
     private changeDection: ChangeDetectorRef,
     private router: Router,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private route: ActivatedRoute
   ) {}
 
   searchedValue?: string = '';
@@ -233,9 +234,11 @@ export class DashboardComponent implements OnInit {
   currentPage: any = 'campaigns';
   navigateTo(page: string): void {
     this.currentPage = page;
+    // this.currentPage = this.route.snapshot.url[0].path;
   }
 
   ngOnInit(): void {
+   
     this.companyService.getCompanies().subscribe((companies: any) => {
       this.dataSource = companies.companies.reverse();
       this.totalNumberOfCompanies = companies.companies;

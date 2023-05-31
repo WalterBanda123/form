@@ -36,6 +36,8 @@ import {MatExpansionModule} from "@angular/material/expansion"
 import { CompaniesComponent } from './components/companies/companies.component';
 import { CampaignsComponent } from './components/campaigns/campaigns.component';
 import { AddCampaignComponent } from './components/add-campaign/add-campaign.component';
+import { EditCampaignComponent } from './components/edit-campaign/edit-campaign.component';
+
 
 
 
@@ -55,6 +57,7 @@ import { AddCampaignComponent } from './components/add-campaign/add-campaign.com
     CompaniesComponent,
     CampaignsComponent,
     AddCampaignComponent,
+    EditCampaignComponent,
   ],
   entryComponents: [DialogComponent],
   imports: [

@@ -1,0 +1,281 @@
+<div class="top">
+  <app-topbar></app-topbar>
+</div>
+<div class="container">
+  <h2 class="heading">Add new campaign</h2>
+  <div class="content">
+    <form
+      method="post"
+      #formData="ngForm"
+      (ngSubmit)="editCampaignHandler(formData)"
+    >
+      <mat-form-field class="form-field">
+        <mat-label>Campaign Name</mat-label>
+        <input
+          type="text"
+          matInput
+          [(ngModel)]="
+            selectedCampaign.campaign_name && selectedCampaign.campaign_name
+          "
+          [value]="
+            selectedCampaign.campaign_name && selectedCampaign.campaign_name
+          "
+          name="campaign_name"
+          placeholder="Campaign Name"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Product</mat-label>
+        <input
+          type="text"
+          [(ngModel)]="selectedCampaign.product"
+          [value]="selectedCampaign.product"
+          matInput
+          name="product"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Cost</mat-label>
+        <input
+          type="number"
+          matInput
+          [value]="selectedCampaign.cost"
+          placeholder="cost"
+          [(ngModel)]="selectedCampaign.cost"
+          name="cost"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Duration</mat-label>
+        <input
+          type="text"
+          matInput
+          [(ngModel)]="selectedCampaign.duration"
+          placeholder="duration"
+          name="duration"
+        />
+      </mat-form-field>
+
+      <!-- <div id="activation"> </div> -->
+      <mat-form-field class="form-field">
+        <mat-label>Impressions</mat-label>
+        <input
+          type="number"
+          matInput
+          [(ngModel)]="selectedCampaign.awareness.impressions"
+          placeholder="Impressions"
+          [value]="selectedCampaign.awareness.impressions"
+          name="impressions"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Reach</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder="Reach"
+          (value)="(selectedCampaign.awareness.reach)"
+          [(ngModel)]="selectedCampaign.awareness.reach"
+          name="reach"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Clicks</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder="Clicks"
+          (value)="(selectedCampaign.awareness.clicks)"
+          [(ngModel)]="selectedCampaign.awareness.clicks"
+          name="clicks"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Phone calls</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder="Phone calls"
+          [(ngModel)]="selectedCampaign.awareness.phone_calls"
+          (value)="(selectedCampaign.awareness.phone_calls)"
+          name="phone_calls"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Meetings</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder="Meetings"
+          [(ngModel)]="selectedCampaign.awareness.meetings"
+          (value)="(selectedCampaign.awareness.meetings)"
+          name="meetings"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Notes</mat-label>
+        <textarea
+          type="text"
+          matInput
+          [(ngModel)]="selectedCampaign.notes"
+          (value)="(selectedCampaign.notes)"
+          name="notes"
+          rows="4"
+        ></textarea>
+      </mat-form-field>
+
+      <!-- <div id="activation"> </div> -->
+      <mat-form-field class="form-field">
+        <mat-label>Add credit cards</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder="Add credit cards"
+          [(ngModel)]="selectedCampaign.activation.add_credit_card"
+          (value)="(selectedCampaign.activation.add_credit_card)"
+          name="add_credit_cards"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Paid pilot</mat-label>
+        <input
+          type="number"
+          matInput
+          [(ngModel)]="selectedCampaign.activation.paid_pilot"
+          (value)="(selectedCampaign.activation.paid_pilot)"
+          placeholder="Paid pilot"
+          name="paid_pilot"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Total credits purchased</mat-label>
+        <input
+          type="number"
+          matInput
+          [(ngModel)]="selectedCampaign.activation.total_credits_purchased"
+          (value)="(selectedCampaign.activation.total_credits_purchased)"
+          placeholder="Total credits purchased"
+          name="total_credits_purchased"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Cash purchase</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder="Cash purchases"
+          [(ngModel)]="selectedCampaign.activation.cash_purchase"
+          (value)="(selectedCampaign.activation.cash_purchase)"
+          name="cash_purchase"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Visa purchase</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder=" Visa purhases"
+          [(ngModel)]="selectedCampaign.activation.visa_purchase"
+          (value)="(selectedCampaign.activation.visa_purchase)"
+          name="visa_purchase"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Cash purchase amount</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder="Cash purchase amount"
+          [(ngModel)]="selectedCampaign.activation.cash_purchase_amount"
+          (value)="(selectedCampaign.activation.cash_purchase_amount)"
+          name="cash_purchase_amount"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Visa purchase amount</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder="Visa purchase amount"
+          [(ngModel)]="selectedCampaign.activation.visa_purchase_amount"
+          (value)="(selectedCampaign.activation.visa_purchase_amount)"
+          name="visa_purchase_amount"
+        />
+      </mat-form-field>
+
+      <!-- <div id="activation"></div> -->
+      <mat-form-field class="form-field">
+        <mat-label>Demo</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder="Demo"
+          [(ngModel)]="selectedCampaign.interest.demo"
+          (value)="(selectedCampaign.interest.demo)"
+          name="demo"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Signups</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder="Signups"
+          [(ngModel)]="selectedCampaign.interest.signups"
+          (value)="(selectedCampaign.interest.signups)"
+          name="signups"
+        />
+      </mat-form-field>
+
+      <!-- <div id="activation"></div> -->
+      <mat-form-field class="form-field">
+        <mat-label>Media uploads</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder="Media uploads"
+          [(ngModel)]="selectedCampaign.engagement.media_uploads"
+          (value)="(selectedCampaign.engagement.media_uploads)"
+          name="media_uploads"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Stakeholder buy in </mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder="stakeholder_buy_in"
+          [(ngModel)]="selectedCampaign.engagement.stakeholder_buy_in"
+          (value)="(selectedCampaign.engagement.stakeholder_buy_in)"
+          name="stakeholder_buy_in"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Logins</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder="Logins"
+          [(ngModel)]="selectedCampaign.engagement.logins"
+          (value)="(selectedCampaign.engagement.logins)"
+          name="logins"
+        />
+      </mat-form-field>
+
+      <div class="actions">
+        <button type="reset" mat-raised-button class="reset">reset</button>
+        <button
+          type="button"
+          mat-raised-button
+          class="close"
+          (click)="goBack()"
+        >
+          Close
+        </button>
+        <button type="submit" mat-raised-button class="submit">Save</button>
+      </div>
+    </form>
+  </div>
+</div>

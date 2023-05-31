@@ -8,6 +8,7 @@ import { RedirectComponent } from './components/redirect/redirect.component';
 import { EditComponent } from './components/edit/edit.component';
 import { CampaignsComponent } from './components/campaigns/campaigns.component';
 import { AddCampaignComponent } from './components/add-campaign/add-campaign.component';
+import { EditCampaignComponent } from './components/edit-campaign/edit-campaign.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -15,18 +16,25 @@ const routes: Routes = [
   {
     path: 'campaign',
     component: CampaignsComponent,
+    canActivate: [LoginGuard],
   },
   { path: 'add-campaign', component: AddCampaignComponent },
   {
     path: 'dashboard',
     component: DashboardComponent,
     canActivate: [LoginGuard],
-  },
+    
+  },{
+        path: 'edit-campaign/:id',
+        component: EditCampaignComponent,
+        canActivate: [LoginGuard],
+      },
   {
     path: 'edit-details/:id',
     component: EditComponent,
     canActivate: [LoginGuard],
   },
+
   { path: 'signup', component: SignupComponent },
   { path: 'redirect', component: RedirectComponent },
 ];

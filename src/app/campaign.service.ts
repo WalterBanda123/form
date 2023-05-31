@@ -47,4 +47,15 @@ export class CampaignService {
       )
       .pipe(catchError(this.errorHandler));
   }
+  getCampaign(campaignID: any): Observable<any> {
+    return this.http
+      .get<any[]>(`${environment.serverUrl}` + `/campaign/${campaignID}`)
+      .pipe(catchError(this.errorHandler));
+  }
+
+  deleteCampaign(id: any): Observable<any> {
+    return this.http
+      .delete<any[]>(`${environment.serverUrl}` + `/campaign/delete/${id}`)
+      .pipe(catchError(this.errorHandler));
+  }
 }
