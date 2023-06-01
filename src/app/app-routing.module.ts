@@ -9,6 +9,7 @@ import { EditComponent } from './components/edit/edit.component';
 import { CampaignsComponent } from './components/campaigns/campaigns.component';
 import { AddCampaignComponent } from './components/add-campaign/add-campaign.component';
 import { EditCampaignComponent } from './components/edit-campaign/edit-campaign.component';
+import { CampaignsMainComponent } from './components/campaigns-main/campaigns-main.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -17,12 +18,10 @@ const routes: Routes = [
     path: 'campaigns',
     component: CampaignsComponent,
     canActivate: [LoginGuard],
-
   },
   {
     path: 'add-campaign',
     component: AddCampaignComponent,
-    canActivate: [LoginGuard],
   },
   {
     path: 'edit-campaign/:id',
@@ -43,6 +42,27 @@ const routes: Routes = [
 
   { path: 'signup', component: SignupComponent },
   { path: 'redirect', component: RedirectComponent },
+  // {
+  //   path: 'campaign',
+  //   component: CampaignsMainComponent,
+  //   children: [
+  //     {path:'', redirectTo:'campaigns', pathMatch:'full'},
+  //     {
+  //       path: 'campaigns',
+  //       component: CampaignsComponent,
+  //       canActivate: [LoginGuard],
+  //     },
+  //     {
+  //       path: 'add-campaign',
+  //       component: AddCampaignComponent,
+  //     },
+  //     {
+  //       path: 'edit-campaign/:id',
+  //       component: EditCampaignComponent,
+  //       canActivate: [LoginGuard],
+  //     },
+  //   ],
+  // },
 ];
 
 @NgModule({

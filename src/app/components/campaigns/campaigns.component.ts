@@ -27,32 +27,37 @@ export class CampaignsComponent implements OnInit {
   campaignsList: any = [];
 
   dataSource = new MatTableDataSource<any>(this.campaignsList);
+
+
   startAddingCampaign(): void {
     setTimeout(() => {
       this.spinner.show();
     }, 500);
     setTimeout(() => {
       this.spinner.hide();
+      this.router.navigateByUrl('/add-campaign');
     }, 500);
-    const dialogRef = this.dialog.open(AddCampaignComponent);
-    dialogRef.afterClosed().subscribe((response) => {
-      console.log(response);
 
-      if (response === 'true') {
-        this.spinner.show();
-        setTimeout(() => {
-          this.spinner.hide();
-        }, 1000);
-        setTimeout(() => {
-          this.campaignService.getCampaigns().subscribe((campaigns: any) => {
-            this.campaignsList = campaigns.campaigns.slice().reverse();
-            console.log(campaigns);
-          });
-        }, 1000);
-      }
-    });
+    // this.router.navigate(['/add-campaign'])
+;
+    // dialogRef.afterClosed().subscribe((response) => {
+    //   console.log(response);
 
-    // this.router.navigateByUrl('add-campaign');
+    //   if (response === 'true') {
+    //     this.spinner.show();
+    //     setTimeout(() => {
+    //       this.spinner.hide();
+    //     }, 1000);
+    //     setTimeout(() => {
+    //       this.campaignService.getCampaigns().subscribe((campaigns: any) => {
+    //         this.campaignsList = campaigns.campaigns.slice().reverse();
+    //         console.log(campaigns);
+    //       });
+    //     }, 1000);
+    //   }
+    // });
+
+
   }
   editCampaignDetails(campaignID: string): void {
     this.spinner.show();

@@ -6,60 +6,42 @@
       height="50"
     />
   </span>
-  <span class="span-container">
+  <span class=" span-container">
     <div class="side-nav">
-      <span
+      <!-- <span
         (click)="navigateTo('home')"
         [ngClass]="{ selected: currentPage === 'home' }"
       >
-        <!-- <i class="material-icons">home</i> -->
+        <i class="material-icons">home</i>
         Home
-      </span>
+      </span> -->
       <span
         (click)="navigateTo('domain')"
         [ngClass]="{ selected: currentPage === 'domain' }"
       >
+      <i class="material-icons">domain</i>
         Companies
-        <!-- <i class="material-icons">domain</i> -->
       </span>
       <span
         (click)="navigateTo('campaigns')"
         [ngClass]="{ selected: currentPage === 'campaigns' }"
       >
-        <!-- <i class="material-icons">campaign</i> -->
+        <i class="material-icons">campaign</i>
         Campaigns
       </span>
-      <span
-        (click)="navigateTo('people')"
-        [ngClass]="{ selected: currentPage === 'people' }"
-      >
-        <!-- <i class="material-icons">people</i> -->
-        Buyers
-      </span>
     </div>
-    <!-- <nav> -->
-    <!-- <ul>
-      <li [ngClass]="{ active: currentPage === 'home' }">Home</li>
-      <li [ngClass]="{ active: currentPage === 'domain' }">Companies</li>
-      <li [ngClass]="{ active: currentPage === 'campaigns' }">Campaigns</li>
-      <li [ngClass]="{ active: currentPage === 'people' }">Buyers</li>
-      </ul> -->
-    <!-- </nav> -->
   </span>
   <span class="profile-icon span-container">
     <p *ngIf="user">{{ user.fullName | uppercase }}</p>
-
     <button
-      class="account-button"
-      type="button"
-      mat-button
+      mat-fab
       [matMenuTriggerFor]="menu"
     >
-      <mat-menu #menu>
-        <button mat-menu-item>Edit profile</button>
-        <button mat-menu-item (click)="signOutHandler()">Logout</button>
-      </mat-menu>
-      <i class="material-icons">account_circle</i>
+      <i class="material-icons">person</i>
     </button>
+    <mat-menu #menu>
+      <button mat-menu-item>Edit profile</button>
+      <button mat-menu-item (click)="signOutHandler()">Logout</button>
+    </mat-menu>
   </span>
 </nav>

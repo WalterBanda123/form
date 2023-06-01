@@ -2,13 +2,24 @@
   <app-topbar></app-topbar>
 </div>
 <div class="container">
-  <h2 class="heading">Edit campaign</h2>
   <div class="content">
-    <form
-      method="post"
-      #formData="ngForm"
-      (ngSubmit)="editCampaignHandler(formData)"
-    >
+    <div class="heading">
+      <h2>Edit campaign</h2>
+      <span>
+        Go back
+        <button mat-mini-fab color="warn" (click)="goBack()">
+          <mat-icon>redo_outline</mat-icon>
+        </button>
+      </span>
+    </div>
+  </div>
+  <form
+    method="post"
+    #formData="ngForm"
+    (ngSubmit)="editCampaignHandler(formData)"
+  >
+    <mat-card class="card">
+      <h2 mat-card-subtitle>Edit Campign</h2>
       <mat-form-field class="form-field">
         <mat-label>Campaign Name</mat-label>
         <input
@@ -24,25 +35,21 @@
           placeholder="Campaign Name"
         />
       </mat-form-field>
-      <!-- <mat-form-field class="form-field">
+
+      <mat-form-field class="form-field">
         <mat-label>Product</mat-label>
-        <input
-          type="text"
+        <mat-select
           [(ngModel)]="selectedCampaign.product"
           [value]="selectedCampaign.product"
-          matInput
           name="product"
-        />
-      </mat-form-field> -->
-       <mat-form-field class="form-field">
-        <mat-label>Product</mat-label>
-        <mat-select  [(ngModel)]="selectedCampaign.product"
-            [value]="selectedCampaign.product" name="product">
+        >
           <mat-option value="All">All</mat-option>
           <mat-option value="Mobile">Mobile</mat-option>
           <mat-option value="Lite">Lite</mat-option>
           <mat-option value="Standard ">Standard</mat-option>
-          <mat-option value="Web(Lite & Standard)">Web(Lite & Standard)</mat-option>
+          <mat-option value="Web(Lite & Standard)"
+            >Web(Lite & Standard)</mat-option
+          >
           <mat-option value="IOS">IOS</mat-option>
           <mat-option value="Android">Android</mat-option>
         </mat-select>
@@ -68,8 +75,10 @@
           name="duration"
         />
       </mat-form-field>
+    </mat-card>
 
-      <!-- <div id="activation"> </div> -->
+    <mat-card class="card">
+      <h2 mat-card-subtitle>Awareness</h2>
       <mat-form-field class="form-field">
         <mat-label>Impressions</mat-label>
         <input
@@ -125,7 +134,9 @@
           name="meetings"
         />
       </mat-form-field>
+    </mat-card>
 
+    <mat-card class="card">
       <mat-form-field class="form-field">
         <mat-label>Notes</mat-label>
         <textarea
@@ -138,7 +149,7 @@
         ></textarea>
       </mat-form-field>
 
-      <!-- <div id="activation"> </div> -->
+      <h2 mat-card-subtitle>Activation</h2>
       <mat-form-field class="form-field">
         <mat-label>Add credit cards</mat-label>
         <input
@@ -217,8 +228,10 @@
           name="visa_purchase_amount"
         />
       </mat-form-field>
+    </mat-card>
 
-      <!-- <div id="activation"></div> -->
+    <mat-card class="card">
+      <h2 mat-card-subtitle>Interest</h2>
       <mat-form-field class="form-field">
         <mat-label>Demo</mat-label>
         <input
@@ -242,7 +255,7 @@
         />
       </mat-form-field>
 
-      <!-- <div id="activation"></div> -->
+      <h2 mat-card-subtitle>Engagement</h2>
       <mat-form-field class="form-field">
         <mat-label>Media uploads</mat-label>
         <input
@@ -276,13 +289,12 @@
           name="logins"
         />
       </mat-form-field>
-
       <div class="actions">
         <button type="button" mat-flat-button class="close" (click)="goBack()">
           Close
         </button>
         <button type="submit" mat-raised-button class="submit">Save</button>
       </div>
-    </form>
-  </div>
+    </mat-card>
+  </form>
 </div>

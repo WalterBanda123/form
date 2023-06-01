@@ -3,10 +3,13 @@
     <h2>Campaigns</h2>
     <div>
       <button
-        mat-raised-button
+        mat-fab
+        color="primary"
+        extended
         class="add-button"
         (click)="startAddingCampaign()"
       >
+        <mat-icon>add</mat-icon>
         Add Campaign
       </button>
     </div>
@@ -140,7 +143,11 @@
           >
             edit
           </button> -->
-          <button class="button-delete "mat-icon-button (click)="deleteCampaignHandler(campaign._id)">
+          <button
+            class="button-delete"
+            mat-icon-button
+            (click)="deleteCampaignHandler(campaign._id)"
+          >
             <mat-icon>delete</mat-icon>
           </button>
           <!-- <button

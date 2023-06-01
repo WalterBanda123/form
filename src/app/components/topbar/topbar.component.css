@@ -50,25 +50,27 @@ span img {
 }
 
 .container .span-container {
+  width: 100%;
+  height: 50px;
+  display: flex;
   width: 200px;
+  flex-direction: row;
+  align-items: center;
+}
+.container .span-container-second {
+  width: 100%;
   height: 50px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
 }
 
 button p {
   color: gray;
 }
 
-.account-button {
-  width: fit-content;
-  /* height: fit-content; */
-}
-
 .side-nav {
-  /* width: 15%; */
+  width: 15%;
   /* padding: 20px auto; */
   background-color: white;
   /* height: 100%; */
@@ -79,6 +81,8 @@ button p {
   /* padding: 10px; */
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .side-nav span {
@@ -86,6 +90,8 @@ button p {
   text-decoration: none;
   /* display: block; */
   color: black;
+  margin-left: 20px;
+  margin-right: 20px;
   /* margin: 10px auto; */
 }
 
@@ -97,7 +103,6 @@ button p {
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 100px;
   margin-left: 10px;
   margin-right: 10px;
   font-size: 15px;
@@ -114,7 +119,7 @@ button p {
   color: #ce0212;
   font-size: 20px;
   font-weight: 600;
-
+  border-bottom: 2px solid #ce0212;
 }
 
 .side-nav span.selected button {

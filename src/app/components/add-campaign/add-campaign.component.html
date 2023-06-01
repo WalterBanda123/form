@@ -1,12 +1,23 @@
+<div class="top">
+  <app-topbar></app-topbar>
+</div>
+
 <div class="container">
-  <div class="container">
-    <h2 mat-dialog-title class="heading">Add new campaign</h2>
-    <div class="content">
-      <ng-container *ngTemplateOutlet="currentPageTemplate"></ng-container>
+  <div class="content">
+    <div class="heading">
+      <h2>Add new campaign</h2>
+      <span>
+        Go back
+        <button mat-mini-fab color="warn"  (click)="goBack()">
+          <mat-icon>redo_outline</mat-icon>
+        </button>
+      </span>
     </div>
+    <!-- <ng-container></ng-container> -->
   </div>
   <form method="post" #formData="ngForm">
-    <ng-template #page1>
+    <mat-card class="card">
+      <h2 mat-card-subtitle>Add Campign</h2>
       <mat-form-field class="form-field">
         <mat-label>Campaign Name</mat-label>
         <input
@@ -16,20 +27,8 @@
           name="campaign_name"
           #campaign_name="ngModel"
           placeholder="Campaign Name"
-          required
         />
       </mat-form-field>
-      <!-- <mat-form-field class="form-field">
-        <mat-label>Product</mat-label>
-        <input
-          type="text"
-          matInput
-          placeholder="Product"
-          #product="ngModel"
-          ngModel
-          name="product"
-        />
-      </mat-form-field> -->
       <mat-form-field class="form-field">
         <mat-label>Product</mat-label>
         <mat-select ngModel name="product">
@@ -68,86 +67,86 @@
           id="duration"
         />
       </mat-form-field>
-
-      <div id="activation">
-        <mat-form-field class="">
-          <mat-label>Impressions</mat-label>
-          <input
-            type="number"
-            matInput
-            #impressions="ngModel"
-            placeholder="Impressions"
-            ngModel
-            name="impressions"
-            id="impressions"
-          />
-        </mat-form-field>
-        <mat-form-field class="form-field">
-          <mat-label>Reach</mat-label>
-          <input
-            type="number"
-            matInput
-            placeholder="Reach"
-            #reach="ngModel"
-            ngModel
-            name="reach"
-            id="reach"
-            required="true "
-          />
-        </mat-form-field>
-        <mat-form-field class="form-field">
-          <mat-label>Clicks</mat-label>
-          <input
-            type="number"
-            matInput
-            placeholder="Clicks"
-            #clicks="ngModel"
-            ngModel
-            id="clicks"
-            name="clicks"
-          />
-        </mat-form-field>
-        <mat-form-field class="form-field">
-          <mat-label>Phone calls</mat-label>
-          <input
-            type="number"
-            matInput
-            placeholder="Phone calls"
-            #phone_calls="ngModel"
-            ngModel
-            id="phone_calls"
-            name="phone_calls"
-          />
-        </mat-form-field>
-        <mat-form-field class="form-field">
-          <mat-label>Meetings</mat-label>
-          <input
-            type="number"
-            matInput
-            placeholder="Meetings"
-            #meetings="ngModel"
-            ngModel
-            id="meetings"
-            name="meetings"
-          />
-        </mat-form-field>
-      </div>
-      <div class="actions">
-        <mat-dialog-actions>
-          <button mat-button (click)="closeDialog()">Close</button>
+      <!-- <div class="actions">
+          <button mat-button>Close</button>
           <button
             mat-flat-button
             (click)="nextPage()"
             [disabled]="currentPage === getTotalPages() - 1"
-            (click)="getFirstPageCredentials(formData)"
+            (click)="getInitialPageCredentials(formData)"
           >
             Next
           </button>
-        </mat-dialog-actions>
-      </div>
-    </ng-template>
+        </div> -->
+    </mat-card>
 
-    <ng-template #page2>
+    <!-- <ng-template #page2></ng-template> -->
+    <mat-card class="card">
+      <h2 mat-card-subtitle>Awareness</h2>
+      <mat-form-field class="form-field">
+        <mat-label>Impressions</mat-label>
+        <input
+          type="number"
+          matInput
+          #impressions="ngModel"
+          placeholder="Impressions"
+          ngModel
+          name="impressions"
+          id="impressions"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Reach</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder="Reach"
+          #reach="ngModel"
+          ngModel
+          name="reach"
+          id="reach"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Clicks</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder="Clicks"
+          #clicks="ngModel"
+          ngModel
+          id="clicks"
+          name="clicks"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Phone calls</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder="Phone calls"
+          #phone_calls="ngModel"
+          ngModel
+          id="phone_calls"
+          name="phone_calls"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Meetings</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder="Meetings"
+          #meetings="ngModel"
+          ngModel
+          id="meetings"
+          name="meetings"
+        />
+      </mat-form-field>
+    </mat-card>
+
+    <!-- <ng-template #page3></ng-template> -->
+    <mat-card class="card">
       <mat-form-field class="form-field">
         <mat-label>Notes</mat-label>
         <input
@@ -158,163 +157,71 @@
           #notes="ngModel"
           placeholder="Notes"
           name="notes"
-          required
         />
       </mat-form-field>
-
-      <div id="activation">
-        <mat-form-field class="form-field">
-          <mat-label>Add credit cards</mat-label>
-          <input
-            type="number"
-            matInput
-            placeholder="Add credit cards"
-            #add_credit_cards="ngModel"
-            ngModel
-            name="add_credit_cards"
-            id="add_credit_cards"
-          />
-        </mat-form-field>
-        <mat-form-field class="form-field">
-          <mat-label>Paid pilot</mat-label>
-          <input
-            type="number"
-            matInput
-            #paid_pilot="ngModel"
-            placeholder="Paid pilot"
-            ngModel
-            name="paid_pilot"
-            id="paid_pilot"
-          />
-        </mat-form-field>
-        <mat-form-field class="form-field">
-          <mat-label>Total credits purchased</mat-label>
-          <input
-            type="number"
-            matInput
-            #total_credits_purchased="ngModel"
-            placeholder="Total credits purchased"
-            ngModel
-            name="total_credits_purchased"
-            id="total_credits_purchased"
-          />
-        </mat-form-field>
-        <mat-form-field class="form-field">
-          <mat-label>Cash purchase</mat-label>
-          <input
-            type="number"
-            matInput
-            #cash_purchase="ngModel"
-            placeholder="Cash purchases"
-            ngModel
-            name="cash_purchase"
-            id="cash_purchase"
-          />
-        </mat-form-field>
-        <mat-form-field class="form-field">
-          <mat-label>Visa purchase</mat-label>
-          <input
-            type="number"
-            matInput
-            placeholder=" Visa purhases"
-            #visa_purchase="ngModel"
-            ngModel
-            name="visa_purchase"
-            id="visa_purchase"
-            required="true "
-          />
-        </mat-form-field>
-        <mat-form-field class="form-field">
-          <mat-label>Cash purchase amount</mat-label>
-          <input
-            type="number"
-            matInput
-            placeholder="Cash purchase amount"
-            #cash_purchase_amount="ngModel"
-            ngModel
-            id="cash_purchase_amount"
-            name="cash_purchase_amount"
-          />
-        </mat-form-field>
-        <mat-form-field class="form-field">
-          <mat-label>Visa purchase amount</mat-label>
-          <input
-            type="number"
-            matInput
-            placeholder="Visa purchase amount"
-            #visa_purchase_amount="ngModel"
-            ngModel
-            id="visa_purchase_amount"
-            name="visa_purchase_amount"
-          />
-        </mat-form-field>
-      </div>
-      <div id="activation">
-        <mat-form-field class="form-field">
-          <mat-label>Demo</mat-label>
-          <input
-            type="number"
-            matInput
-            placeholder="Demo"
-            #demo="ngModel"
-            ngModel
-            id="demo"
-            name="demo"
-          />
-        </mat-form-field>
-        <mat-form-field class="form-field">
-          <mat-label>Signups</mat-label>
-          <input
-            type="number"
-            matInput
-            placeholder="Signups"
-            #signups="ngModel"
-            ngModel
-            id="signups"
-            name="signups"
-          />
-        </mat-form-field>
-      </div>
-      <div id="activation">
-        <mat-form-field class="form-field">
-          <mat-label>Media uploads</mat-label>
-          <input
-            type="number"
-            matInput
-            placeholder="Media uploads"
-            #media_uploads="ngModel"
-            ngModel
-            id="media_uploads"
-            name="media_uploads"
-          />
-        </mat-form-field>
-        <mat-form-field class="form-field">
-          <mat-label>Stakeholder buy in </mat-label>
-          <input
-            type="number"
-            matInput
-            placeholder="stakeholder_buy_in"
-            #signups="ngModel"
-            ngModel
-            id="stakeholder_buy_in"
-            name="stakeholder_buy_in"
-          />
-        </mat-form-field>
-        <mat-form-field class="form-field">
-          <mat-label>Logins</mat-label>
-          <input
-            type="number"
-            matInput
-            placeholder="Logins"
-            #logins="ngModel"
-            ngModel
-            id="Logins"
-            name="logins"
-          />
-        </mat-form-field>
-      </div>
-      <div class="actions">
-        <mat-dialog-actions>
+      <h2 mat-card-subtitle>Interest</h2>
+      <mat-form-field class="form-field">
+        <mat-label>Demo</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder="Demo"
+          #demo="ngModel"
+          ngModel
+          id="demo"
+          name="demo"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Signups</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder="Signups"
+          #signups="ngModel"
+          ngModel
+          id="signups"
+          name="signups"
+        />
+      </mat-form-field>
+      <h2 mat-card-subtitle>Engagement</h2>
+      <mat-form-field class="form-field">
+        <mat-label>Media uploads</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder="Media uploads"
+          #media_uploads="ngModel"
+          ngModel
+          id="media_uploads"
+          name="media_uploads"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Stakeholder buy in </mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder="stakeholder_buy_in"
+          #signups="ngModel"
+          ngModel
+          id="stakeholder_buy_in"
+          name="stakeholder_buy_in"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Logins</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder="Logins"
+          #logins="ngModel"
+          ngModel
+          id="Logins"
+          name="logins"
+        />
+      </mat-form-field>
+      <!-- <div class="actions">
           <button
             mat-button
             (click)="previousPage()"
@@ -322,26 +229,126 @@
           >
             Previous
           </button>
+          <button mat-button [disabled]="currentPage === 0">Close</button>
           <button
-            mat-button
-            (click)="closeDialog()"
-            [disabled]="currentPage === 0"
-            mat-dialog-close="false"
-          >
-            Close
-          </button>
-          <button
-            type="submit"
-            mat-button
-            mat-dialog-close="true"
-            (click)="closeDialog()"
+            mat-flat-button
+            (click)="nextPage()"
+            [disabled]="currentPage === getTotalPages() - 1"
             (click)="getSecondPageCredentials(formData)"
-            [disabled]="currentPage === 0"
           >
-            Save
+            Next
           </button>
-        </mat-dialog-actions>
+        </div> -->
+    </mat-card>
+
+    <!-- <ng-template #page4> </ng-template> -->
+    <mat-card class="card">
+      <h2 mat-card-subtitle>Activation</h2>
+      <mat-form-field class="form-field">
+        <mat-label>Add credit cards</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder="Add credit cards"
+          #add_credit_cards="ngModel"
+          ngModel
+          name="add_credit_cards"
+          id="add_credit_cards"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Paid pilot</mat-label>
+        <input
+          type="number"
+          matInput
+          #paid_pilot="ngModel"
+          placeholder="Paid pilot"
+          ngModel
+          name="paid_pilot"
+          id="paid_pilot"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Total credits purchased</mat-label>
+        <input
+          type="number"
+          matInput
+          #total_credits_purchased="ngModel"
+          placeholder="Total credits purchased"
+          ngModel
+          name="total_credits_purchased"
+          id="total_credits_purchased"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Cash purchase</mat-label>
+        <input
+          type="number"
+          matInput
+          #cash_purchase="ngModel"
+          placeholder="Cash purchases"
+          ngModel
+          name="cash_purchase"
+          id="cash_purchase"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Visa purchase</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder=" Visa purhases"
+          #visa_purchase="ngModel"
+          ngModel
+          name="visa_purchase"
+          id="visa_purchase"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Cash purchase amount</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder="Cash purchase amount"
+          #cash_purchase_amount="ngModel"
+          ngModel
+          id="cash_purchase_amount"
+          name="cash_purchase_amount"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Visa purchase amount</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder="Visa purchase amount"
+          #visa_purchase_amount="ngModel"
+          ngModel
+          id="visa_purchase_amount"
+          name="visa_purchase_amount"
+        />
+      </mat-form-field>
+      <div class="actions">
+        <!-- <button
+            mat-button
+            (click)="previousPage()"
+            [disabled]="currentPage === 0"
+            // This line is for the button below
+            [disabled]="currentPage === 0"
+            class="previous-button"
+          >
+            Previous
+          </button> -->
+        <button mat-button (click)="goBack()">Close</button>
+        <button
+          type="submit"
+          mat-button
+          class="save-button"
+          (click)="getLastPageCredentials(formData)"
+        >
+          Save
+        </button>
       </div>
-    </ng-template>
+    </mat-card>
   </form>
 </div>
