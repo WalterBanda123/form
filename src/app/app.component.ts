@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, NavigationStart, Router } from '@angular/router';
-import { CompanyService } from './company.service';
-import { AuthService } from './auth.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +8,25 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  constructor(private spinner: NgxSpinnerService) {}
+  constructor(
+    private spinner: NgxSpinnerService,
+    private authService: AuthService
+  ) {}
 
+  currentPage: any = 'campaigns';
+  isLoggedIn: boolean = false;
+  navigateTo(page: string): void {
+    this.currentPage = page;
+    // this.currentPage = this.route.snapshot.url[0].path;
+  }
   ngOnInit() {
-
     this.spinner.show();
+    console.log(
+      this.authService._isUserLogged.subscribe((value) => {
+        console.log(value);
+        this.isLoggedIn = value;
+      })
+    );
 
     setTimeout(() => {
       this.spinner.hide();

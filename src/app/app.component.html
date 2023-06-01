@@ -1,4 +1,26 @@
 <div class="dash-container">
-  <ngx-spinner type="ball-scale-multiple"></ngx-spinner
-  ><router-outlet></router-outlet>
+  <ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+  <div class="main-container">
+    <!-- <app-topbar
+
+      [currentPage]="currentPage"
+      (pageChanged)="navigateTo($event)"
+    ></app-topbar>
+    <div class="content">
+      <ng-container *ngIf="currentPage === 'home'">
+        <h4>Home</h4>
+      </ng-container>
+      <ng-container *ngIf="currentPage === 'domain'">
+        <app-companies></app-companies>
+      </ng-container>
+      <ng-container *ngIf="currentPage === 'campaigns'">
+        <app-campaigns-main></app-campaigns-main> -->
+    <!-- <app-campaigns></app-campaigns>
+        <router-outlet></router-outlet>
+      </ng-container>
+    </div>
+  </div> -->
+
+    <router-outlet></router-outlet>
+  </div>
 </div>

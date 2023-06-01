@@ -14,21 +14,27 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   {
-    path: 'campaign',
+    path: 'campaigns',
     component: CampaignsComponent,
     canActivate: [LoginGuard],
+
   },
-  { path: 'add-campaign', component: AddCampaignComponent },
+  {
+    path: 'add-campaign',
+    component: AddCampaignComponent,
+    canActivate: [LoginGuard],
+  },
+  {
+    path: 'edit-campaign/:id',
+    component: EditCampaignComponent,
+    canActivate: [LoginGuard],
+  },
   {
     path: 'dashboard',
     component: DashboardComponent,
     canActivate: [LoginGuard],
-    
-  },{
-        path: 'edit-campaign/:id',
-        component: EditCampaignComponent,
-        canActivate: [LoginGuard],
-      },
+  },
+
   {
     path: 'edit-details/:id',
     component: EditComponent,

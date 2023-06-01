@@ -12,7 +12,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   selector: 'app-campaigns',
   templateUrl: './campaigns.component.html',
   styleUrls: ['./campaigns.component.css'],
-
 })
 export class CampaignsComponent implements OnInit {
   constructor(
@@ -36,6 +35,22 @@ export class CampaignsComponent implements OnInit {
       this.spinner.hide();
     }, 500);
     const dialogRef = this.dialog.open(AddCampaignComponent);
+    dialogRef.afterClosed().subscribe((response) => {
+      console.log(response);
+
+      if (response === 'true') {
+        this.spinner.show();
+        setTimeout(() => {
+          this.spinner.hide();
+        }, 1000);
+        setTimeout(() => {
+          this.campaignService.getCampaigns().subscribe((campaigns: any) => {
+            this.campaignsList = campaigns.campaigns.slice().reverse();
+            console.log(campaigns);
+          });
+        }, 1000);
+      }
+    });
 
     // this.router.navigateByUrl('add-campaign');
   }
@@ -55,11 +70,20 @@ export class CampaignsComponent implements OnInit {
       this.spinner.hide();
     }, 1000);
     setTimeout(() => {
-      this.campaignService.deleteCampaign(id).subscribe((response) => {
-        this.snackbar.open(response.message, 'undo', {
-          duration: 4000,
+      this.spinner.show();
+      setTimeout(() => {
+        this.spinner.hide();
+        this.campaignService.deleteCampaign(id).subscribe((response) => {
+          if (response) {
+            this.campaignService.getCampaigns().subscribe((campaigns: any) => {
+              this.campaignsList = campaigns.campaigns.slice().reverse();
+            });
+          }
+          this.snackbar.open(response.message, 'undo', {
+            duration: 4000,
+          });
         });
-      });
+      }, 1000);
     }, 1000);
   }
 
@@ -89,7 +113,7 @@ export class CampaignsComponent implements OnInit {
     }, 1000);
     setTimeout(() => {
       this.campaignService.getCampaigns().subscribe((campaigns: any) => {
-        this.campaignsList = campaigns.campaigns;
+        this.campaignsList = campaigns.campaigns.slice().reverse();
         console.log(campaigns);
       });
     }, 1000);

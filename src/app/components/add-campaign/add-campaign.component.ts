@@ -1,6 +1,7 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { CampaignService } from 'src/app/campaign.service';
 
 @Component({
@@ -17,10 +18,16 @@ export class AddCampaignComponent {
 
   constructor(
     private dialogRef: MatDialogRef<AddCampaignComponent>,
-    private campaignService: CampaignService
+    private campaignService: CampaignService,
+    private spinner: NgxSpinnerService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.spinner.show();
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 500);
+  }
 
   get currentPageTemplate(): TemplateRef<any> {
     switch (this.currentPage) {
@@ -58,14 +65,11 @@ export class AddCampaignComponent {
   }
 
   getFirstPageCredentials(initialPageDetails: NgForm): void {
- 
-
     this.arrForDetails.push(initialPageDetails.value);
     console.log(initialPageDetails.value);
   }
 
   getSecondPageCredentials(secondPageDetails: NgForm): void {
-
     this.arrForDetails.push(secondPageDetails.value);
     console.log(this.arrForDetails);
     const entity = { ...this.arrForDetails[0], ...this.arrForDetails[1] };

@@ -2,7 +2,7 @@
   <app-topbar></app-topbar>
 </div>
 <div class="container">
-  <h2 class="heading">Add new campaign</h2>
+  <h2 class="heading">Edit campaign</h2>
   <div class="content">
     <form
       method="post"
@@ -24,7 +24,7 @@
           placeholder="Campaign Name"
         />
       </mat-form-field>
-      <mat-form-field class="form-field">
+      <!-- <mat-form-field class="form-field">
         <mat-label>Product</mat-label>
         <input
           type="text"
@@ -33,6 +33,19 @@
           matInput
           name="product"
         />
+      </mat-form-field> -->
+       <mat-form-field class="form-field">
+        <mat-label>Product</mat-label>
+        <mat-select  [(ngModel)]="selectedCampaign.product"
+            [value]="selectedCampaign.product" name="product">
+          <mat-option value="All">All</mat-option>
+          <mat-option value="Mobile">Mobile</mat-option>
+          <mat-option value="Lite">Lite</mat-option>
+          <mat-option value="Standard ">Standard</mat-option>
+          <mat-option value="Web(Lite & Standard)">Web(Lite & Standard)</mat-option>
+          <mat-option value="IOS">IOS</mat-option>
+          <mat-option value="Android">Android</mat-option>
+        </mat-select>
       </mat-form-field>
       <mat-form-field class="form-field">
         <mat-label>Cost</mat-label>
@@ -265,13 +278,7 @@
       </mat-form-field>
 
       <div class="actions">
-        <button type="reset" mat-raised-button class="reset">reset</button>
-        <button
-          type="button"
-          mat-raised-button
-          class="close"
-          (click)="goBack()"
-        >
+        <button type="button" mat-flat-button class="close" (click)="goBack()">
           Close
         </button>
         <button type="submit" mat-raised-button class="submit">Save</button>

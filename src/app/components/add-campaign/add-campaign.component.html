@@ -5,7 +5,7 @@
       <ng-container *ngTemplateOutlet="currentPageTemplate"></ng-container>
     </div>
   </div>
-  <form method="post" #formData="ngForm" >
+  <form method="post" #formData="ngForm">
     <ng-template #page1>
       <mat-form-field class="form-field">
         <mat-label>Campaign Name</mat-label>
@@ -13,14 +13,13 @@
           type="text"
           matInput
           ngModel
-          name="companyName"
-          #campaignName="ngModel"
+          name="campaign_name"
+          #campaign_name="ngModel"
           placeholder="Campaign Name"
-          name="campaignName"
           required
         />
       </mat-form-field>
-      <mat-form-field class="form-field">
+      <!-- <mat-form-field class="form-field">
         <mat-label>Product</mat-label>
         <input
           type="text"
@@ -29,8 +28,21 @@
           #product="ngModel"
           ngModel
           name="product"
-          id="product"
         />
+      </mat-form-field> -->
+      <mat-form-field class="form-field">
+        <mat-label>Product</mat-label>
+        <mat-select ngModel name="product">
+          <mat-option value="All">All</mat-option>
+          <mat-option value="Mobile">Mobile</mat-option>
+          <mat-option value="Lite">Lite</mat-option>
+          <mat-option value="Standard ">Standard</mat-option>
+          <mat-option value="Web(Lite & Standard)"
+            >Web(Lite & Standard)</mat-option
+          >
+          <mat-option value="IOS">IOS</mat-option>
+          <mat-option value="Android">Android</mat-option>
+        </mat-select>
       </mat-form-field>
       <mat-form-field class="form-field">
         <mat-label>Cost</mat-label>
@@ -124,7 +136,7 @@
         <mat-dialog-actions>
           <button mat-button (click)="closeDialog()">Close</button>
           <button
-            mat-button
+            mat-flat-button
             (click)="nextPage()"
             [disabled]="currentPage === getTotalPages() - 1"
             (click)="getFirstPageCredentials(formData)"
@@ -305,21 +317,23 @@
         <mat-dialog-actions>
           <button
             mat-button
-            (click)="closeDialog()"
-            [disabled]="currentPage === 0"
-          >
-            Close
-          </button>
-          <button
-            mat-button
             (click)="previousPage()"
             [disabled]="currentPage === 0"
           >
             Previous
           </button>
           <button
+            mat-button
+            (click)="closeDialog()"
+            [disabled]="currentPage === 0"
+            mat-dialog-close="false"
+          >
+            Close
+          </button>
+          <button
             type="submit"
             mat-button
+            mat-dialog-close="true"
             (click)="closeDialog()"
             (click)="getSecondPageCredentials(formData)"
             [disabled]="currentPage === 0"

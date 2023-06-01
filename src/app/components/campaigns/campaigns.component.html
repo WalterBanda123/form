@@ -11,7 +11,6 @@
       </button>
     </div>
   </section>
-  <i class="material-icons">today_outline</i>
   <table id="campaign-table" class="mat-elevation-z2">
     <thead>
       <tr>
@@ -68,8 +67,23 @@
           }}
           <br />
           {{
+            campaign.awareness.reach > 0
+              ? "Reach:" + campaign.awareness.reach
+              : ""
+          }}<br />
+          {{
             campaign.awareness.clicks > 0
               ? "Clicks:" + campaign.awareness.clicks
+              : ""
+          }}<br />
+          {{
+            campaign.awareness.phone_calls > 0
+              ? "Phone calls:" + campaign.awareness.phone_calls
+              : ""
+          }}<br />
+          {{
+            campaign.awareness.meetings > 0
+              ? "Meetings:" + campaign.awareness.meetings
               : ""
           }}<br />
           <br />
@@ -116,23 +130,27 @@
         <td></td>
 
         <td>
-          <button
+          <button mat-icon-button (click)="editCampaignDetails(campaign._id)">
+            <mat-icon>edit_outline</mat-icon>
+          </button>
+          <!-- <button
             class="button-edit"
-            mat-icon-button
+            mat-flat-button
             (click)="editCampaignDetails(campaign._id)"
           >
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button mat-icon-button (click)="deleteCampaignHandler(campaign._id)">
+            edit
+          </button> -->
+          <button class="button-delete "mat-icon-button (click)="deleteCampaignHandler(campaign._id)">
             <mat-icon>delete</mat-icon>
           </button>
-          <button
-            mat-icon-button
-            color="accent"
-            aria-label="Example icon button with a menu icon"
+          <!-- <button
+
+            mat-flat-button
+            color="blue"
+            (click)="deleteCampaignHandler(campaign._id)"
           >
-            <mat-icon>menu</mat-icon>
-          </button>
+            delete
+          </button> -->
         </td>
       </tr>
     </tbody>
