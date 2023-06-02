@@ -7,7 +7,7 @@
       <h2>Edit campaign</h2>
       <span>
         Go back
-        <button mat-mini-fab color="warn" (click)="goBack()">
+        <button mat-mini-fab (click)="goBack()" class="return-button">
           <mat-icon>redo_outline</mat-icon>
         </button>
       </span>
@@ -55,17 +55,17 @@
         </mat-select>
       </mat-form-field>
       <mat-form-field class="form-field">
-        <mat-label>Cost</mat-label>
+        <mat-label>Budget</mat-label>
         <input
           type="number"
           matInput
           [value]="selectedCampaign.cost"
-          placeholder="cost"
+          placeholder="Budget"
           [(ngModel)]="selectedCampaign.cost"
           name="cost"
         />
       </mat-form-field>
-      <mat-form-field class="form-field">
+      <!-- <mat-form-field class="form-field">
         <mat-label>Duration</mat-label>
         <input
           type="text"
@@ -74,11 +74,47 @@
           placeholder="duration"
           name="duration"
         />
+      </mat-form-field> -->
+      <mat-form-field class="form-field" color="warn">
+        <mat-label>Duration</mat-label>
+        <mat-date-range-input [rangePicker]="rangePicker">
+          <input
+            matStartDate
+            [(ngModel)]="selectedCampaign.duration.startDate"
+            [value]="selectedCampaign.duration.startDate"
+            name="startDate"
+            placeholder="Start date"
+          />
+          <input
+            matEndDate
+            [(ngModel)]="selectedCampaign.duration.endDate"
+            [value]="selectedCampaign.duration.endDate"
+            name="endDate"
+            placeholder="End date"
+          />
+        </mat-date-range-input>
+        <mat-hint>Month/Day/Year – Month/Day/Year</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="rangePicker"
+        ></mat-datepicker-toggle>
+        <mat-date-range-picker #rangePicker>
+          <mat-date-range-picker-actions>
+            <button mat-button matDateRangePickerCancel>Cancel</button>
+            <button
+              mat-raised-button
+              id="save-date-button"
+              matDateRangePickerApply
+            >
+              Save
+            </button>
+          </mat-date-range-picker-actions>
+        </mat-date-range-picker>
       </mat-form-field>
     </mat-card>
 
     <mat-card class="card">
-      <h2 mat-card-subtitle>Awareness</h2>
+      <h2 mat-card-subtitle class="heading-text">Awareness</h2>
       <mat-form-field class="form-field">
         <mat-label>Impressions</mat-label>
         <input
@@ -149,7 +185,7 @@
         ></textarea>
       </mat-form-field>
 
-      <h2 mat-card-subtitle>Activation</h2>
+      <h2 mat-card-subtitle class="heading-text">Activation</h2>
       <mat-form-field class="form-field">
         <mat-label>Add credit cards</mat-label>
         <input
@@ -184,7 +220,7 @@
         />
       </mat-form-field>
 
-      <mat-form-field class="form-field">
+      <!-- <mat-form-field class="form-field">
         <mat-label>Cash purchase</mat-label>
         <input
           type="number"
@@ -205,7 +241,7 @@
           (value)="(selectedCampaign.activation.visa_purchase)"
           name="visa_purchase"
         />
-      </mat-form-field>
+      </mat-form-field> -->
       <mat-form-field class="form-field">
         <mat-label>Cash purchase amount</mat-label>
         <input
@@ -231,7 +267,7 @@
     </mat-card>
 
     <mat-card class="card">
-      <h2 mat-card-subtitle>Interest</h2>
+      <h2 mat-card-subtitle class="heading-text">Interest</h2>
       <mat-form-field class="form-field">
         <mat-label>Demo</mat-label>
         <input
@@ -255,7 +291,7 @@
         />
       </mat-form-field>
 
-      <h2 mat-card-subtitle>Engagement</h2>
+      <h2 mat-card-subtitle class="heading-text">Engagement</h2>
       <mat-form-field class="form-field">
         <mat-label>Media uploads</mat-label>
         <input
@@ -290,7 +326,7 @@
         />
       </mat-form-field>
       <div class="actions">
-        <button type="button" mat-flat-button class="close" (click)="goBack()">
+        <button type="button" mat-flat-button  (click)="goBack()">
           Close
         </button>
         <button type="submit" mat-raised-button class="submit">Save</button>

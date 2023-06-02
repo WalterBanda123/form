@@ -27,8 +27,6 @@ td {
   padding: 5px;
   border: 1px solid #e0e0e0;
   word-wrap: break-word;
-
-
 }
 
 td:nth-child(1),
@@ -51,11 +49,19 @@ th:nth-child(n + 3) {
 th.with-extra-text span {
   font-weight: lighter; /* Lighter font-weight for text inside the span */
 }
-.combined-col {
+.combined-col-first {
   text-align: center;
   font-weight: bold;
   background-color: #f0f0f0;
   border-width: 2px; /* Update the border width as desired */
+  color: #ce0212;
+}
+.combined-col-second {
+  text-align: center;
+  font-weight: bold;
+  background-color: #f0f0f0;
+  border-width: 2px; /* Update the border width as desired */
+  
 }
 
 .breadcrumb {
@@ -150,7 +156,8 @@ input::placeholder {
   margin-left: 5px;
 }
 
-.add-button
-{
+.add-button {
   margin-bottom: 20px;
+  background-color: #ce0212;
+  color: white;
 }

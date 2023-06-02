@@ -126,12 +126,12 @@ mat-card {
 
 } */
 
-span .add {
+.add-button {
+  
   background-color: #ce0212;
   color: white;
-  width: 150px;
-  margin-left: 100px;
 }
+
 
 span .filter {
   background-color: black;

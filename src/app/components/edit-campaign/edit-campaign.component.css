@@ -125,9 +125,18 @@
   height: 40px;
   width: 100px;
   border-radius: 4px;
-  background-color: black;
+  background-color: #ce0212;
   color: white;
   margin-left: 5px;
+}
+
+.return-button {
+  background-color: #ce0212;
+  color: white;
+}
+
+.heading-text{
+  color: #ce0212;
 }
 
 .actions .close {

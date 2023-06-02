@@ -7,6 +7,7 @@ import { AddCampaignComponent } from '../add-campaign/add-campaign.component';
 import { CampaignService } from 'src/app/campaign.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-campaigns',
@@ -28,7 +29,6 @@ export class CampaignsComponent implements OnInit {
 
   dataSource = new MatTableDataSource<any>(this.campaignsList);
 
-
   startAddingCampaign(): void {
     setTimeout(() => {
       this.spinner.show();
@@ -39,7 +39,6 @@ export class CampaignsComponent implements OnInit {
     }, 500);
 
     // this.router.navigate(['/add-campaign'])
-;
     // dialogRef.afterClosed().subscribe((response) => {
     //   console.log(response);
 
@@ -56,8 +55,6 @@ export class CampaignsComponent implements OnInit {
     //     }, 1000);
     //   }
     // });
-
-
   }
   editCampaignDetails(campaignID: string): void {
     this.spinner.show();
@@ -73,22 +70,34 @@ export class CampaignsComponent implements OnInit {
     this.spinner.show();
     setTimeout(() => {
       this.spinner.hide();
-    }, 1000);
-    setTimeout(() => {
-      this.spinner.show();
-      setTimeout(() => {
-        this.spinner.hide();
-        this.campaignService.deleteCampaign(id).subscribe((response) => {
-          if (response) {
-            this.campaignService.getCampaigns().subscribe((campaigns: any) => {
-              this.campaignsList = campaigns.campaigns.slice().reverse();
-            });
-          }
-          this.snackbar.open(response.message, 'undo', {
-            duration: 4000,
-          });
-        });
-      }, 1000);
+      const dialogRef = this.dialog.open(DeleteDialogComponent, {
+        data: { id },
+      });
+
+      dialogRef.afterClosed().subscribe((response) => {
+        if (response === 'true') {
+          setTimeout(() => {
+            this.spinner.show();
+            setTimeout(() => {
+              this.spinner.hide();
+              this.campaignService.deleteCampaign(id).subscribe((response) => {
+                if (response) {
+                  this.campaignService
+                    .getCampaigns()
+                    .subscribe((campaigns: any) => {
+                      this.campaignsList = campaigns.campaigns
+                        .slice()
+                        .reverse();
+                    });
+                }
+                this.snackbar.open(response.message, 'undo', {
+                  duration: 4000,
+                });
+              });
+            }, 1000);
+          }, 1000);
+        }
+      });
     }, 1000);
   }
 

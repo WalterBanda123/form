@@ -5,10 +5,15 @@
 <div class="container">
   <div class="content">
     <div class="heading">
-      <h2>Add new campaign</h2>
+      <h2>Add New Campaign</h2>
       <span>
         Go back
-        <button mat-mini-fab color="warn"  (click)="goBack()">
+        <button
+          mat-mini-fab
+          color="warn"
+          (click)="goBack()"
+          class="return-button"
+        >
           <mat-icon>redo_outline</mat-icon>
         </button>
       </span>
@@ -17,7 +22,7 @@
   </div>
   <form method="post" #formData="ngForm">
     <mat-card class="card">
-      <h2 mat-card-subtitle>Add Campign</h2>
+      <!-- <h2 mat-card-subtitle>Add Campign</h2> -->
       <mat-form-field class="form-field">
         <mat-label>Campaign Name</mat-label>
         <input
@@ -44,18 +49,54 @@
         </mat-select>
       </mat-form-field>
       <mat-form-field class="form-field">
-        <mat-label>Cost</mat-label>
+        <mat-label>Budget</mat-label>
         <input
           type="number"
           matInput
           #cost="ngModel"
-          placeholder="cost"
+          placeholder="Budget"
           ngModel
           name="cost"
           id="cost"
         />
       </mat-form-field>
-      <mat-form-field class="form-field">
+      <mat-form-field class="form-field" color="warn">
+        <mat-label>Duration</mat-label>
+        <mat-date-range-input [rangePicker]="rangePicker">
+          <input
+            matStartDate
+            #startDate="ngModel"
+            ngModel
+            name="startDate"
+            placeholder="Start date"
+          />
+          <input
+            matEndDate
+            #endDate="ngModel"
+            ngModel
+            name="endDate"
+            placeholder="End date"
+          />
+        </mat-date-range-input>
+        <mat-hint>Month/Day/Year – Month/Day/Year</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="rangePicker"
+        ></mat-datepicker-toggle>
+        <mat-date-range-picker #rangePicker>
+          <mat-date-range-picker-actions>
+            <button mat-button matDateRangePickerCancel>Cancel</button>
+            <button
+              mat-raised-button
+              id="save-date-button"
+              matDateRangePickerApply
+            >
+              Save
+            </button>
+          </mat-date-range-picker-actions>
+        </mat-date-range-picker>
+      </mat-form-field>
+      <!-- <mat-form-field class="form-field">
         <mat-label>Duration</mat-label>
         <input
           type="text"
@@ -66,23 +107,10 @@
           name="duration"
           id="duration"
         />
-      </mat-form-field>
-      <!-- <div class="actions">
-          <button mat-button>Close</button>
-          <button
-            mat-flat-button
-            (click)="nextPage()"
-            [disabled]="currentPage === getTotalPages() - 1"
-            (click)="getInitialPageCredentials(formData)"
-          >
-            Next
-          </button>
-        </div> -->
+      </mat-form-field> -->
     </mat-card>
-
-    <!-- <ng-template #page2></ng-template> -->
     <mat-card class="card">
-      <h2 mat-card-subtitle>Awareness</h2>
+      <h2 mat-card-subtitle class="heading-text">Awareness</h2>
       <mat-form-field class="form-field">
         <mat-label>Impressions</mat-label>
         <input
@@ -145,21 +173,20 @@
       </mat-form-field>
     </mat-card>
 
-    <!-- <ng-template #page3></ng-template> -->
     <mat-card class="card">
       <mat-form-field class="form-field">
         <mat-label>Notes</mat-label>
-        <input
+        <textarea
           type="text"
           matInput
+          rows="4"
           ngModel
           name="notes"
           #notes="ngModel"
           placeholder="Notes"
-          name="notes"
-        />
+        ></textarea>
       </mat-form-field>
-      <h2 mat-card-subtitle>Interest</h2>
+      <h2 mat-card-subtitle class="heading-text">Interest</h2>
       <mat-form-field class="form-field">
         <mat-label>Demo</mat-label>
         <input
@@ -170,6 +197,7 @@
           ngModel
           id="demo"
           name="demo"
+          [minlength]="0"
         />
       </mat-form-field>
       <mat-form-field class="form-field">
@@ -184,7 +212,7 @@
           name="signups"
         />
       </mat-form-field>
-      <h2 mat-card-subtitle>Engagement</h2>
+      <h2 mat-card-subtitle class="heading-text">Engagement</h2>
       <mat-form-field class="form-field">
         <mat-label>Media uploads</mat-label>
         <input
@@ -221,29 +249,11 @@
           name="logins"
         />
       </mat-form-field>
-      <!-- <div class="actions">
-          <button
-            mat-button
-            (click)="previousPage()"
-            [disabled]="currentPage === 0"
-          >
-            Previous
-          </button>
-          <button mat-button [disabled]="currentPage === 0">Close</button>
-          <button
-            mat-flat-button
-            (click)="nextPage()"
-            [disabled]="currentPage === getTotalPages() - 1"
-            (click)="getSecondPageCredentials(formData)"
-          >
-            Next
-          </button>
-        </div> -->
     </mat-card>
 
     <!-- <ng-template #page4> </ng-template> -->
     <mat-card class="card">
-      <h2 mat-card-subtitle>Activation</h2>
+      <h2 mat-card-subtitle class="heading-text">Activation</h2>
       <mat-form-field class="form-field">
         <mat-label>Add credit cards</mat-label>
         <input
@@ -280,7 +290,7 @@
           id="total_credits_purchased"
         />
       </mat-form-field>
-      <mat-form-field class="form-field">
+      <!-- <mat-form-field class="form-field">
         <mat-label>Cash purchase</mat-label>
         <input
           type="number"
@@ -303,7 +313,7 @@
           name="visa_purchase"
           id="visa_purchase"
         />
-      </mat-form-field>
+      </mat-form-field> -->
       <mat-form-field class="form-field">
         <mat-label>Cash purchase amount</mat-label>
         <input
@@ -329,16 +339,6 @@
         />
       </mat-form-field>
       <div class="actions">
-        <!-- <button
-            mat-button
-            (click)="previousPage()"
-            [disabled]="currentPage === 0"
-            // This line is for the button below
-            [disabled]="currentPage === 0"
-            class="previous-button"
-          >
-            Previous
-          </button> -->
         <button mat-button (click)="goBack()">Close</button>
         <button
           type="submit"

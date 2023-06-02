@@ -1,16 +1,17 @@
 .container {
-  width: 900px;
-  /* height: 700px; */
+  /* width: 900px;
+  height: 700px; */
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 10%;
 }
-
 
 .main-container {
   padding-top: 70px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  background-color: whitesmoke;
   width: 100%;
 }
 
@@ -42,7 +43,7 @@
   color: white;
 }
 
-.header-text{
+.header-text {
   padding-left: 40px;
   padding-top: 20px;
   padding-bottom: 20px;

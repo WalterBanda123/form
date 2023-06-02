@@ -64,6 +64,8 @@ export class EditComponent implements OnInit {
         data.company.meetingDate
       ).toLocaleDateString('en-US');
       this.selectedCompany = data.company;
+      console.log(data.company);
+
     });
   }
 }

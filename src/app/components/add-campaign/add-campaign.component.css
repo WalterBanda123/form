@@ -126,3 +126,20 @@
 .actions .previous-button {
   color: black;
 }
+
+.actions .save-button {
+  background-color: #ce0212;
+  color: white;
+}
+.return-button {
+  background-color: #ce0212;
+  color: white;
+}
+.form-field #save-date-button {
+  background-color: #ce0212;
+  color: white;
+}
+
+.heading-text {
+  color: #ce0212;
+}

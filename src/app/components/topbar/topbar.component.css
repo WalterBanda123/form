@@ -32,10 +32,7 @@ span img {
   margin-left: 20px;
 }
 
-.material-icons {
-  font-size: 40px;
-  color: #ce0212;
-}
+
 
 .profile-icon {
   display: flex;
@@ -127,5 +124,10 @@ button p {
 }
 
 .side-nav span.selected .material-icons {
+  color: #ce0212;
+ font-size: 35px;
+}
+.material-icons {
+  font-size: 25px;
   color: #ce0212;
 }

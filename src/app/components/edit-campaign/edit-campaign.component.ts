@@ -32,12 +32,17 @@ export class EditCampaignComponent implements OnInit {
 
     console.log(values.campaign_name, values);
 
-
     const updatedValuesArr = [
       { propertyName: 'campaign_name', value: values.campaign_name },
       { propertyName: 'product', value: values.product },
       { propertyName: 'cost', value: values.cost },
-      { propertyName: 'duration', value: values.duration },
+      {
+        propertyName: 'duration',
+        value: {
+          startDate: values.startDate,
+          endDate: values.endDate,
+        },
+      },
       {
         propertyName: 'awareness',
         value: {
@@ -70,8 +75,8 @@ export class EditCampaignComponent implements OnInit {
           add_credit_card: values.add_credit_card,
           paid_pilot: values.paid_pilot,
           total_credits_purchased: values.total_credits_purchased,
-          cash_purchase: values.cash_purchase,
-          visa_purchase: values.visa_purchase,
+          // cash_purchase: values.cash_purchase,
+          // visa_purchase: values.visa_purchase,
           cash_purchase_amount: values.cash_purchase_amount,
           visa_purchase_amount: values.visa_purchase_amount,
         },

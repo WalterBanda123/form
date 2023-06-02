@@ -9,7 +9,6 @@ import { EditComponent } from './components/edit/edit.component';
 import { CampaignsComponent } from './components/campaigns/campaigns.component';
 import { AddCampaignComponent } from './components/add-campaign/add-campaign.component';
 import { EditCampaignComponent } from './components/edit-campaign/edit-campaign.component';
-import { CampaignsMainComponent } from './components/campaigns-main/campaigns-main.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -22,6 +21,7 @@ const routes: Routes = [
   {
     path: 'add-campaign',
     component: AddCampaignComponent,
+    canActivate: [LoginGuard],
   },
   {
     path: 'edit-campaign/:id',

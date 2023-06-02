@@ -3,15 +3,30 @@
   <form #scheduleForm="ngForm" (ngSubmit)="editMeetingSchedule(scheduleForm)">
     <div class="content" mat-dialog-content>
       <span>
-        <mat-card class="demo-inline-calendar-card">
-          <mat-calendar
+        <!-- <mat-card class="demo-inline-calendar-card"> -->
+        <!-- <mat-calendar
             [(selected)]="selectedCompany.meetingDate"
             [(ngModel)]="selectedCompany.meetingDate"
             name="meetingDate"
             [dateClass]="dateClass"
             ngClass="example-custom-date-class"
           ></mat-calendar>
-        </mat-card>
+        </mat-card> -->
+        <mat-form-field class="form-field">
+          <mat-label>Select Date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            name="meetingDate"
+            [(ngModel)]="selectedCompany.meetingDate"
+          />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
         <mat-form-field class="demo-inline-calendar-card">
           <input
             matInput

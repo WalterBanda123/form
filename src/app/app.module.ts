@@ -38,6 +38,7 @@ import { CampaignsComponent } from './components/campaigns/campaigns.component';
 import { AddCampaignComponent } from './components/add-campaign/add-campaign.component';
 import { EditCampaignComponent } from './components/edit-campaign/edit-campaign.component';
 import { CampaignsMainComponent } from './components/campaigns-main/campaigns-main.component';
+import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
 
 
 
@@ -60,6 +61,7 @@ import { CampaignsMainComponent } from './components/campaigns-main/campaigns-ma
     AddCampaignComponent,
     EditCampaignComponent,
     CampaignsMainComponent,
+    DeleteDialogComponent,
   ],
   entryComponents: [DialogComponent],
   imports: [

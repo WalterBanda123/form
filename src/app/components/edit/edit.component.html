@@ -3,13 +3,13 @@
 </div>
 
 <div class="main-container">
-  <mat-card class="mat-card">
+  <mat-card class="container" >
     <span class="header-text"
       ><h2 mat-card-title>
         {{ selectedCompany.companyName }} Information
       </h2></span
     >
-    <div class="container">
+    <!-- <div class="container"></div> -->
       <!-- <h3 mat-dialog-title>Edit {{ selectedCompany.companyName }} Details</h3> -->
       <form #editForm="ngForm" (ngSubmit)="editCompanyHandler(editForm)">
         <mat-form-field class="form-field">
@@ -124,7 +124,7 @@
             watch_later
           </mat-icon>
         </mat-form-field>
-        <mat-form-field class="form-field">
+        <!-- <mat-form-field class="form-field">
           <mat-label>Scheduled meeting date</mat-label>
           <input
             matInput
@@ -139,8 +139,24 @@
             [for]="pickerdate"
           ></mat-datepicker-toggle>
           <mat-datepicker #pickerdate></mat-datepicker>
-        </mat-form-field>
+        </mat-form-field>-->
         <ngx-mat-timepicker color="accent" #pickerB></ngx-mat-timepicker>
+        <mat-form-field class="form-field">
+          <mat-label></mat-label>
+          <input
+          matInput
+            [matDatepicker]="picker"
+            name="meetingDate"
+            [(ngModel)]="selectedCompany.meetingDate"
+            [value]="selectedCompany.meetingDate"
+          />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
         <div class="buttons">
           <span class="cancel">
             <button type="button" (click)="goBack()" mat-raised-button>
@@ -152,6 +168,6 @@
           </span>
         </div>
       </form>
-    </div>
+
   </mat-card>
 </div>
