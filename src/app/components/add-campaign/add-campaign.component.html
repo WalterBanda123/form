@@ -1,5 +1,5 @@
 <div class="top">
-  <app-topbar></app-topbar>
+  <app-topbar [currentPage]="currentPage"></app-topbar>
 </div>
 
 <div class="container">
@@ -262,8 +262,8 @@
           placeholder="Add credit cards"
           #add_credit_cards="ngModel"
           ngModel
-          name="add_credit_cards"
-          id="add_credit_cards"
+          name="add_credit_card"
+          id="add_credit_card"
         />
       </mat-form-field>
       <mat-form-field class="form-field">

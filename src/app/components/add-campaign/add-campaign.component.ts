@@ -1,7 +1,6 @@
 import { Location } from '@angular/common';
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CampaignService } from 'src/app/campaign.service';
@@ -15,18 +14,19 @@ export class AddCampaignComponent {
   arrForDetails: any = [];
 
   constructor(
-    // private dialogRef: MatDialogRef<AddCampaignComponent>,
     private campaignService: CampaignService,
     private spinner: NgxSpinnerService,
     private snackbar: MatSnackBar,
     private location: Location
   ) {}
 
+  currentPage: any;
   ngOnInit() {
     this.spinner.show();
     setTimeout(() => {
       this.spinner.hide();
     }, 500);
+    this.currentPage = localStorage.getItem('currentPage');
   }
 
   getLastPageCredentials(form: NgForm): void {
@@ -40,7 +40,6 @@ export class AddCampaignComponent {
       });
       this.spinner.hide();
     }, 1000);
-
     console.log(form.value);
   }
 

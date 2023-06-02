@@ -114,8 +114,8 @@ button p {
 .side-nav span.selected {
   /* border-left: 3px solid #ce0212; */
   color: #ce0212;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 25px;
+  font-weight: 800;
   border-bottom: 2px solid #ce0212;
 }
 
@@ -125,9 +125,9 @@ button p {
 
 .side-nav span.selected .material-icons {
   color: #ce0212;
- font-size: 35px;
+ font-size: 30px;
 }
 .material-icons {
-  font-size: 25px;
+  font-size: 20px;
   color: #ce0212;
 }

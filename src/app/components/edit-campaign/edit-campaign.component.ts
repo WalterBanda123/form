@@ -15,8 +15,6 @@ import { CampaignService } from 'src/app/campaign.service';
 export class EditCampaignComponent implements OnInit {
   constructor(
     private campaignService: CampaignService,
-    private spinner: NgxSpinnerService,
-    private router: Router,
     private snackbar: MatSnackBar,
     private location: Location,
     private activeRoute: ActivatedRoute
@@ -86,14 +84,17 @@ export class EditCampaignComponent implements OnInit {
     this.campaignService
       .updateCampaign(this.selectedCampaign._id, updatedValuesArr)
       .subscribe((response) => {
-        this.snackbar.open(response.message, 'undo', {
+        this.snackbar.open(response.message,'',  {
           duration: 4000,
         });
         console.log(response.status);
       });
   }
 
+  currentPage: any;
   ngOnInit() {
+    this.currentPage = localStorage.getItem('currentPage');
+
     const id = this.activeRoute.snapshot.paramMap.get('id')!;
     this.campaignService.getCampaign(id).subscribe((response) => {
       this.selectedCampaign = response.campaign;

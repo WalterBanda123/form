@@ -1,130 +1,140 @@
 <div class="top">
-  <app-topbar></app-topbar>
+  <app-topbar [currentPage]="currentPage"></app-topbar>
 </div>
 
 <div class="main-container">
-  <mat-card class="container" >
+  <!-- <div class="heading">
+    <h2>Add New Campaign</h2>
+    <span>
+      Go back
+      <button
+        mat-mini-fab
+        color="warn"
+        (click)="goBack()"
+        class="return-button"
+      >
+        <mat-icon>redo_outline</mat-icon>
+      </button>
+    </span> -->
+  <!-- </div> -->
+  <mat-card class="container">
     <span class="header-text"
       ><h2 mat-card-title>
         {{ selectedCompany.companyName }} Information
       </h2></span
     >
-    <!-- <div class="container"></div> -->
-      <!-- <h3 mat-dialog-title>Edit {{ selectedCompany.companyName }} Details</h3> -->
-      <form #editForm="ngForm" (ngSubmit)="editCompanyHandler(editForm)">
-        <mat-form-field class="form-field">
-          <mat-label>Company Name</mat-label>
-          <input
-            type="text"
-            matInput
-            [value]="selectedCompany.companyName"
-            name="companyName"
-            [(ngModel)]="selectedCompany.companyName"
-          />
-        </mat-form-field>
-        <mat-form-field class="form-field">
-          <mat-label>Social Media Link</mat-label>
-          <input
-            type="text"
-            matInput
-            [value]="selectedCompany.socialMediaLink"
-            name="socialMediaLink"
-            [(ngModel)]="selectedCompany.socialMediaLink"
-          />
-        </mat-form-field>
-        <mat-form-field class="form-field">
-          <mat-label>Phone</mat-label>
-          <input
-            type="text"
-            matInput
-            [value]="selectedCompany.companyPhone"
-            name="companyPhone"
-            [(ngModel)]="selectedCompany.companyPhone"
-          />
-        </mat-form-field>
-        <mat-form-field class="form-field">
-          <mat-label>Website</mat-label>
-          <input
-            type="text"
-            matInput
-            [value]="selectedCompany.companyWebsite"
-            name="companyWebsite"
-            [(ngModel)]="selectedCompany.companyWebsite"
-          />
-        </mat-form-field>
-        <mat-form-field class="form-field">
-          <mat-label>Contact Email</mat-label>
-          <input
-            type="text"
-            matInput
-            [value]="selectedCompany.contactEmail"
-            name="contactEmail"
-            [(ngModel)]="selectedCompany.contactEmail"
-          />
-        </mat-form-field>
-        <mat-form-field class="form-field">
-          <mat-label>Other Contact</mat-label>
-          <input
-            type="text"
-            matInput
-            [value]="selectedCompany.otherContact"
-            name="otherContact"
-            [(ngModel)]="selectedCompany.otherContact"
-          />
-        </mat-form-field>
-        <mat-form-field class="form-field">
-          <mat-label>Status</mat-label>
-          <mat-select
-            [(ngModel)]="selectedCompany.status"
-            [value]="selectedCompany.status"
-            name="status"
+    <form #editForm="ngForm" (ngSubmit)="editCompanyHandler(editForm)">
+      <mat-form-field class="form-field">
+        <mat-label>Company Name</mat-label>
+        <input
+          type="text"
+          matInput
+          [value]="selectedCompany.companyName"
+          name="companyName"
+          [(ngModel)]="selectedCompany.companyName"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Social Media Link</mat-label>
+        <input
+          type="text"
+          matInput
+          [value]="selectedCompany.socialMediaLink"
+          name="socialMediaLink"
+          [(ngModel)]="selectedCompany.socialMediaLink"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Phone</mat-label>
+        <input
+          type="text"
+          matInput
+          [value]="selectedCompany.companyPhone"
+          name="companyPhone"
+          [(ngModel)]="selectedCompany.companyPhone"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Website</mat-label>
+        <input
+          type="text"
+          matInput
+          [value]="selectedCompany.companyWebsite"
+          name="companyWebsite"
+          [(ngModel)]="selectedCompany.companyWebsite"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Contact Email</mat-label>
+        <input
+          type="text"
+          matInput
+          [value]="selectedCompany.contactEmail"
+          name="contactEmail"
+          [(ngModel)]="selectedCompany.contactEmail"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Other Contact</mat-label>
+        <input
+          type="text"
+          matInput
+          [value]="selectedCompany.otherContact"
+          name="otherContact"
+          [(ngModel)]="selectedCompany.otherContact"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Status</mat-label>
+        <mat-select
+          [(ngModel)]="selectedCompany.status"
+          [value]="selectedCompany.status"
+          name="status"
+        >
+          <mat-option value="Not reached">Not reached</mat-option>
+          <mat-option value="Reached">Reached</mat-option>
+          <mat-option value="Rejected">Rejected</mat-option>
+          <mat-option value="Free credits onboarding"
+            >Free credits onboarding</mat-option
           >
-            <mat-option value="Not reached">Not reached</mat-option>
-            <mat-option value="Reached">Reached</mat-option>
-            <mat-option value="Rejected">Rejected</mat-option>
-            <mat-option value="Free credits onboarding"
-              >Free credits onboarding</mat-option
-            >
-            <mat-option value="Onboarding">Onboarding</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field class="form-field">
-          <mat-label>Company Size</mat-label>
-          <mat-select
-            name="companySize"
-            [(ngModel)]="selectedCompany.companySize"
-            [value]="selectedCompany.companySize"
-          >
-            <mat-option value="Not specified">Not specified</mat-option>
-            <mat-option value="Mid size">Mid size</mat-option>
-            <mat-option value="Micro size">Micro size</mat-option>
-            <mat-option value=" Enteprise">Enteprise</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field class="form-field">
-          <mat-label>Notes</mat-label>
+          <mat-option value="Onboarding">Onboarding</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Company Size</mat-label>
+        <mat-select
+          name="companySize"
+          [(ngModel)]="selectedCompany.companySize"
+          [value]="selectedCompany.companySize"
+        >
+          <mat-option value="Not specified">Not specified</mat-option>
+          <mat-option value="Mid size">Mid size</mat-option>
+          <mat-option value="Micro size">Micro size</mat-option>
+          <mat-option value=" Enteprise">Enteprise</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Notes</mat-label>
 
-          <textarea
-            matInput
-            rows="6"
-            [value]="selectedCompany.notes"
-            name="notes"
-            [(ngModel)]="selectedCompany.notes"
-          ></textarea>
-        </mat-form-field>
-        <mat-form-field class="form-field">
-          <mat-label>Scheduled meeting time</mat-label>
-          <input
-            matInput
-            name="meetingTime"
-            [(ngModel)]="selectedCompany.meetingTime"
-            [ngxMatTimepicker]="pickerB"
-            readonly
-          /><mat-icon matSuffix (click)="pickerB.open()">
-            watch_later
-          </mat-icon>
-        </mat-form-field>
-        <!-- <mat-form-field class="form-field">
+        <textarea
+          matInput
+          rows="6"
+          [value]="selectedCompany.notes"
+          name="notes"
+          [(ngModel)]="selectedCompany.notes"
+        ></textarea>
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Scheduled meeting time</mat-label>
+        <input
+          matInput
+          name="meetingTime"
+          [(ngModel)]="selectedCompany.meetingTime"
+          [ngxMatTimepicker]="pickerB"
+          readonly
+        /><mat-icon matSuffix (click)="pickerB.open()"> watch_later </mat-icon>
+      </mat-form-field>
+      <!-- <mat-form-field class="form-field">
           <mat-label>Scheduled meeting date</mat-label>
           <input
             matInput
@@ -140,34 +150,33 @@
           ></mat-datepicker-toggle>
           <mat-datepicker #pickerdate></mat-datepicker>
         </mat-form-field>-->
-        <ngx-mat-timepicker color="accent" #pickerB></ngx-mat-timepicker>
-        <mat-form-field class="form-field">
-          <mat-label></mat-label>
-          <input
+      <ngx-mat-timepicker color="accent" #pickerB></ngx-mat-timepicker>
+      <mat-form-field class="form-field">
+        <mat-label></mat-label>
+        <input
           matInput
-            [matDatepicker]="picker"
-            name="meetingDate"
-            [(ngModel)]="selectedCompany.meetingDate"
-            [value]="selectedCompany.meetingDate"
-          />
-          <mat-hint>MM/DD/YYYY</mat-hint>
-          <mat-datepicker-toggle
-            matIconSuffix
-            [for]="picker"
-          ></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-        <div class="buttons">
-          <span class="cancel">
-            <button type="button" (click)="goBack()" mat-raised-button>
-              Close
-            </button>
-          </span>
-          <span class="save">
-            <button type="submit" mat-raised-button>Save changes</button>
-          </span>
-        </div>
-      </form>
-
+          [matDatepicker]="picker"
+          name="meetingDate"
+          [(ngModel)]="selectedCompany.meetingDate"
+          [value]="selectedCompany.meetingDate"
+        />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <div class="buttons">
+        <span class="cancel">
+          <button type="button" (click)="goBack()" mat-raised-button>
+            Close
+          </button>
+        </span>
+        <span class="save">
+          <button type="submit" mat-raised-button>Save changes</button>
+        </span>
+      </div>
+    </form>
   </mat-card>
 </div>

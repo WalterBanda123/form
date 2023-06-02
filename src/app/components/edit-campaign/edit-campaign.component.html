@@ -1,5 +1,5 @@
 <div class="top">
-  <app-topbar></app-topbar>
+  <app-topbar [currentPage]="currentPage"></app-topbar>
 </div>
 <div class="container">
   <div class="content">
@@ -187,14 +187,14 @@
 
       <h2 mat-card-subtitle class="heading-text">Activation</h2>
       <mat-form-field class="form-field">
-        <mat-label>Add credit cards</mat-label>
+        <mat-label>Add credit card</mat-label>
         <input
           type="number"
           matInput
-          placeholder="Add credit cards"
+          placeholder="Add credit card"
           [(ngModel)]="selectedCampaign.activation.add_credit_card"
           (value)="(selectedCampaign.activation.add_credit_card)"
-          name="add_credit_cards"
+          name="add_credit_card"
         />
       </mat-form-field>
       <mat-form-field class="form-field">
@@ -326,9 +326,7 @@
         />
       </mat-form-field>
       <div class="actions">
-        <button type="button" mat-flat-button  (click)="goBack()">
-          Close
-        </button>
+        <button type="button" mat-flat-button (click)="goBack()">Close</button>
         <button type="submit" mat-raised-button class="submit">Save</button>
       </div>
     </mat-card>

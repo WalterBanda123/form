@@ -57,7 +57,10 @@ export class EditComponent implements OnInit {
   }
 
   selectedCompany: any;
+  currentPage: any;
   ngOnInit(): void {
+    this.currentPage = localStorage.getItem('currentPage');
+    
     const id = this.activeRoute.snapshot.paramMap.get('id')!;
     this.companyService.getCompany(id).subscribe((data: any) => {
       this.selectedCompanyDate = new Date(
@@ -65,7 +68,6 @@ export class EditComponent implements OnInit {
       ).toLocaleDateString('en-US');
       this.selectedCompany = data.company;
       console.log(data.company);
-
     });
   }
 }

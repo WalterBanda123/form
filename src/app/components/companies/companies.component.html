@@ -2,7 +2,7 @@
 <hr />
 <div class="section">
   <div class="card">
-    <mat-card>
+    <mat-card >
       <mat-card-content>
         <div class="body">
           <h1>{{ companiesNotReached.length }}</h1>
@@ -243,13 +243,10 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
-  <mat-paginator
+  <!-- <mat-paginator
     [pageSizeOptions]="[5, 10, 20]"
     showFirstLastButtons
     length="dataSource.length"
   >
-  </mat-paginator>
+  </mat-paginator> -->
 </div>
-<footer class="footer">
-  <p>Dynaton data 2023</p>
-</footer>

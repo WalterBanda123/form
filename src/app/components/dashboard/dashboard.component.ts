@@ -11,7 +11,7 @@ export class DashboardComponent implements OnInit {
     private spinner: NgxSpinnerService  ) {
     this.currentPage = localStorage.getItem('currentPage') || '';
   }
-
+  
   currentPage: any = 'campaigns';
   navigateTo(page: string): void {
     this.currentPage = page;
