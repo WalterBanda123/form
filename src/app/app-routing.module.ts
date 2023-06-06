@@ -9,10 +9,16 @@ import { EditComponent } from './components/edit/edit.component';
 import { CampaignsComponent } from './components/campaigns/campaigns.component';
 import { AddCampaignComponent } from './components/add-campaign/add-campaign.component';
 import { EditCampaignComponent } from './components/edit-campaign/edit-campaign.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  {
+    path: 'profile',
+    component: UserProfileComponent,
+    canActivate: [LoginGuard],
+  },
   {
     path: 'campaigns',
     component: CampaignsComponent,

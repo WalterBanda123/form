@@ -1,0 +1,56 @@
+<div class="top">
+  <app-topbar [currentPage]="currentPage"></app-topbar>
+</div>
+<div class="main-container">
+  <div class="top-strip">
+    <button mat-icon-button (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <div class="icons">
+      <span>
+        <button mat-icon-button>
+          <mat-icon>settings_outline</mat-icon>
+        </button>
+      </span>
+      <span>
+        <button mat-icon-button>
+          <mat-icon>notifications</mat-icon>
+        </button>
+      </span>
+    </div>
+  </div>
+  <div class="main-content">
+    <span class="image-container-container">
+      <div class="image-container"></div>
+      <section class="work-section">
+        <h2>Work Skills</h2>
+        <p>Marketing</p>
+        <p>Excel</p>
+        <p>Programming</p>
+      </section>
+    </span>
+    <span class="content">
+      <span>
+        <h2>{{ user.fullName | uppercase }}</h2>
+        <h4>Marketing Director</h4>
+      </span>
+      <span>
+        <h2>Contact Information</h2>
+        <p>Address :</p>
+        <p>Email :{{ user.email }}</p>
+        <p>Contact Number :</p>
+        <span
+          ><button mat-icon-button><mat-icon>edit</mat-icon></button>
+        </span>
+      </span>
+      <span>
+        <h2>Basic Information</h2>
+        <p>Birthday:</p>
+        <p>Gender:</p>
+      </span>
+      <span>
+        <button mat-flat-button (click)="goBack()">Go back</button>
+      </span>
+    </span>
+  </div>
+</div>

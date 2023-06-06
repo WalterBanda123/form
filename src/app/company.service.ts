@@ -4,7 +4,7 @@ import {
   HttpHeaders,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { Observable, catchError, tap, throwError } from 'rxjs';
+import { Observable, catchError, of, tap, throwError } from 'rxjs';
 import { Company } from './company';
 import { environment } from 'src/environment';
 
@@ -12,8 +12,11 @@ import { environment } from 'src/environment';
   providedIn: 'root',
 })
 export class CompanyService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.userLoggedIn = JSON.parse(localStorage.getItem('authenticatedUser')!);
+  }
 
+  userLoggedIn: any;
 
   private errorHandler(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
@@ -33,38 +36,84 @@ export class CompanyService {
   //---GETTING THE COMPANIES LIST----
 
   getCompanies(): Observable<Company[]> {
-    return this.http
-      .get<Company[]>(`${environment.serverUrl}` + `/companies`)
-      .pipe(catchError(this.errorHandler));
+    if (this.userLoggedIn.token) {
+      const headers = new HttpHeaders().set(
+        'Authorization',
+        `Bearer ${this.userLoggedIn.token}`
+      );
+      return this.http
+        .get<Company[]>(`${environment.serverUrl}` + `/companies`, { headers })
+        .pipe(catchError(this.errorHandler));
+    }
+
+    return of([]);
   }
 
   createCompany(newCompany: any): Observable<any> {
-    return this.http
+    if (this.userLoggedIn.token) {
+      const headers = new HttpHeaders().set(
+        'Authorization',
+        `Bearer ${this.userLoggedIn.token}`
+      );
 
-      .post<any>(`${environment.serverUrl}` + `/companies`, newCompany)
+      return this.http
+        .post<any>(`${environment.serverUrl}` + `/companies`, newCompany, {
+          headers,
+        })
+        .pipe(catchError(this.errorHandler));
+    }
 
-      .pipe(catchError(this.errorHandler));
+    return of({});
   }
 
-  deleteCompany(companyId: string): Observable<Company> {
-    return this.http
-      .delete<Company>(`${environment.serverUrl}` + `/companies/${companyId}`)
-      .pipe(catchError(this.errorHandler));
-  }
-  getCompany(companyId: string): Observable<Company> {
-    return this.http
+  deleteCompany(companyId: string): Observable<any> {
+    if (this.userLoggedIn.token) {
+      const headers = new HttpHeaders().set(
+        'Authorization',
+        `Bearer ${this.userLoggedIn.token}`
+      );
+      return this.http
+        .delete<Company>(
+          `${environment.serverUrl}` + `/companies/${companyId}`,
+          { headers }
+        )
+        .pipe(catchError(this.errorHandler));
+    }
 
-      .get<Company>(`${environment.serverUrl}` + `/companies/${companyId}`)
-      .pipe(catchError(this.errorHandler));
+    return of({});
+  }
+
+  getCompany(companyId: string): Observable<any> {
+    if (this.userLoggedIn.token) {
+      const headers = new HttpHeaders().set(
+        'Authorization',
+        `Bearer ${this.userLoggedIn.token}`
+      );
+      return this.http
+        .get<Company>(`${environment.serverUrl}` + `/companies/${companyId}`, {
+          headers,
+        })
+        .pipe(catchError(this.errorHandler));
+    }
+
+    return of({});
   }
 
   updateCompany(
     companyId: string,
     updates: { propertyName: string; value: string }[]
   ): Observable<any> {
-    return this.http.patch<any>(
-      `${environment.serverUrl}` + `/companies/${companyId}`,
-      updates,
-    );
+    if (this.userLoggedIn.token) {
+      const headers = new HttpHeaders().set(
+        'Authorization',
+        `Bearer ${this.userLoggedIn.token}`
+      );
+      return this.http.patch<any>(
+        `${environment.serverUrl}` + `/companies/${companyId}`,
+        updates,
+        { headers }
+      );
+    }
+    return of({});
   }
 }

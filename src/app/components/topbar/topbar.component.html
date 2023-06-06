@@ -40,7 +40,7 @@
       <i class="material-icons">person</i>
     </button>
     <mat-menu #menu>
-      <button mat-menu-item>Edit profile</button>
+      <button mat-menu-item (click)="viewProfile()">Edit profile</button>
       <button mat-menu-item (click)="signOutHandler()">Logout</button>
     </mat-menu>
   </span>

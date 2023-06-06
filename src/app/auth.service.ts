@@ -11,8 +11,9 @@ import { environment } from 'src/environment';
   providedIn: 'root',
 })
 export class AuthService {
+
   private isUserlogged = new BehaviorSubject<boolean>(false);
-  _isUserLogged = this.isUserlogged.asObservable();
+  _isUserLogged$ = this.isUserlogged.asObservable();
 
   getLoggedUser(token: string) {
     if (token && token !== undefined) {
@@ -24,7 +25,6 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  
   private errorHandler(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

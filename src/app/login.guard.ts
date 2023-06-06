@@ -10,15 +10,18 @@ import {
   UrlSegment,
   UrlTree,
 } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginGuard implements CanActivate, CanLoad, CanMatch {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {
+    this.userLoggedIn = JSON.parse(localStorage.getItem('authenticatedUser')!);
+  }
 
+  userLoggedIn: any;
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -27,9 +30,15 @@ export class LoginGuard implements CanActivate, CanLoad, CanMatch {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return this.authService._isUserLogged
-      ? true
-      : this.router.navigate(['/login']);
+    return this.authService._isUserLogged$.pipe(
+      tap((isLoggedIn) => {
+        if (isLoggedIn === false || this.userLoggedIn === null) {
+          console.log(this.userLoggedIn + ',' + isLoggedIn);
+
+          this.router.navigate(['/login']);
+        }
+      })
+    );
   }
   canMatch(
     route: Route,
@@ -49,6 +58,6 @@ export class LoginGuard implements CanActivate, CanLoad, CanMatch {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return this.authService._isUserLogged;
+    return true;
   }
 }
