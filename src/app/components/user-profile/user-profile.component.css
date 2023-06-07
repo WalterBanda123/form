@@ -15,6 +15,18 @@
   justify-content: space-between;
 }
 
+.top-strip mat-icon {
+  color: #ce0212;
+}
+
+#edit {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
 .icons {
   display: flex;
   flex-direction: row;
@@ -34,10 +46,12 @@
 
 .image-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 95%;
   height: 350px;
   border: 1px solid lightgray;
+  align-items: center;
+  justify-content: center;
 }
 
 .image-container-container {
@@ -53,13 +67,44 @@
   margin-right: 10px;
 }
 
+.content mat-card {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-top: 2px solid #ce0212;
+  border-radius: 0px;
+}
+
+.content .bottom-button {
+  display: flex;
+  margin-top: 20px;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+}
+
 .image-container-container .work-section {
   display: flex;
   flex-direction: column;
+  border-top: 2px solid #ce0212;
+  border-radius: 0px;
 }
 
 .image-container-container .work-section h4 {
   color: gray;
   opacity: 0.8;
   margin-bottom: 0px;
+}
+
+.work-section {
+  display: flex;
+  flex-direction: row;
+  width: 95%;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+#camera,
+#goback {
+  color: #ce0212;
 }

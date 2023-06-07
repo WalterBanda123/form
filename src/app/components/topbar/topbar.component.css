@@ -116,7 +116,7 @@ button p {
   color: #ce0212;
   font-size: 25px;
   font-weight: 800;
-  border-bottom: 2px solid #ce0212;
+  /* border-bottom: 2px solid #ce0212; */
 }
 
 .side-nav span.selected button {

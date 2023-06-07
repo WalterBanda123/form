@@ -40,6 +40,7 @@ import { EditCampaignComponent } from './components/edit-campaign/edit-campaign.
 import { CampaignsMainComponent } from './components/campaigns-main/campaigns-main.component';
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
 
 
 
@@ -64,6 +65,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     CampaignsMainComponent,
     DeleteDialogComponent,
     UserProfileComponent,
+    NotificationsComponent,
   ],
   entryComponents: [DialogComponent],
   imports: [

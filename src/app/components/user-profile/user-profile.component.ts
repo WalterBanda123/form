@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { AuthService } from 'src/app/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
@@ -8,10 +9,18 @@ import { AuthService } from 'src/app/auth.service';
   styleUrls: ['./user-profile.component.css'],
 })
 export class UserProfileComponent implements OnInit {
-  constructor(private location: Location, private authService: AuthService) {}
+  constructor(
+    private location: Location,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   currentPage: any;
   user: any;
+
+  navigateToNotifications(): void {
+    this.router.navigate(['/notifications']);
+  }
 
   goBack(): void {
     this.location.back();

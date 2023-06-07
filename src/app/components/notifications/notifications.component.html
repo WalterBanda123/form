@@ -1,0 +1,40 @@
+<div class="top">
+  <app-topbar [currentPage]="currentPage"></app-topbar>
+</div>
+<div class="main-container">
+  <div class="top-strip">
+    <button mat-icon-button (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <!-- <span></span> -->
+      <h1>Notifications & Emails</h1>
+
+  </div>
+  <mat-card class="main-content">
+    <span class="card-head" mat-card-subtitle>
+      <span
+        class="segment1"
+        (click)="selectSegmentButtonHandler('emails')"
+        [ngClass]="{ selected: selectedSegmentButton === 'emails' }"
+        ><h2>Emails</h2></span
+      >
+      <span
+        class="segment2"
+        (click)="selectSegmentButtonHandler('notifications')"
+        [ngClass]="{ selected: selectedSegmentButton === 'notifications' }"
+        ><h2>Notifications</h2></span
+      >
+    </span>
+    <div class="card-content">
+      <div class="emails" *ngIf="selectedSegmentButton === 'emails'">
+        No emails found!
+      </div>
+      <div
+        class="notifications"
+        *ngIf="selectedSegmentButton === 'notifications'"
+      >
+        No notifications found!
+      </div>
+    </div>
+  </mat-card>
+</div>

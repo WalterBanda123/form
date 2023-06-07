@@ -10,6 +10,7 @@ import { CampaignsComponent } from './components/campaigns/campaigns.component';
 import { AddCampaignComponent } from './components/add-campaign/add-campaign.component';
 import { EditCampaignComponent } from './components/edit-campaign/edit-campaign.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -18,6 +19,10 @@ const routes: Routes = [
     path: 'profile',
     component: UserProfileComponent,
     canActivate: [LoginGuard],
+  },
+  {
+    path: 'notifications',
+    component: NotificationsComponent,
   },
   {
     path: 'campaigns',

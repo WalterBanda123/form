@@ -13,7 +13,7 @@
         </button>
       </span>
       <span>
-        <button mat-icon-button>
+        <button mat-icon-button (click)="navigateToNotifications()">
           <mat-icon>notifications</mat-icon>
         </button>
       </span>
@@ -21,36 +21,53 @@
   </div>
   <div class="main-content">
     <span class="image-container-container">
-      <div class="image-container"></div>
-      <section class="work-section">
-        <h2>Work Skills</h2>
-        <p>Marketing</p>
-        <p>Excel</p>
-        <p>Programming</p>
-      </section>
+      <div class="image-container">
+        <span
+          ><button mat-icon-button>
+            <mat-icon id="camera">camera_enhance</mat-icon>
+          </button>
+          <p><small>Add photo</small></p></span
+        >
+      </div>
+      <mat-card class="work-section">
+        <section>
+          <h2>Work Skills</h2>
+          <p>Marketing</p>
+          <p>Excel</p>
+          <p>Programming</p>
+        </section>
+      </mat-card>
     </span>
     <span class="content">
-      <span>
-        <h2>{{ user.fullName | uppercase }}</h2>
-        <h4>Marketing Director</h4>
-      </span>
-      <span>
-        <h2>Contact Information</h2>
-        <p>Address :</p>
-        <p>Email :{{ user.email }}</p>
-        <p>Contact Number :</p>
-        <span
-          ><button mat-icon-button><mat-icon>edit</mat-icon></button>
+      <mat-card>
+        <span>
+          <h2>{{ user.fullName | uppercase }}</h2>
+          <h4>Marketing Director</h4>
         </span>
-      </span>
-      <span>
+        <span>
+          <h2>Contact Information</h2>
+          <p>Address :</p>
+          <p>Email : <span>{{ user.email }}</span></p>
+          <p>Contact Number :</p>
+          <span
+          id="edit"
+            ><button mat-icon-button><mat-icon>edit_outline</mat-icon></button>
+          </span>
+        </span>
+      </mat-card>
+
+      <mat-card>
         <h2>Basic Information</h2>
         <p>Birthday:</p>
         <p>Gender:</p>
-      </span>
-      <span>
-        <button mat-flat-button (click)="goBack()">Go back</button>
-      </span>
+         <span
+          id="edit"
+            ><button mat-icon-button><mat-icon>edit</mat-icon></button>
+          </span>
+      </mat-card>
+      <div class="bottom-button">
+        <button mat-flat-button (click)="goBack()" id="goback">Go back</button>
+      </div>
     </span>
   </div>
 </div>
