@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component,Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 import { CompanyService } from 'src/app/company.service';
@@ -12,9 +18,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
   selector: 'app-companies',
   templateUrl: './companies.component.html',
   styleUrls: ['./companies.component.css'],
-  
 })
-export class CompaniesComponent implements OnInit{
+export class CompaniesComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private companyService: CompanyService,
@@ -35,6 +40,7 @@ export class CompaniesComponent implements OnInit{
   microCompanies?: any[];
   midSizeCompanies?: any[];
   entepriseCompanies?: any[];
+  searchedText = '';
 
   displayedColumns: string[] = [
     'companyName',
@@ -139,6 +145,17 @@ export class CompaniesComponent implements OnInit{
     this.changeDection.detectChanges();
   }
 
+  implementSearching(): void {
+    if (this.searchedText !== '') {
+      this.companyService
+        .searchImplementation(this.searchedText)
+        .subscribe((data) => {
+          this.dataSource = data.companies;
+          this.changeDection.detectChanges();
+        });
+    }
+  }
+
   searchHandler(): void {
     this.companyService.getCompanies().subscribe((result: any) => {
       if (this.searchedValue !== '') {
@@ -210,10 +227,9 @@ export class CompaniesComponent implements OnInit{
     this.spinner.show();
     setTimeout(() => {
       this.spinner.hide();
-    }, 1000);
-    setTimeout(() => {
       this.router.navigate([`/edit-details/${companyId}`]);
     }, 1000);
+   
   }
 
   scheduleMeeting(company: any): void {

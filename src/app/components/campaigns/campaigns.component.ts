@@ -100,6 +100,7 @@ export class CampaignsComponent implements OnInit {
     }, 1000);
   }
 
+  
   goBackHandler(): void {
     setTimeout(() => {
       this.spinner.show();

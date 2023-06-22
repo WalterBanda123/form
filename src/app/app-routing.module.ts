@@ -27,7 +27,7 @@ const routes: Routes = [
   {
     path: 'campaigns',
     component: CampaignsComponent,
-    canActivate: [LoginGuard],
+    // canActivate: [LoginGuard],
   },
   {
     path: 'add-campaign',

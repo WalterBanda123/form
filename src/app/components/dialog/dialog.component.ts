@@ -35,12 +35,13 @@ export class DialogComponent implements OnInit {
 
         setTimeout(() => {
           this.spinner.hide();
-        }, 3000);
-        setTimeout(() => {
-          this.snackBar.open(res.message, 'Undo', {
-            duration: 4000,
+          this.snackBar.open(res.message, 'Okay', {
+            duration: 1000,
           });
-        }, 2000);
+        }, 1000);
+        // setTimeout(() => {
+
+        // }, 1000);
       });
     }
   }

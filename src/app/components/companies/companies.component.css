@@ -31,6 +31,16 @@
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
+.search-bar button {
+  /* width: 300px; */
+  height: 40px;
+  border: 0px;
+  border-radius: 1px;
+  background-color: #ce0212;
+  color: white;
+  margin-top: 2px;
+}
+
 .header {
   width: 100%;
   background-color: white;
@@ -173,6 +183,5 @@ span.filter-span .label-button button {
 }
 
 .card mat-card {
-  border-bottom: 2px solid #ce0212;
-  
+  border-top: 2px solid #ce0212;
 }

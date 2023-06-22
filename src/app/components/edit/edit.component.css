@@ -44,8 +44,8 @@
 }
 
 .cancel button {
-  background-color: black;
-  color: white;
+  /* background-color: black; */
+  color: black;
 }
 .save button {
   background-color: #ce0212;
@@ -56,4 +56,7 @@
   padding-left: 40px;
   padding-top: 20px;
   padding-bottom: 20px;
+}
+ngx-mat-timepicker-content .mat-toolbar.mat-accent {
+  background-color: #ce0212;
 }

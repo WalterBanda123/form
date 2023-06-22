@@ -9,9 +9,9 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class DashboardComponent implements OnInit {
   constructor(
     private spinner: NgxSpinnerService  ) {
-    this.currentPage = localStorage.getItem('currentPage') || '';
+    this.currentPage = localStorage.getItem('currentPage') || 'campaigns';
   }
-  
+
   currentPage: any = 'campaigns';
   navigateTo(page: string): void {
     this.currentPage = page;
@@ -21,6 +21,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.spinner.show();
 
+    // this.currentPage = 'campaigns'
     setTimeout(() => {
       this.spinner.hide();
     }, 500);

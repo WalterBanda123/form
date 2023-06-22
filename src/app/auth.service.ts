@@ -51,7 +51,7 @@ export class AuthService {
     return this.http
 
       .post<any>(`${environment.serverUrl}` + `/users/signup`, newUser)
-      .pipe(catchError(this.errorHandler));
+      // .pipe(catchError(this.errorHandler));
   }
 
   userSignIn(credentials: {

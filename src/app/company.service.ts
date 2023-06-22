@@ -99,6 +99,25 @@ export class CompanyService {
     return of({});
   }
 
+  searchImplementation(text: string): Observable<any> {
+    if (this.userLoggedIn.token) {
+      const headers = new HttpHeaders().set(
+        'Authorization',
+        `Bearer ${this.userLoggedIn.token}`
+      );
+      return this.http
+        .post<Company[]>(
+          `${environment.serverUrl}` + `/companies/search`,
+          { searched: text },
+          {
+            headers,
+          }
+        )
+        .pipe(catchError(this.errorHandler));
+    }
+    return of([]);
+  }
+
   updateCompany(
     companyId: string,
     updates: { propertyName: string; value: string }[]

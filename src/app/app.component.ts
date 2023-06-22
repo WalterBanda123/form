@@ -19,9 +19,9 @@ export class AppComponent implements OnInit {
     this.currentPage = page;
   }
   ngOnInit() {
-    this.spinner.show();
-    setTimeout(() => {
-      this.spinner.hide();
-    }, 3000);
+    // this.spinner.show();
+    // setTimeout(() => {
+    //   this.spinner.hide();
+    // }, 3000);
   }
 }

@@ -6,7 +6,7 @@
       height="50"
     />
   </span>
-  <span class=" span-container">
+  <span class="span-container">
     <div class="side-nav">
       <!-- <span
         (click)="navigateTo('home')"
@@ -19,7 +19,7 @@
         (click)="navigateTo('domain')"
         [ngClass]="{ selected: currentPage === 'domain' }"
       >
-      <i class="material-icons">domain</i>
+        <i class="material-icons">domain</i>
         Companies
       </span>
       <span
@@ -31,12 +31,13 @@
       </span>
     </div>
   </span>
+
   <span class="profile-icon span-container">
+    <button mat-icon-button (click)="viewNotifications()">
+      <mat-icon>notifications</mat-icon>
+    </button>
     <p *ngIf="user">{{ user.fullName | uppercase }}</p>
-    <button
-      mat-fab
-      [matMenuTriggerFor]="menu"
-    >
+    <button mat-fab [matMenuTriggerFor]="menu">
       <i class="material-icons">person</i>
     </button>
     <mat-menu #menu>

@@ -2,7 +2,7 @@
 <hr />
 <div class="section">
   <div class="card">
-    <mat-card >
+    <mat-card>
       <mat-card-content>
         <div class="body">
           <h1>{{ companiesNotReached.length }}</h1>
@@ -79,9 +79,10 @@
       matInput
       placeholder="Search for Everything. "
       type="search"
-      [(ngModel)]="searchedValue"
+      [(ngModel)]="searchedText"
       (input)="searchHandler()"
     />
+    <button (click)="implementSearching()">Search</button>
   </span>
   <span class="add-and-filter">
     <div class="span-buttons">
@@ -162,7 +163,7 @@
     </div>
   </span>
   <span class="add-and-filter">
-    <button class="add-button"  mat-fab extended (click)="startAddingCompany()">
+    <button class="add-button" mat-fab extended (click)="startAddingCompany()">
       <mat-icon>add</mat-icon> Add Company
     </button>
   </span>

@@ -1,4 +1,7 @@
 <div class="container">
+  <div class="error-section" *ngIf="authError !== ''">
+    <h2>{{ authError }}</h2>
+  </div>
   <mat-card class="content">
     <div class="header">
       <img src="./../../../assets/dynaton-logo.png" alt="logo" width="150" />
@@ -60,18 +63,25 @@
         <div class="input-container">
           <mat-form-field>
             <input
-              matInput
+              
               type="password"
               placeholder="Confirm password"
               name="confirmPassword"
               ngModel
               #confirmPassword="ngModel"
               required
+              (input)="checkPasswords(password.value, confirmPassword.value)"
             />
-            <mat-error *ngIf="passwordsDoNotMatch === 'Passwords do not match'"
+            <!-- <mat-error *ngIf="passwordsDoNotMatch === 'Passwords do not match'"
               >Passwords do not match</mat-error
-            >
+            > -->
+            <!-- <mat-error *ngIf="confirmPassword.touched"
+              >Passwords don't match</mat-error
+            > -->
           </mat-form-field>
+          <span matError *ngIf="passwordsDoNotMatch === true"
+            >Passwords do not match</span
+          >
         </div>
         <div class="input-container">
           <button

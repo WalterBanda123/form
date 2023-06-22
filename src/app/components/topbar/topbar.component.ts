@@ -20,13 +20,18 @@ export class TopbarComponent implements OnInit {
   user: any;
   signOutHandler(): void {
     localStorage.removeItem('authenticatedUser');
+    this.authService.getLoggedUser('');
     this.router.navigate(['/login']);
   }
 
-  viewProfile():void{
-    this.router.navigate(['/profile'])
+  viewProfile(): void {
+    this.router.navigate(['/profile']);
   }
-  
+
+  viewNotifications(): void {
+    this.router.navigate(['/notifications']);
+  }
+
   ngOnInit(): void {
     const loggedUser = JSON.parse(localStorage.getItem('authenticatedUser')!);
     this.authService.getUser(loggedUser._id).subscribe((userData) => {
