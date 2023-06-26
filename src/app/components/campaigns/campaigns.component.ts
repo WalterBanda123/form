@@ -100,7 +100,7 @@ export class CampaignsComponent implements OnInit {
     }, 1000);
   }
 
-  
+
   goBackHandler(): void {
     setTimeout(() => {
       this.spinner.show();
@@ -128,7 +128,7 @@ export class CampaignsComponent implements OnInit {
     setTimeout(() => {
       this.campaignService.getCampaigns().subscribe((campaigns: any) => {
         this.campaignsList = campaigns.campaigns.slice().reverse();
-        console.log(campaigns);
+       
       });
     }, 1000);
   }

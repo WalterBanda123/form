@@ -34,14 +34,11 @@ export class LoginComponent implements OnInit {
             }, 2000);
             setTimeout(() => {
               localStorage.setItem('authenticatedUser', JSON.stringify(data));
-              this.authService.getLoggedUser(data.token);
+              // this.authService.getLoggedUser(data.token);
+              this.authService.isLoggedIn = true;
               this.router.navigate(['/dashboard']);
             }, 2000);
           }
-          // const user = JSON.parse(localStorage.getItem('authenticatedUser')!);
-          // if (user) {
-          //   this.authService.getLoggedUser(user.token);
-          // }
         },
         (error: any) => {
           this.spinner.show();
@@ -60,7 +57,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     const userLoggedIn = JSON.parse(localStorage.getItem('authenticatedUser')!);
-    console.log(userLoggedIn);
+    // console.log(userLoggedIn);
     // localStorage.removeItem('authenticatedUser');
   }
 }

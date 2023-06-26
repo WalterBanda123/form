@@ -11,8 +11,6 @@ import { environment } from 'src/environment';
   providedIn: 'root',
 })
 export class CampaignService {
-
-
   constructor(private http: HttpClient) {
     this.userLoggedIn = JSON.parse(localStorage.getItem('authenticatedUser')!);
   }
@@ -31,8 +29,6 @@ export class CampaignService {
 
   getCampaigns(): Observable<any[]> {
     if (this.userLoggedIn.token) {
-      console.log(this.userLoggedIn.token);
-
       const headers = new HttpHeaders().set(
         'Authorization',
         `Bearer ${this.userLoggedIn.token}`
@@ -59,7 +55,7 @@ export class CampaignService {
         )
         .pipe(catchError(this.errorHandler));
     }
-    return of([])
+    return of([]);
   }
 
   createCampaign(newCampaign: any): Observable<any> {
@@ -93,7 +89,6 @@ export class CampaignService {
     }
     return of([]);
   }
-
 
   deleteCampaign(id: any): Observable<any> {
     if (this.userLoggedIn.token) {

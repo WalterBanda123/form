@@ -135,4 +135,51 @@ export class CompanyService {
     }
     return of({});
   }
+
+  filterByStatusAndSize(
+    companySize: string,
+    companyStatus: string
+  ): Observable<any> {
+    if (this.userLoggedIn.token) {
+      const headers = new HttpHeaders().set(
+        'Authorization',
+        `Bearer ${this.userLoggedIn.token}`
+      );
+      return this.http.post<any>(
+        `${environment.serverUrl}` + `/companies/search-size-status`,
+        { companySize, companyStatus },
+        { headers }
+      );
+    }
+    return of({});
+  }
+
+  filterByStatus(companyStatus: string): Observable<any> {
+    if (this.userLoggedIn.token) {
+      const headers = new HttpHeaders().set(
+        'Authorization',
+        `Bearer ${this.userLoggedIn.token}`
+      );
+      return this.http.post<any>(
+        `${environment.serverUrl}` + `/companies/search-status`,
+        { companyStatus },
+        { headers }
+      );
+    }
+    return of({});
+  }
+  filterBySize(companySize: string): Observable<any> {
+    if (this.userLoggedIn.token) {
+      const headers = new HttpHeaders().set(
+        'Authorization',
+        `Bearer ${this.userLoggedIn.token}`
+      );
+      return this.http.post<any>(
+        `${environment.serverUrl}` + `/companies/search-size`,
+        { companySize },
+        { headers }
+      );
+    }
+    return of({});
+  }
 }

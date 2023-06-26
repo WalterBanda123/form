@@ -13,6 +13,8 @@ import { CallModalComponent } from '../call-modal/call-modal.component';
 import { MeetingModalComponent } from '../meeting-modal/meeting-modal.component';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Company } from 'src/app/company';
+import { log } from 'console';
 
 @Component({
   selector: 'app-companies',
@@ -94,41 +96,71 @@ export class CompaniesComponent implements OnInit {
 
   //-------FILTERING BASED ON COMPANIES REACHED----
   filterCompaniesReached(): void {
-    this.dataSource = this.companiesReached;
+    const data = this.dataSource.filter(
+      (company: any) =>
+        company.status.toLowerCase().trim() === 'Reached'.toLowerCase().trim()
+    );
+
+    console.log(data);
+    this.dataSource = data;
     this.changeDection.detectChanges();
   }
 
   //-------FILTERING BASED ON COMPANIES NOT REACHED----
   filterCompaniesNotReached(): void {
-    this.dataSource = this.companiesNotReached;
+    const results = this.dataSource.filter(
+      (company: any) =>
+        company.status.toLowerCase().trim() ===
+        'Not reached'.toLowerCase().trim()
+    );
+
+    this.dataSource = results;
     this.changeDection.detectChanges();
   }
   //-------FILTERING BASED ON COMPANIES NOT REACHED----
   filterCompaniesThatRejected(): void {
-    this.dataSource = this.companiesRejected;
+    const results = this.dataSource.filter(
+      (company: any) =>
+        company.status.toLowerCase().trim() === 'Rejected'.toLowerCase().trim()
+    );
+    this.dataSource = results;
     this.changeDection.detectChanges();
   }
   //-------FILTERING BASED ON COMPANIES NOT REACHED----
   filterCompaniesOnFreeCredit(): void {
-    this.dataSource = this.companiesOnFreeCreditsOnboarding;
+    const results = this.dataSource.filter(
+      (company: any) =>
+        company.status.toLowerCase().trim() ===
+        'Free credits onboarding'.toLowerCase().trim()
+    );
+    this.dataSource = results;
     this.changeDection.detectChanges();
   }
   //-------FILTERING BASED ON COMPANIES NOT REACHED----
   filterCompaniesOnboarding(): void {
-    this.dataSource = this.companieOnboarding;
+    const results = this.dataSource.filter(
+      (company: any) =>
+        company.status.toLowerCase().trim() ===
+        'Onboarding'.toLowerCase().trim()
+    );
+    this.dataSource = results;
     this.changeDection.detectChanges();
   }
 
   //---FILTERING MICRO COMPANIES----
   filterMicroCompanies(): void {
-    this.dataSource = this.microCompanies;
-    this.changeDection.detectChanges();
+    this.companyService.filterBySize('Micro size').subscribe((result: any) => {
+      this.dataSource = result.items;
+      this.changeDection.detectChanges();
+    });
   }
 
   //-- MID SIZE COMPANIES ----
   filterMidSizeCompanies(): void {
-    this.dataSource = this.midSizeCompanies;
-    this.changeDection.detectChanges();
+    this.companyService.filterBySize('Mid size').subscribe((result: any) => {
+      this.dataSource = result.items;
+      this.changeDection.detectChanges();
+    });
   }
 
   //---FILTER ALL COMPANIES ----
@@ -141,18 +173,25 @@ export class CompaniesComponent implements OnInit {
 
   //----FILTER ENTEPRICE COMPANIES ----
   filterEntepriseCompanies(): void {
-    this.dataSource = this.entepriseCompanies;
-    this.changeDection.detectChanges();
+    this.companyService.filterBySize('Enteprise').subscribe((result: any) => {
+      this.dataSource = result.items;
+      this.changeDection.detectChanges();
+    });
   }
 
   implementSearching(): void {
     if (this.searchedText !== '') {
-      this.companyService
-        .searchImplementation(this.searchedText)
-        .subscribe((data) => {
-          this.dataSource = data.companies;
-          this.changeDection.detectChanges();
-        });
+      this.spinner.show();
+      setTimeout(() => {
+        this.spinner.hide();
+
+        this.companyService
+          .searchImplementation(this.searchedText)
+          .subscribe((data) => {
+            this.dataSource = data.companies;
+            this.changeDection.detectChanges();
+          });
+      }, 1000);
     }
   }
 
@@ -229,7 +268,6 @@ export class CompaniesComponent implements OnInit {
       this.spinner.hide();
       this.router.navigate([`/edit-details/${companyId}`]);
     }, 1000);
-   
   }
 
   scheduleMeeting(company: any): void {
@@ -256,6 +294,7 @@ export class CompaniesComponent implements OnInit {
     this.companyService.getCompanies().subscribe((companies: any) => {
       this.dataSource = companies.companies.reverse();
       this.totalNumberOfCompanies = companies.companies;
+
       const term = 'Not reached';
       companies.companies.forEach((company: any) => {
         if (

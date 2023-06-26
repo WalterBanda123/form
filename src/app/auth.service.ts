@@ -11,19 +11,33 @@ import { environment } from 'src/environment';
   providedIn: 'root',
 })
 export class AuthService {
+  private readonly isLoggedInKey = 'isLoggedIn';
+  private _isLoggedIn$ = new BehaviorSubject<boolean>(false);
 
-  private isUserlogged = new BehaviorSubject<boolean>(false);
-  _isUserLogged$ = this.isUserlogged.asObservable();
+  get isLoggedIn$() {
+    return this._isLoggedIn$.asObservable();
+  }
 
-  getLoggedUser(token: string) {
-    if (token && token !== undefined) {
-      this.isUserlogged.next(true);
-    } else {
-      this.isUserlogged.next(false);
+  constructor(private http: HttpClient) {
+    const storedValue = localStorage.getItem(this.isLoggedInKey);
+    if (storedValue) {
+      this._isLoggedIn$.next(JSON.parse(storedValue));
     }
   }
 
-  constructor(private http: HttpClient) {}
+  get isLoggedIn(): boolean {
+    return this._isLoggedIn$.value;
+  }
+
+  set isLoggedIn(value: boolean) {
+    this._isLoggedIn$.next(value);
+    localStorage.setItem(this.isLoggedInKey, JSON.stringify(value));
+  }
+
+  logout() {
+    this.isLoggedIn = false; // Update the isLoggedIn value to false
+    localStorage.removeItem(this.isLoggedInKey); // Remove the stored value from localStorage
+  }
 
   private errorHandler(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
@@ -48,10 +62,11 @@ export class AuthService {
     email: string;
     password: string;
   }): Observable<any> {
-    return this.http
-
-      .post<any>(`${environment.serverUrl}` + `/users/signup`, newUser)
-      // .pipe(catchError(this.errorHandler));
+    return this.http.post<any>(
+      `${environment.serverUrl}` + `/users/signup`,
+      newUser
+    );
+    // .pipe(catchError(this.errorHandler));
   }
 
   userSignIn(credentials: {
@@ -59,7 +74,7 @@ export class AuthService {
     password: string;
   }): Observable<any> {
     return this.http
-      .post<any>(`${environment.serverUrl}` + `/users/login`, credentials, )
+      .post<any>(`${environment.serverUrl}` + `/users/login`, credentials)
       .pipe(catchError(this.errorHandler));
   }
 

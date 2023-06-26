@@ -18,9 +18,11 @@ export class TopbarComponent implements OnInit {
   }
 
   user: any;
+
   signOutHandler(): void {
     localStorage.removeItem('authenticatedUser');
-    this.authService.getLoggedUser('');
+    // this.authService.getLoggedUser('');
+    this.authService.isLoggedIn = false;
     this.router.navigate(['/login']);
   }
 

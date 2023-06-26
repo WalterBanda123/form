@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
+  ActivatedRoute,
   ActivatedRouteSnapshot,
   CanActivate,
   CanLoad,
@@ -10,14 +11,18 @@ import {
   UrlSegment,
   UrlTree,
 } from '@angular/router';
-import { Observable, tap } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
 import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginGuard implements CanActivate, CanLoad, CanMatch {
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private activatedRoutes: ActivatedRoute
+  ) {
     this.userLoggedIn = JSON.parse(localStorage.getItem('authenticatedUser')!);
   }
 
@@ -30,12 +35,13 @@ export class LoginGuard implements CanActivate, CanLoad, CanMatch {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return this.authService._isUserLogged$.pipe(
-      tap((isLoggedIn) => {
-        if (isLoggedIn === false || this.userLoggedIn === null) {
-          console.log(this.userLoggedIn + ',' + isLoggedIn);
-
+    return this.authService.isLoggedIn$.pipe(
+      map((isLoggedIn) => {
+        if (isLoggedIn) {
+          return true;
+        } else {
           this.router.navigate(['/login']);
+          return false;
         }
       })
     );
