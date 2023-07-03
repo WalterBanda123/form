@@ -13,7 +13,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { NotificationsComponent } from './components/notifications/notifications.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   {
     path: 'profile',
